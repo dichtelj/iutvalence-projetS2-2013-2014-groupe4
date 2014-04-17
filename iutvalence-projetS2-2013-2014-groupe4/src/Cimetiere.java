@@ -1,4 +1,3 @@
-
 public class Cimetiere {
 	
 public void voirCimetiere(){
