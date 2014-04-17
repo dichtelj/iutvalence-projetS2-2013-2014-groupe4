@@ -18,5 +18,5 @@ public ListeDeCartes afficherCartes(Carte carte)
 public void finVoirCimetiere(){
 	 
 }
- 
+
 }
