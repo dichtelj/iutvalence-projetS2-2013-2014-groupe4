@@ -5,12 +5,14 @@ public void voirCimetiere(){
 	
 }
 
-public bool estVide(){
-	
+public boolean estVide()
+{
+	return false;
 }
 
-public ListeDeCartes afficherCartes(){
-	
+public ListeDeCartes afficherCartes(Carte carte)
+{
+	return this.carte;
 }
 
 public void finVoirCimetiere(){
