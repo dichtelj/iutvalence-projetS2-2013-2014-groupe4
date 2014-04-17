@@ -7,10 +7,4 @@ public class ListeDeCarte {
 	
 	private Carte cartes;
 	
-	
-	
-	
-	
-	
-	
 }
