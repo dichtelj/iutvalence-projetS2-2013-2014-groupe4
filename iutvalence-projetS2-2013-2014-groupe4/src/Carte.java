@@ -29,6 +29,7 @@ public class Carte extends Personnage
 	/**
 	 * Permet d'utiliser la carte
 	 */
+	
 	public void utiliserCarte()
 	{
 		
