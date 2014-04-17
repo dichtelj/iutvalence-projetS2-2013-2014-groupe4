@@ -6,11 +6,11 @@ public class Carte extends Personnage
 	 */
 	private int pointsDAttaque;
 	/**
-	 * L'état de la carte
+	 * L'etat de la carte
 	 */
 	private boolean estInactive;
 	/**
-	 * Coût en mana de la carte
+	 * Cout en mana de la carte
 	 */
 	private int coutEnMana;
 	/**
@@ -19,7 +19,7 @@ public class Carte extends Personnage
 	private String description;
 	
 	/**
-	 * Permet de créer une nouvelle carte
+	 * Permet de creer une nouvelle carte
 	 */
 	public Carte()
 	{
@@ -53,7 +53,7 @@ public class Carte extends Personnage
 	}
 	
 	/**
-	 * Change l'état de la carte en Inactive
+	 * Change l'etat de la carte en Inactive
 	 */
 	public void modeInactive()
 	{
@@ -69,8 +69,8 @@ public class Carte extends Personnage
 	}
 	
 	/**
-	 * Inflige des dégats à un personnage
-	 * @param personnage : Le personnage ciblé par l'attaque
+	 * Inflige des degats a un personnage
+	 * @param personnage : Le personnage cible par l'attaque
 	 */
 	public void infligerDegats(Personnage personnage)
 	{
