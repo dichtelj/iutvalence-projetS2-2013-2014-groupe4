@@ -14,8 +14,6 @@ public class Plateau {
 	
 	public boolean estPlein()
 	{
-		if (this.cartesJoueur1.length()==this.DEFAULT_CONSTANT_CARTEMAX)
-				return true;
 		return false ;
 	
 	}

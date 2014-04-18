@@ -1,21 +1,28 @@
-public class Cimetiere {
-	
-public void voirCimetiere(){
-	
-}
+public class Cimetiere extends ListeDeCarte {
 
-public boolean estVide()
-{
-	return false;
-}
+	public Cimetiere() {
+		
+		this.nbCartes=0;
+		this.nbCartesMax=60;
+		this.cartes= new Carte[nbCartesMax];
+	}
 
-public ListeDeCartes afficherCartes(Carte carte)
-{
-	return this.carte;
-}
+	public void voirCimetiere() {
 
-public void finVoirCimetiere(){
-	 
-}
+	}
+
+	/**
+	 * Renvoi vrai si le cimetiere est vide
+	 */
+	public boolean estVide() {
+		return false;
+	}
+
+	/**
+	 * Renvoin la liste de carte dans le cimetiere
+	 */
+	public void afficherCartes(ListeDeCarte cartes) {
+
+	}
 
 }

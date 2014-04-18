@@ -1,10 +1,10 @@
 
-public class ListeDeCarte {
+abstract class ListeDeCarte {
 
-	private int nbCartes;
+	protected int nbCartes;
 	
-	private int nbCartesMax;
+	protected int nbCartesMax;
 	
-	private Carte cartes;
+	protected Carte cartes[];
 	
 }
