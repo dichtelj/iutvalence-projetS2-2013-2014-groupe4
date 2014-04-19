@@ -29,5 +29,16 @@ public class Cimetiere extends ListeDeCarte {
 			return true;
 		return false;
 	}
+	
+	public void voirCimetiere(){
+		if (this.estVide)
+			return"Cimetiere vide";
+		this.afficherCartes();
+		this.finVoirCimetiere();
+	}
+	
+	public void finVoirCImetiere(){
+		
+	}
 
 }
