@@ -9,6 +9,8 @@ public class Carte extends Personnage
 	 * L'etat de la carte
 	 */
 	private boolean estInactive;
+	
+	public String effet;
 	/**
 	 * Cout en mana de la carte
 	 */
@@ -21,9 +23,13 @@ public class Carte extends Personnage
 	/**
 	 * Permet de creer une nouvelle carte
 	 */
-	public Carte()
+	public Carte(int attaque, String effet, int mana, String description)
 	{
-		
+		this.pointsDAttaque=attaque;
+		this.effet=effet;
+		this.coutEnMana=mana;
+		this.estInactive=true;			
+		this.description=description;
 	}
 	
 	/**
