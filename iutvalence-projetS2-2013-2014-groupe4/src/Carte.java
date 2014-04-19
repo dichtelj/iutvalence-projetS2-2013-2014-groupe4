@@ -28,7 +28,7 @@ public class Carte extends Personnage
 		this.pointsDAttaque=attaque;
 		this.effet=effet;
 		this.coutEnMana=mana;
-		this.estInactive=true;			
+		this.estInactive=false;			
 		this.description=description;
 	}
 	

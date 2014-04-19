@@ -17,7 +17,7 @@ public class Cimetiere extends ListeDeCarte {
 	/**
 	 * méthode qui affiche au joueur son cimetière
 	 */
-	public void voirCimetiere() {
+	public void afficherCartes() {
 
 	}
 
