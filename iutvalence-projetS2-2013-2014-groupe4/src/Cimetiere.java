@@ -7,6 +7,9 @@ public class Cimetiere extends ListeDeCarte {
 	 * le cimetière contient 0 cartes a sa création et peut contenir au maximum
 	 * nbCartesMax cartes
 	 */
+	/**
+	 * Un cimetière contient 0 cartes a sa creation
+	 */
 	public Cimetiere() {
 
 		this.nbCartes = 0;
@@ -30,6 +33,9 @@ public class Cimetiere extends ListeDeCarte {
 		return false;
 	}
 
+	/**
+	 * Implemente le cas d'utilisation voir cimetiere
+	 */
 	public void voirCimetiere() {
 		if (this.estVide())
 			return "Cimetiere vide";

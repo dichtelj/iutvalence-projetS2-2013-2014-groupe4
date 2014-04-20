@@ -30,7 +30,7 @@ public class Carte extends Personnage {
 	}
 
 	/**
-	 * Permet d'utiliser la carte
+	 * Permet d'utiliser la carte (invoquer ou attaquer)
 	 */
 
 	public void utiliserCarte(String action, Personnage personnage) {
