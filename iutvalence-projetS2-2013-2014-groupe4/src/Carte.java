@@ -1,6 +1,4 @@
-
-public class Carte extends Personnage
-{
+public class Carte extends Personnage {
 	/**
 	 * Points d'attaque de la carte
 	 */
@@ -9,7 +7,7 @@ public class Carte extends Personnage
 	 * L'etat de la carte
 	 */
 	private boolean estInactive;
-	
+
 	public String effet;
 	/**
 	 * Cout en mana de la carte
@@ -19,68 +17,74 @@ public class Carte extends Personnage
 	 * Description de la carte
 	 */
 	private String description;
-	
+
 	/**
 	 * Permet de creer une nouvelle carte
 	 */
-	public Carte(int attaque, String effet, int mana, String description)
-	{
-		this.pointsDAttaque=attaque;
-		this.effet=effet;
-		this.coutEnMana=mana;
-		this.estInactive=false;			
-		this.description=description;
+	public Carte(int attaque, String effet, int mana, String description) {
+		this.pointsDAttaque = attaque;
+		this.effet = effet;
+		this.coutEnMana = mana;
+		this.estInactive = false;
+		this.description = description;
 	}
-	
+
 	/**
 	 * Permet d'utiliser la carte
 	 */
-	
-	public void utiliserCarte()
-	{
-		
+
+	public void utiliserCarte(String action, Personnage personnage) {
+		if (action.compareTo("attaquer") == 0) {
+			if (this.estInactif())
+				return "ne peut pas attaquer";
+			this.infligerDegats(personnage);
+			this.modeInactive();
+		}
+		else {
+
+		}
+
 	}
-	
+
 	/**
 	 * Test si la carte est en mode Inactif
+	 * 
 	 * @return True si la carte est inactive
 	 */
-	public boolean estInactif()
-	{
+	public boolean estInactif() {
 		return this.estInactive;
 	}
-	
+
 	/**
 	 * Permet d'obtenir les points d'attaque de la carte
+	 * 
 	 * @return les points d'attaques
 	 */
-	public int obtenirDegatsDAttaque()
-	{
+	public int obtenirDegatsDAttaque() {
 		return this.pointsDAttaque;
 	}
-	
+
 	/**
 	 * Change l'etat de la carte en Inactive
 	 */
-	public void modeInactive()
-	{
-		this.estInactive=true;
+	public void modeInactive() {
+		this.estInactive = true;
 	}
-	
+
 	/**
 	 * Pose la carte sur le plateau
 	 */
-	public void poserCarte()
-	{
-		
+	public void poserCarte() {
+
 	}
-	
+
 	/**
 	 * Inflige des degats a un personnage
-	 * @param personnage : Le personnage cible par l'attaque
+	 * 
+	 * @param personnage
+	 *            : Le personnage cible par l'attaque
 	 */
-	public void infligerDegats(Personnage personnage)
-	{
-		
+	public void infligerDegats(Personnage personnage) {
+
 	}
 }
