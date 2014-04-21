@@ -1,3 +1,7 @@
+/**
+ * 
+ * Definition d'une carte de jeu
+ */
 public class Carte extends Personnage {
 	/**
 	 * Points d'attaque de la carte
@@ -8,6 +12,9 @@ public class Carte extends Personnage {
 	 */
 	private boolean estInactive;
 
+	/**
+	 * Effet de la carte
+	 */
 	public String effet;
 	/**
 	 * Cout en mana de la carte
@@ -20,8 +27,22 @@ public class Carte extends Personnage {
 
 	/**
 	 * Permet de creer une nouvelle carte
+	 * @param nom 
+	 * nom de la carte
+	 * @param attaque 
+	 * point d'attaque de la carte
+	 * @param vie 
+	 * point de vie de la carte
+	 * @param effet 
+	 * effet(s) de la carte
+	 * @param mana 
+	 * cout en mana de la carte
+	 * @param description 
+	 * description de la carte
 	 */
-	public Carte(int attaque, String effet, int mana, String description) {
+	public Carte(String nom, int attaque, int vie, String effet, int mana, String description) {
+		this.nom=nom;
+		this.pointDeVie=vie;
 		this.pointsDAttaque = attaque;
 		this.effet = effet;
 		this.coutEnMana = mana;
@@ -29,10 +50,10 @@ public class Carte extends Personnage {
 		this.description = description;
 	}
 
+	//TODO Verifier pour le return string
 	/**
 	 * Permet d'utiliser la carte (invoquer ou attaquer)
 	 */
-
 	public void utiliserCarte(String action, Personnage personnage) {
 		if (action.compareTo("attaquer") == 0) {
 			if (this.estInactif())

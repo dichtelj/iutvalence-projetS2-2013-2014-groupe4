@@ -1,3 +1,6 @@
+/**
+ * Definition d'une partie de Battle for Demacia
+ */
 public class Partie {
 
 	/**

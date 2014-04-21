@@ -1,3 +1,7 @@
+/**
+ * Definition d'une liste de carte du jeu
+ *
+ */
 public class ListeDeCarte {
 
 	/**

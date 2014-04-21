@@ -1,13 +1,16 @@
+/**
+ * Definition d'un personnage du jeu(carte ou heros)
+ */
 public abstract class Personnage 
 {
 	/**
 	 * Nom du personnage
 	 */
-	private String nom;
+	protected String nom;
 	
 	/**
 	 * Point de vie du personnage 
 	 */
-	private int pointDeVie;
+	protected int pointDeVie;
 
 }

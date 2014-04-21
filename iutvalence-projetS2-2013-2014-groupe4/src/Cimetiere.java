@@ -1,14 +1,12 @@
 /**
- * @author antoine Classe représentant le cimetière de chaque joueur
+ * @author antoine 
+ * Classe représentant le cimetière de chaque joueur
  */
 public class Cimetiere extends ListeDeCarte {
 
 	/**
 	 * le cimetière contient 0 cartes a sa création et peut contenir au maximum
 	 * nbCartesMax cartes
-	 */
-	/**
-	 * Un cimetière contient 0 cartes a sa creation
 	 */
 	public Cimetiere() {
 
@@ -26,6 +24,7 @@ public class Cimetiere extends ListeDeCarte {
 
 	/**
 	 * Renvoi vrai si le cimetiere est vide
+	 * @return boolean
 	 */
 	public boolean estVide() {
 		if (this.nbCartes == 0)
@@ -33,14 +32,17 @@ public class Cimetiere extends ListeDeCarte {
 		return false;
 	}
 
+	//TODO Verifier pour le return string
 	/**
 	 * Implemente le cas d'utilisation voir cimetiere
+	 * @return String
 	 */
 	public void voirCimetiere() {
 		if (this.estVide())
 			return "Cimetiere vide";
 		this.afficherCartes();
 		this.finVoirCimetiere();
+
 	}
 
 	public void finVoirCimetiere() {
