@@ -114,6 +114,9 @@ public class Carte extends Personnage {
 	 */
 	public void infligerDegats(Personnage personnage) {
 		personnage.pointDeVie=personnage.pointDeVie-this.pointsDAttaque;
-
+		if  (personnage instanceof Carte){
+			
+		}
+			
 	}
 }
