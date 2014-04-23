@@ -54,7 +54,7 @@ public class Carte extends Personnage {
 	/**
 	 * Permet d'utiliser la carte (invoquer ou attaquer)
 	 */
-	public void utiliserCarte(String action, Personnage personnage) {
+	public String utiliserCarte(String action, Personnage personnage) {
 		if (action.compareTo("attaquer") == 0) {
 			if (this.estInactif())
 				return "ne peut pas attaquer";
@@ -106,6 +106,7 @@ public class Carte extends Personnage {
 	 *            : Le personnage cible par l'attaque
 	 */
 	public void infligerDegats(Personnage personnage) {
+		personnage.pointDeVie=personnage.pointDeVie-this.pointsDAttaque;
 
 	}
 }
