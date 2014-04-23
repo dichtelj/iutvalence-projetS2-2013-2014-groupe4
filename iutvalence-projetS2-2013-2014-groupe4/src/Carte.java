@@ -61,8 +61,8 @@ public class Carte extends Personnage {
 			this.infligerDegats(personnage);
 			this.modeInactive();
 		}
-		else {
-
+		if (action.compareTo("invoquer")==0) {
+			this.poserCarte();
 		}
 
 	}
@@ -92,11 +92,18 @@ public class Carte extends Personnage {
 		this.estInactive = true;
 	}
 
+	//TO DO Quel joueur pose une carte ?
 	/**
 	 * Pose la carte sur le plateau
 	 */
-	public void poserCarte() {
-
+	public boolean poserCarte(Plateau plateau, Carte carte) {
+		if (plateau.estPlein==true)
+			return false;
+		else {
+			
+		}
+		
+			
 	}
 
 	/**
