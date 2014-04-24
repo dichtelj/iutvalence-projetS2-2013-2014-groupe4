@@ -1,6 +1,6 @@
 /**
  * Definition d'un plateau de jeu
- *
+ * 
  */
 public class Plateau {
 
@@ -20,30 +20,31 @@ public class Plateau {
 	private Carte[] carteJoueur2;
 
 	/**
-	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur le terrain
+	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur
+	 * le terrain
 	 */
 	private final int DEFAULT_CONSTANT_CARTEMAX = 7;
-	
-	
+
 	/**
-	 * Un plateau a 1 coté par joueur qui a au plus DEFAULT_CONSTANT_CARTEMAX cartes posees
-	 * Le plateau n'a aucune carte de posee a sa creation
+	 * Un plateau a 1 coté par joueur qui a au plus DEFAULT_CONSTANT_CARTEMAX
+	 * cartes posees Le plateau n'a aucune carte de posee a sa creation
 	 */
-	
-	//TO CHECK  Liste de carte ou tableau de carte ?
+
+	// TO CHECK Liste de carte ou tableau de carte ?
 	public Plateau(){
 		
 		this.nbCartes=0;		
 		this.cartesJoueur1=new Carte[7];		
 		this.carteJoueur2=new Carte[7];
+	}
 
 	/**
 	 * Renvoi vrai si le joueur a pose DEFAULT_CONSTANT_CARTEMAX sur le terrain
 	 */
-	public boolean estPlein() {
-		return false;
-	}
-
-	
+	public boolean estPlein(Joueur joueur) {
+		if(this.nbCartes==7)
+			return true;
+		else
+			return false;	
 	}
 }

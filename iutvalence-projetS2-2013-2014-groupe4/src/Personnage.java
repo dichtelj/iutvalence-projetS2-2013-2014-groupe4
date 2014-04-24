@@ -1,20 +1,20 @@
 /**
  * Definition d'un personnage du jeu(carte ou heros)
  */
-public abstract class Personnage 
-{
-	/**
-	 * Nom du personnage
-	 */
-	protected String nom;
+public abstract class Personnage{
 	
-	/**
-	 * Point de vie du personnage 
-	 */
-	protected int pointDeVie;
+/**
+ * Nom du personnage
+ */
+protected String nom;
 
-	/**
-	 * Points d'attaque du personnage
-	 */
-	private int pointsDAttaque;
+/**
+ * Point de vie du personnage 
+ */
+protected int pointDeVie;
+
+/**
+ * Points d'attaque du personnage
+ */
+private int pointsDAttaque;
 }
