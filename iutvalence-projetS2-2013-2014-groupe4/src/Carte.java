@@ -23,22 +23,24 @@ public class Carte extends Personnage {
 
 	/**
 	 * Permet de creer une nouvelle carte
-	 * @param nom 
-	 * nom de la carte
-	 * @param attaque 
-	 * point d'attaque de la carte
-	 * @param vie 
-	 * point de vie de la carte
-	 * @param effet 
-	 * effet(s) de la carte
-	 * @param mana 
-	 * cout en mana de la carte
-	 * @param description 
-	 * description de la carte
+	 * 
+	 * @param nom
+	 *            nom de la carte
+	 * @param attaque
+	 *            point d'attaque de la carte
+	 * @param vie
+	 *            point de vie de la carte
+	 * @param effet
+	 *            effet(s) de la carte
+	 * @param mana
+	 *            cout en mana de la carte
+	 * @param description
+	 *            description de la carte
 	 */
-	public Carte(String nom, int attaque, int vie, String effet, int mana, String description) {
-		this.nom=nom;
-		this.pointDeVie=vie;
+	public Carte(String nom, int attaque, int vie, String effet, int mana,
+			String description) {
+		this.nom = nom;
+		this.pointDeVie = vie;
 		this.pointsDAttaque = attaque;
 		this.effet = effet;
 		this.coutEnMana = mana;
@@ -46,7 +48,7 @@ public class Carte extends Personnage {
 		this.description = description;
 	}
 
-	//TODO Verifier pour le return string
+	// TODO Verifier pour le return string
 	/**
 	 * Permet d'utiliser la carte (invoquer ou attaquer)
 	 */
@@ -57,7 +59,7 @@ public class Carte extends Personnage {
 			this.infligerDegats(personnage);
 			this.modeInactive();
 		}
-		if (action.compareTo("invoquer")==0) {
+		if (action.compareTo("invoquer") == 0) {
 			this.poserCarte();
 		}
 
@@ -88,18 +90,17 @@ public class Carte extends Personnage {
 		this.estInactive = true;
 	}
 
-	//TO DO Quel joueur pose une carte ?
+	// TO DO Quel joueur pose une carte ?
 	/**
 	 * Pose la carte sur le plateau
 	 */
 	public boolean poserCarte(Plateau plateau, Carte carte) {
-		if (plateau.estPlein==true)
+		if (plateau.estPlein == true)
 			return false;
 		else {
-			
+
 		}
-		
-			
+
 	}
 
 	/**
@@ -108,11 +109,9 @@ public class Carte extends Personnage {
 	 * @param personnage
 	 *            : Le personnage cible par l'attaque
 	 */
-	public void infligerDegats(Personnage personnage) {
-		personnage.pointDeVie=personnage.pointDeVie-this.pointsDAttaque;
-		if  (personnage instanceof Carte){
-			
-		}
-			
+	public void infligerDegats(Personnage personnage) 
+	{
+		personnage.pointDeVie = personnage.pointDeVie - this.pointsDAttaque;
+		this.pointDeVie = this.pointDeVie - personnage.pointsDAttaque;
 	}
 }

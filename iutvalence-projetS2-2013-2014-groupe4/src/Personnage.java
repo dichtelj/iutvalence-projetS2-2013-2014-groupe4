@@ -16,5 +16,5 @@ public abstract class Personnage
 	/**
 	 * Points d'attaque du personnage
 	 */
-	private int pointsDAttaque;
+	protected int pointsDAttaque;
 }
