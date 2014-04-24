@@ -4,10 +4,6 @@
  */
 public class Carte extends Personnage {
 	/**
-	 * Points d'attaque de la carte
-	 */
-	private int pointsDAttaque;
-	/**
 	 * L'etat de la carte
 	 */
 	private boolean estInactive;
