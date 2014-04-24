@@ -41,7 +41,7 @@ public class Plateau {
 	/**
 	 * Renvoi vrai si le joueur a pose DEFAULT_CONSTANT_CARTEMAX sur le terrain
 	 */
-	public boolean estPlein(Joueur joueur) {
+	public boolean estPlein() {
 		if(this.nbCartes==7)
 			return true;
 		else

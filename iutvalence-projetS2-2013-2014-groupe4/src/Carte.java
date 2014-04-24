@@ -95,10 +95,10 @@ public class Carte extends Personnage {
 	 * Pose la carte sur le plateau
 	 */
 	public boolean poserCarte(Plateau plateau, Carte carte) {
-		if (plateau.estPlein == true)
+		if (plateau.estPlein() == true)
 			return false;
 		else {
-
+			return true;
 		}
 
 	}
