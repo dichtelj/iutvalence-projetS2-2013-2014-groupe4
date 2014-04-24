@@ -32,7 +32,8 @@ public class Cimetiere extends ListeDeCarte {
 		return false;
 	}
 
-	//TODO Verifier pour le return string
+	//TODO Faire le toString
+	
 	/**
 	 * Implemente le cas d'utilisation voir cimetiere
 	 * @return String

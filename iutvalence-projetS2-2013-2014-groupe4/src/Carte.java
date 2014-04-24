@@ -52,7 +52,7 @@ public class Carte extends Personnage {
 	/**
 	 * Permet d'utiliser la carte (invoquer ou attaquer)
 	 */
-	public String utiliserCarte(String action, Personnage personnage) {
+	public String utiliserCarte(String action, Personnage personnage,Joueur joueur) {
 		if (action.compareTo("attaquer") == 0) {
 			if (this.estInactif())
 				return "ne peut pas attaquer";
@@ -60,8 +60,9 @@ public class Carte extends Personnage {
 			this.modeInactive();
 		}
 		if (action.compareTo("invoquer") == 0) {
-			this.poserCarte();
+			this.poserCarte(null, null, null);
 		}
+		return " carte jouée";
 
 	}
 
@@ -90,11 +91,10 @@ public class Carte extends Personnage {
 		this.estInactive = true;
 	}
 
-	// TO DO Quel joueur pose une carte ?
 	/**
 	 * Pose la carte sur le plateau
 	 */
-	public boolean poserCarte(Plateau plateau, Carte carte) {
+	public boolean poserCarte(Plateau plateau, Carte carte, Joueur joueur) {
 		if (plateau.estPlein() == true)
 			return false;
 		else {
