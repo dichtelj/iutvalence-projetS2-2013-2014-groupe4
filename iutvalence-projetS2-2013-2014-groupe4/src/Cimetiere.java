@@ -37,7 +37,7 @@ public class Cimetiere extends ListeDeCarte {
 	 * Implemente le cas d'utilisation voir cimetiere
 	 * @return String
 	 */
-	public void voirCimetiere() {
+	public String voirCimetiere() {
 		if (this.estVide())
 			return "Cimetiere vide";
 		this.afficherCartes();
