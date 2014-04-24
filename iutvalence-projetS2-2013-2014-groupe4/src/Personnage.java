@@ -13,4 +13,8 @@ public abstract class Personnage
 	 */
 	protected int pointDeVie;
 
+	/**
+	 * Points d'attaque du personnage
+	 */
+	private int pointsDAttaque;
 }
