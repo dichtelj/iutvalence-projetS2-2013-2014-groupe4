@@ -2,7 +2,7 @@
  * @author antoine 
  * Classe représentant le cimetière de chaque joueur
  */
-public class Cimetiere extends ListeDeCarte {
+public class Cimetiere extends ListeDeCartes {
 
 	/**
 	 * le cimetière contient 0 cartes a sa création et peut contenir au maximum

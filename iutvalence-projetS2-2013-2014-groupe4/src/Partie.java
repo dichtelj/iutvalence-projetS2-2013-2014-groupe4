@@ -11,15 +11,14 @@ public class Partie {
 	/**
 	 * Les decks des 2 joueurs de la partie
 	 */
-	private ListeDeCarte[] decks;
+	private Joueur[] joueur;
 
 	/**
 	 * Une partie a un plateau et 2 decks a sa création
 	 */
-	public Partie() {
+	public Partie(Joueur[] joueurs) {
 		
+		this.joueur= joueurs;
 		this.plateau= new Plateau();
-		
-		this.decks= new ListeDeCarte[2];
 	}
 }

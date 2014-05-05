@@ -7,11 +7,11 @@ public class Joueur {
 	/**
 	 * deck du joueur
 	 */
-	private ListeDeCarte deck;
+	private ListeDeCartes deck;
 	/**
 	 * Cartes dans la main du joueur
 	 */
-	private ListeDeCarte main;
+	private ListeDeCartes main;
 	/**
 	 * Cartes dans le cimetiere du joueur
 	 */
@@ -24,11 +24,12 @@ public class Joueur {
  * @param mainJoueur main du joueur 
  * @param cimetiereJoueur cimetiere du joueur
  */
-	public Joueur(int numeroDuJoueur, ListeDeCarte deckJoueur, ListeDeCarte mainJoueur, Cimetiere cimetiereJoueur)
+	public Joueur(int numeroDuJoueur, ListeDeCartes deckJoueur, ListeDeCartes mainJoueur, Cimetiere cimetiereJoueur)
 	{
 		this.numeroJoueur=numeroDuJoueur;
 		this.deck=deckJoueur;
 		this.main=mainJoueur;
 		this.cimetiere=cimetiereJoueur;
 	}
+
 }
