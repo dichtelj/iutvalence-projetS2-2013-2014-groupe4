@@ -2,7 +2,7 @@
  * Definition d'une liste de carte du jeu
  *
  */
-public class ListeDeCarte {
+public class ListeDeCartes {
 
 	/**
 	 * Nombre de cartes presentes au moment de l'appel
