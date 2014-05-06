@@ -152,4 +152,8 @@ public class Joueur {
 	public void incrementerCurseurPlateau(){
 		this.curseurPlateau++;
 	}
+
+	public int getNumeroJoueur() {
+		return numeroJoueur;
+	}
 }

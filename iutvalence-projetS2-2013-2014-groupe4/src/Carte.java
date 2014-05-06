@@ -92,10 +92,16 @@ public class Carte extends Personnage {
 	}
 
 	/**
+	 * Change l'etat de la carte en active
+	 */
+	public void modeActive() {
+		this.estInactive = false;
+	}
+	/**
 	 * Pose la carte sur le plateau
 	 */
 	public boolean poserCarte(Plateau plateau, Carte carte, Joueur joueur) {
-		if (plateau.estPlein() == true)
+		if (plateau.estPlein(joueur) == true)
 			return false;
 		else {
 			return true;
