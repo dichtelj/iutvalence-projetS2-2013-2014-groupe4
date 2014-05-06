@@ -15,7 +15,7 @@ public class Joueur {
 	/**
 	 * Cartes dans le cimetiere du joueur
 	 */
-	private Cimetiere cimetiere;
+	private ListeDeCartes cimetiere;
 	
 	/**
 	 * Permet de savoir où en est le joueur dans la pioche de son deck
@@ -32,6 +32,10 @@ public class Joueur {
 	 */
 	private int curseurCimetiere;
 
+	/**
+	 * Correspond au nombre de créatures posées sur le plateau coté joueur
+	 */
+	private int curseurPlateau;
 /**
  * Permet de créer un joueur avec un numero, un deck, une main de départ et un cimetière
  * @param numeroDuJoueur numero du joueur
@@ -39,12 +43,16 @@ public class Joueur {
  * @param mainJoueur main du joueur 
  * @param cimetiereJoueur cimetiere du joueur
  */
-	public Joueur(int numeroDuJoueur, ListeDeCartes deckJoueur, ListeDeCartes mainJoueur, Cimetiere cimetiereJoueur)
+	public Joueur(int numeroDuJoueur)
 	{
 		this.numeroJoueur=numeroDuJoueur;
-		this.deck=deckJoueur;
-		this.main=mainJoueur;
-		this.cimetiere=cimetiereJoueur;
+		this.deck=new ListeDeCartes(60);
+		this.main=new ListeDeCartes(10);
+		this.cimetiere=new ListeDeCartes(60);
+		this.curseurCimetiere=0;
+		this.curseurDeck=0;
+		this.curseurMain=0;
+		this.curseurPlateau=0;
 	}
 
 	/**
@@ -71,7 +79,7 @@ public class Joueur {
 	/**
 	 * Renvoi le cimetiere du joueur
 	 */
-	public Cimetiere getCimetiere() {
+	public ListeDeCartes getCimetiere() {
 		return this.cimetiere;
 	}
 
@@ -80,7 +88,7 @@ public class Joueur {
 	 */
 	public void setCimetiere(Carte carteMorte) {
 		this.cimetiere.cartes[this.curseurCimetiere]=carteMorte;
-		this.curseurCimetiere++;
+		this.incrementerCurseurCimetiere();
 	}
 
 	/**
@@ -90,8 +98,11 @@ public class Joueur {
 		return this.curseurDeck;
 	}
 
+	/**
+	 * Incremente le curseurMain du joueur
+	 */
 	public void incrementerCurseurMain() {
-		this.curseurDeck ++;
+		this.curseurMain ++;
 	}
 	/**
 	 * Renvoi le curseur deck du joueur
@@ -100,12 +111,6 @@ public class Joueur {
 		return this.curseurMain;
 	}
 
-	/**
-	 * Incremente le curseurMain du joueur
-	 */
-	public void incrementerCurseurMain() {
-		this.curseurMain ++;
-	}
 	/**
 	 * Renvoi le curseur deck du joueur
 	 */
@@ -118,5 +123,33 @@ public class Joueur {
 	 */
 	public void incrementerCurseurCimetiere() {
 		this.curseurCimetiere ++;
+	}
+	
+	/**
+	 * Pioche la carte sur le dessus du deck et la place dans la main du joueur
+	 */
+	public void piocherCarte(){
+		this.setMain(this.deck.cartes[this.curseurDeck]);
+		this.curseurDeck++;
+	}
+	
+	/**
+	 * Incremente le curseur deck du joueur
+	 */
+	public void incrementerCurseurDeck(){
+		this.curseurDeck++;
+	}
+	
+	/**
+	 * Renvoi le curseur plateau du joueur
+	 */
+	public int getCurseurPlateau() {
+		return this.curseurPlateau;
+	}
+	/**
+	 * Incremente le curseur plateau du joueur
+	 */
+	public void incrementerCurseurPlateau(){
+		this.curseurPlateau++;
 	}
 }
