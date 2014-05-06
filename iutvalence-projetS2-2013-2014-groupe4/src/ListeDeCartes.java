@@ -17,6 +17,14 @@ public class ListeDeCartes {
 	/**
 	 * Les cartes de la liste
 	 */
-	protected Carte cartes[];
+	protected Carte[] cartes;
 
+	/**
+	 * Une liste de carte n'a pas de cartes a sa création mais on connait son nombres de cartes qu'ele pourras contenir
+	 */
+	public ListeDeCartes(int nbCartesMax){
+		this.nbCartesMax=nbCartesMax;
+		this.cartes= new Carte[this.nbCartesMax];
+		this.nbCartes=0;
+	}
 }
