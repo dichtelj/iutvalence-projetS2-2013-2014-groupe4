@@ -5,19 +5,14 @@
 public class Plateau {
 
 	/**
-	 * Nombre de cartes presentes sur le plateau au moment de l'appel
-	 */
-	private int nbCartes;
-
-	/**
 	 * Cartes du joueur 1 presentes sur le plateau
 	 */
-	private Carte[] cartesJoueur1;
+	private ListeDeCartes cartesJoueur1;
 
 	/**
 	 * Cartes du joueur 2 presente sur le plateau
 	 */
-	private Carte[] carteJoueur2;
+	private ListeDeCartes carteJoueur2;
 
 	/**
 	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur
@@ -25,24 +20,18 @@ public class Plateau {
 	 */
 	private final int DEFAULT_CONSTANT_CARTEMAX = 7;
 
-	/**
-	 * Un plateau a 1 coté par joueur qui a au plus DEFAULT_CONSTANT_CARTEMAX
-	 * cartes posees Le plateau n'a aucune carte de posee a sa creation
-	 */
 
-	// TO CHECK Liste de carte ou tableau de carte ?
 	public Plateau(){
-		
-		this.nbCartes=0;		
-		this.cartesJoueur1=new Carte[7];		
-		this.carteJoueur2=new Carte[7];
+				
+		this.cartesJoueur1=new ListeDeCartes(DEFAULT_CONSTANT_CARTEMAX);		
+		this.carteJoueur2=new ListeDeCartes(DEFAULT_CONSTANT_CARTEMAX);
 	}
 
 	/**
 	 * Renvoi vrai si le joueur a pose DEFAULT_CONSTANT_CARTEMAX sur le terrain
 	 */
-	public boolean estPlein() {
-		if(this.nbCartes==7)
+	public boolean estPlein(Joueur joueur) {
+		if(joueur.getCurseurPlateau()==DEFAULT_CONSTANT_CARTEMAX)
 			return true;
 		else
 			return false;	
