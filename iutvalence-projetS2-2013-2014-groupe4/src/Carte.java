@@ -11,7 +11,7 @@ public class Carte extends Personnage {
 	/**
 	 * Effet de la carte
 	 */
-	public String effet;
+	public Effet effet;
 	/**
 	 * Cout en mana de la carte
 	 */
@@ -37,7 +37,7 @@ public class Carte extends Personnage {
 	 * @param description
 	 *            description de la carte
 	 */
-	public Carte(String nom, int attaque, int vie, String effet, int mana,
+	public Carte(String nom, int attaque, int vie, Effet effet, int mana,
 			String description) {
 		this.nom = nom;
 		this.pointDeVie = vie;
