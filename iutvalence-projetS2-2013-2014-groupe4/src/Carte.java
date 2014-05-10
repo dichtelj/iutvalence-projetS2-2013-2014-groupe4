@@ -48,23 +48,7 @@ public class Carte extends Personnage {
 		this.description = description;
 	}
 
-	// TODO Verifier pour le return string
-	/**
-	 * Permet d'utiliser la carte (invoquer ou attaquer)
-	 */
-	public String utiliserCarte(String action, Personnage personnage,Joueur joueur) {
-		if (action.compareTo("attaquer") == 0) {
-			if (this.estInactif())
-				return "ne peut pas attaquer";
-			this.infligerDegats(personnage);
-			this.modeInactive();
-		}
-		if (action.compareTo("invoquer") == 0) {
-			this.poserCarte(null, null, null);
-		}
-		return " carte jouée";
 
-	}
 
 	/**
 	 * Test si la carte est en mode Inactif
@@ -97,17 +81,6 @@ public class Carte extends Personnage {
 	public void modeActive() {
 		this.estInactive = false;
 	}
-	/**
-	 * Pose la carte sur le plateau
-	 */
-	public boolean poserCarte(Plateau plateau, Carte carte, Joueur joueur) {
-		if (plateau.estPlein(joueur) == true)
-			return false;
-		else {
-			return true;
-		}
-
-	}
 
 	/**
 	 * Inflige des degats a un personnage
@@ -119,5 +92,9 @@ public class Carte extends Personnage {
 	{
 		personnage.pointDeVie = personnage.pointDeVie - this.pointsDAttaque;
 		this.pointDeVie = this.pointDeVie - personnage.pointsDAttaque;
+	}
+
+	public Effet getEffet() {
+		return this.effet;
 	}
 }
