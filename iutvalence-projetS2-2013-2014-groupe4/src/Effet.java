@@ -26,6 +26,7 @@ public class Effet {
 	 * Définit le nombre de cible affecté par l'effet
 	 */
 	private int nbCible;
+
 	
 	
 	private Effet(String activation, String nom, int montantDeDegat, int nbCible){
@@ -33,5 +34,29 @@ public class Effet {
 		this.montantDeDegat=montantDeDegat;
 		this.nbCible=nbCible;
 		this.nom=nom;
+	}
+
+
+	public String getActivation() {
+		return this.activation;
+	}
+
+
+	public String getNom() {
+		return this.nom;
+	}
+
+
+	public int getMontantDeDegat() {
+		return this.montantDeDegat;
+	}
+
+
+	public int getNbCible() {
+		return this.nbCible;
+	}
+	
+	public void appliquerEffet(Plateau plateau, Joueur joueur){
+		
 	}
 }

@@ -40,11 +40,6 @@ public class Plateau {
 		return this.cartesJoueur1;
 	}
 
-	public void poserCarte(Carte carte, Joueur joueur) {
-		if (joueur.getNumeroJoueur()==1)
-			this.cartesJoueur1.cartes[joueur.getCurseurPlateau()]=carte;
-		else this.cartesJoueur2.cartes[joueur.getCurseurPlateau()]=carte;
-	}
 
 	public ListeDeCartes getCartesJoueur2() {
 		return this.cartesJoueur2;
