@@ -56,6 +56,7 @@ public class Partie {
 		if (action.compareTo("attaquer") == 0) {
 			if (carte.estInactif())
 				return "ne peut pas attaquer";
+			if (this.cibleViable(carte, personnage, joueur))
 			carte.infligerDegats(personnage);
 			carte.modeInactive();
 		}
@@ -64,5 +65,27 @@ public class Partie {
 		}
 		return "";
 
+	}
+
+	private boolean cibleViable(Carte carte, Personnage personnage,Joueur joueur) {
+		if (this.existeProvocation(joueur))
+			if (!(personnage instanceof Carte))
+				return false;
+			if (((Carte)personnage).getEffet().getNom().compareTo("provocation")!=0)
+				return false;
+		return true;
+	}
+
+	private boolean existeProvocation(Joueur joueur) {
+		if (joueur==this.joueurs[0]){
+			for (int i=0; i<this.joueurs[1].getCurseurPlateau();i++)
+				if (this.plateau.getCartesJoueur2().cartes[i].getEffet().getNom().compareTo("provocation")==0)
+					return true;
+			return false;}
+		else{
+			for (int i=0; i<this.joueurs[0].getCurseurPlateau();i++)
+				if (this.plateau.getCartesJoueur1().cartes[i].getEffet().getNom().compareTo("provocation")==0)
+					return true;
+			return false;}
 	}
 }
