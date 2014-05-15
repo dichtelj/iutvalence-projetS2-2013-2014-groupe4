@@ -13,7 +13,6 @@ public class Jeu {
 	 */
 	private Joueur[] joueurs;
 	
-	private Menu menu;
 	
 	/**
 	 * Une partie a un plateau et 2 decks a sa création
