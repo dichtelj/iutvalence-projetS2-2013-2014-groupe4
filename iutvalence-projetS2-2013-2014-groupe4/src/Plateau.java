@@ -52,4 +52,20 @@ public class Plateau {
 	public void incrementerNbCartesJoueur2(){
 		this.cartesJoueur1.nbCartes++;
 	}
+	
+	public void decrementerNbCartesJoueur1(){
+		this.cartesJoueur1.nbCartes--;
+	}
+	
+	public void decrementerNbCartesJoueur2(){
+		this.cartesJoueur1.nbCartes--;
+	}
+	
+	public int getNbCartesJoueur1(){
+		return this.cartesJoueur1.nbCartes;
+	}
+	
+	public int getNbCartesJoueur2(){
+		return this.cartesJoueur2.nbCartes;
+	}
 }

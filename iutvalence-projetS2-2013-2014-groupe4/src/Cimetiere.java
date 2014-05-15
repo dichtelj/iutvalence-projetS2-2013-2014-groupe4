@@ -56,4 +56,7 @@ public class Cimetiere extends ListeDeCartes {
 
 	}
 
+	public void incrementerNbCartes(){
+		this.nbCartes++;
+	}
 }

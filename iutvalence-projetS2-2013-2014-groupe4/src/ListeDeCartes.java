@@ -21,6 +21,8 @@ public class ListeDeCartes {
 
 	/**
 	 * Une liste de carte n'a pas de cartes a sa création mais on connait son nombres de cartes qu'ele pourras contenir
+	 * @param nbCartesMax 
+	 * Nombres de cartes Max
 	 */
 	public ListeDeCartes(int nbCartesMax){
 		this.nbCartesMax=nbCartesMax;

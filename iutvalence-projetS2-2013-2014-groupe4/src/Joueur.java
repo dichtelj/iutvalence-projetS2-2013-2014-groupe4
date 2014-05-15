@@ -154,4 +154,5 @@ public abstract class Joueur {
 	}
 	
 	public abstract Carte choisirCarte(ListeDeCartes liste);
+
 }

@@ -16,26 +16,42 @@ public class Jeu {
 	
 	/**
 	 * Une partie a un plateau et 2 decks a sa création
+	 * @param joueurs 
+	 * Les joueurs du jeu
+	 * @param affichage 
+	 * Le type d'affichage du jeu
 	 */
 public Jeu(Joueur[] joueurs, Affichage affichage) {
 		
 		this.joueurs= joueurs;
 		this.plateau= new Plateau();
-		this.menu= new Menu(affichage);
+
 	}
 	
+	/**
+	 * Méthode qui permet de débuter le tour d'un joueur
+	 * @param joueur
+	 * joueur qui débute son tour
+	 */
 	public void debutTour(Joueur joueur){
 		if (joueur.getMain().nbCartes == joueur.getMain().nbCartesMax)
 			joueur.incrementerCurseurDeck();
 		else joueur.piocherCarte();
 	}
 	
+	/**
+	 * Méthode permettant a un joueur de finir son tour
+	 * @param joueur
+	 * joueur qui fini son tour
+	 */
 	public void finTour(Joueur joueur){
-		for (int i=0;i<joueur.getCurseurPlateau();i++){
-			if (joueur==this.joueurs[0])
-				this.plateau.getCartesJoueur1().cartes[i].modeActive();
-			if (joueur==this.joueurs[1])
-				this.plateau.getCartesJoueur2().cartes[i].modeActive();
+			if (joueur==this.joueurs[0]){
+				for(int i=0;i<this.plateau.getNbCartesJoueur1();i++)
+					this.plateau.getCartesJoueur1().cartes[i].modeActive();
+			}
+			if (joueur==this.joueurs[1]){
+				for(int i=0;i<this.plateau.getNbCartesJoueur2();i++)
+					this.plateau.getCartesJoueur2().cartes[i].modeActive();
 		}
 	}
 	
