@@ -7,13 +7,18 @@ public class Cimetiere extends ListeDeCartes {
 	/**
 	 * le cimetière contient 0 cartes a sa création et peut contenir au maximum
 	 * nbCartesMax cartes
+	 * @param nbCartesMax 
+	 * Nombre de cartes maximale du cimetiere
 	 */
-	public Cimetiere() {
-
+	public Cimetiere(int nbCartesMax)
+	{
+		super(nbCartesMax);
+		this.cartes = new Carte[super.nbCartesMax];
 		this.nbCartes = 0;
-		this.nbCartesMax = 60;
-		this.cartes = new Carte[this.nbCartesMax];
 	}
+
+	
+
 
 	/**
 	 * méthode qui affiche au joueur son cimetière
@@ -38,11 +43,12 @@ public class Cimetiere extends ListeDeCartes {
 	 * Implemente le cas d'utilisation voir cimetiere
 	 * @return String
 	 */
-	public String voirCimetiere() {
+	public boolean voirCimetiere() {
 		if (this.estVide())
-			return "Cimetiere vide";
+			return true;
 		this.afficherCartes();
 		this.finVoirCimetiere();
+		return false;
 
 	}
 
