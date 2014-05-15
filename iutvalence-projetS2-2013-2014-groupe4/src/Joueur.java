@@ -1,5 +1,5 @@
 
-public class Joueur {
+public abstract class Joueur {
 	/**
 	 * numero du joueur
 	 */
@@ -104,6 +104,13 @@ public class Joueur {
 	public void incrementerCurseurMain() {
 		this.curseurMain ++;
 	}
+	
+	/**
+	 * Décremente le curseurMain du joueur
+	 */
+	public void decrementerCurseurMain() {
+		this.curseurMain --;
+	}
 	/**
 	 * Renvoi le curseur deck du joueur
 	 */
@@ -156,4 +163,6 @@ public class Joueur {
 	public int getNumeroJoueur() {
 		return numeroJoueur;
 	}
+	
+	public abstract Carte choisirCartes();
 }
