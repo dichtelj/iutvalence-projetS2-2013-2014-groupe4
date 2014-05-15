@@ -7,9 +7,9 @@ public class JoueurAleatoire extends Joueur {
 		super(numeroDuJoueur);
 	}
 
-	@Override
-	public Carte choisirCartes() {
 
-		return null;
+
+	public Carte choisirCarte(ListeDeCartes liste) {
+
 	}
 }

@@ -9,7 +9,7 @@ public class JoueurHumain extends Joueur {
 	}
 
 	
-	public Carte choisirCartes(ListeDeCartes liste) {
+	public Carte choisirCarte(ListeDeCartes liste) {
 
 		return null;
 	}

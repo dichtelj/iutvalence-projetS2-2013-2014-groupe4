@@ -18,24 +18,11 @@ public abstract class Joueur {
 	private ListeDeCartes cimetiere;
 	
 	/**
-	 * Permet de savoir où en est le joueur dans la pioche de son deck
+	 * Permet de savoir où le joueur en ai de la pioche de son deck
 	 */
 	private int curseurDeck;
 	
-	/**
-	 * Permet de savoir où en est la main du joueur
-	 */
-	private int curseurMain;
-	
-	/**
-	 * Permet de savoir où en est le cimetiere du joueur
-	 */
-	private int curseurCimetiere;
 
-	/**
-	 * Correspond au nombre de créatures posées sur le plateau coté joueur
-	 */
-	private int curseurPlateau;
 /**
  * Permet de créer un joueur avec un numero, un deck, une main de départ et un cimetière
  * @param numeroDuJoueur numero du joueur
@@ -49,10 +36,6 @@ public abstract class Joueur {
 		this.deck=new ListeDeCartes(60);
 		this.main=new ListeDeCartes(10);
 		this.cimetiere=new ListeDeCartes(60);
-		this.curseurCimetiere=0;
-		this.curseurDeck=0;
-		this.curseurMain=0;
-		this.curseurPlateau=0;
 	}
 
 	/**
@@ -73,7 +56,7 @@ public abstract class Joueur {
 	 * Ajoute la carte passée en parametre dans la main du joueur
 	 */
 	public void setMain(Carte cartePiochee) {
-		this.main.cartes[this.curseurMain] = cartePiochee;
+		this.main.cartes[this.main.nbCartes] = cartePiochee;
 	}
 
 	/**
@@ -87,8 +70,8 @@ public abstract class Joueur {
 	 * Ajoute la carte passée en parametre dans le cimetiere du joueur
 	 */
 	public void setCimetiere(Carte carteMorte) {
-		this.cimetiere.cartes[this.curseurCimetiere]=carteMorte;
-		this.incrementerCurseurCimetiere();
+		this.cimetiere.cartes[this.cimetiere.nbCartes]=carteMorte;
+		this.incrementerNbCartesCimetiere();
 	}
 
 	/**
@@ -101,43 +84,43 @@ public abstract class Joueur {
 	/**
 	 * Incremente le curseurMain du joueur
 	 */
-	public void incrementerCurseurMain() {
-		this.curseurMain ++;
+	public void incrementerNbCartesrMain() {
+		this.main.nbCartes ++;
 	}
 	
 	/**
 	 * Décremente le curseurMain du joueur
 	 */
-	public void decrementerCurseurMain() {
-		this.curseurMain --;
+	public void decrementerNbCartesMain() {
+		this.main.nbCartes --;
 	}
 	/**
 	 * Renvoi le curseur deck du joueur
 	 */
-	public int getCurseurMain() {
-		return this.curseurMain;
+	public int getNbCartesMain() {
+		return this.main.nbCartes;
 	}
 
 	/**
 	 * Renvoi le curseur deck du joueur
 	 */
-	public int getCurseurCimetiere() {
-		return this.curseurCimetiere;
+	public int getNbCartesCimetiere() {
+		return this.cimetiere.nbCartes;
 	}
 
 	/**
 	 * Incremente le curseur cimetiere du joueur
 	 */
-	public void incrementerCurseurCimetiere() {
-		this.curseurCimetiere ++;
+	public void incrementerNbCartesCimetiere() {
+		this.cimetiere.nbCartes ++;
 	}
 	
 	/**
 	 * Pioche la carte sur le dessus du deck et la place dans la main du joueur
 	 */
 	public void piocherCarte(){
-		this.setMain(this.deck.cartes[this.curseurDeck]);
-		this.curseurDeck++;
+		this.setMain(this.deck.cartes[this.deck.nbCartes]);
+		this.incrementerCurseurDeck();
 	}
 	
 	/**
@@ -150,19 +133,25 @@ public abstract class Joueur {
 	/**
 	 * Renvoi le curseur plateau du joueur
 	 */
-	public int getCurseurPlateau() {
-		return this.curseurPlateau;
+	public int getNbCartesPlateau(Joueur joueur, Plateau plateau) {
+		if (joueur==this)
+			return plateau.getCartesJoueur1().nbCartes;
+		else return plateau.getCartesJoueur2().nbCartes;
 	}
-	/**
-	 * Incremente le curseur plateau du joueur
-	 */
-	public void incrementerCurseurPlateau(){
-		this.curseurPlateau++;
-	}
+	
 
 	public int getNumeroJoueur() {
 		return this.numeroJoueur;
 	}
 	
-	public abstract Carte choisirCartes(ListeDeCartes liste);
+	public void setDeck(Carte carteChoisie) {
+		this.deck.cartes[this.deck.nbCartes]=carteChoisie;
+		this.decrementerNbCartesDeck();
+	}
+	
+	public void decrementerNbCartesDeck() {
+		this.curseurDeck--;
+	}
+	
+	public abstract Carte choisirCarte(ListeDeCartes liste);
 }
