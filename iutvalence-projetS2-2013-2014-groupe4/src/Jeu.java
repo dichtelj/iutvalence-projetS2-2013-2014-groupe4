@@ -1,7 +1,7 @@
 /**
  * Definition d'une partie de Battle for Demacia
  */
-public class Partie {
+public class Jeu {
 
 	/**
 	 * Plateau de la partie
@@ -13,13 +13,16 @@ public class Partie {
 	 */
 	private Joueur[] joueurs;
 	
+	private Menu menu;
+	
 	/**
 	 * Une partie a un plateau et 2 decks a sa création
 	 */
-	public Partie(Joueur[] joueurs) {
+public Jeu(Joueur[] joueurs, Affichage affichage) {
 		
 		this.joueurs= joueurs;
 		this.plateau= new Plateau();
+		this.menu= new Menu(affichage);
 	}
 	
 	public void debutTour(Joueur joueur){
@@ -87,5 +90,20 @@ public class Partie {
 				if (this.plateau.getCartesJoueur1().cartes[i].getEffet().getNom().compareTo("provocation")==0)
 					return true;
 			return false;}
+	}
+
+	public Joueur[] getJoueurs() {
+		return this.joueurs;
+	}
+	
+	public void construireDeck(ListeDeCartes liste){
+		int compteurCarte=0;
+		while (compteurCarte < 60)
+		{
+			Carte carteChoisie=this.joueurs[0].choisirCarte(liste);
+			this.joueurs[0].setDeck(carteChoisie);
+			
+		}
+			
 	}
 }
