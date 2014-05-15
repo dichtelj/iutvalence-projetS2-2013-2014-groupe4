@@ -161,8 +161,8 @@ public abstract class Joueur {
 	}
 
 	public int getNumeroJoueur() {
-		return numeroJoueur;
+		return this.numeroJoueur;
 	}
 	
-	public abstract Carte choisirCartes();
+	public abstract Carte choisirCartes(ListeDeCartes liste);
 }
