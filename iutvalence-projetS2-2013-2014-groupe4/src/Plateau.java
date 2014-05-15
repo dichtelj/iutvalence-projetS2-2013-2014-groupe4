@@ -30,7 +30,7 @@ public class Plateau {
 	 * Renvoi vrai si le joueur a pose DEFAULT_CONSTANT_CARTEMAX sur le terrain
 	 */
 	public boolean estPlein(Joueur joueur) {
-		if(joueur.getCurseurPlateau()==this.DEFAULT_CONSTANT_CARTEMAX)
+		if(joueur.getNbCartesPlateau(joueur, this)==this.DEFAULT_CONSTANT_CARTEMAX)
 			return true;
 		else
 			return false;	
@@ -43,5 +43,13 @@ public class Plateau {
 
 	public ListeDeCartes getCartesJoueur2() {
 		return this.cartesJoueur2;
+	}
+	
+	public void incrementerNbCartesJoueur1(){
+		this.cartesJoueur1.nbCartes++;
+	}
+	
+	public void incrementerNbCartesJoueur2(){
+		this.cartesJoueur1.nbCartes++;
 	}
 }
