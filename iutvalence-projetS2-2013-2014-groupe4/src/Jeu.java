@@ -49,7 +49,7 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 				for(int i=0;i<this.plateau.getNbCartesJoueur1();i++)
 					this.plateau.getCartesJoueur1().cartes[i].modeActive();
 			}
-			if (joueur==this.joueurs[1]){
+			else {
 				for(int i=0;i<this.plateau.getNbCartesJoueur2();i++)
 					this.plateau.getCartesJoueur2().cartes[i].modeActive();
 		}
@@ -61,8 +61,8 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		if (carte.getEffet().getActivation().compareTo("invocation")==0)
 			carte.getEffet().appliquerEffet(this.plateau, joueur);
 		if (joueur.getNumeroJoueur()==1)
-			this.plateau.getCartesJoueur1().cartes[joueur.getCurseurPlateau()]=carte;
-		else this.plateau.getCartesJoueur2().cartes[joueur.getCurseurPlateau()]=carte;
+			this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte;
+		else this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte;
 		return "";
 	}
 	
@@ -96,12 +96,12 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 
 	private boolean existeProvocation(Joueur joueur) {
 		if (joueur==this.joueurs[0]){
-			for (int i=0; i<this.joueurs[1].getCurseurPlateau();i++)
+			for (int i=0; i<this.plateau.getNbCartesJoueur1();i++)
 				if (this.plateau.getCartesJoueur2().cartes[i].getEffet().getNom().compareTo("provocation")==0)
 					return true;
 			return false;}
 		else{
-			for (int i=0; i<this.joueurs[0].getCurseurPlateau();i++)
+			for (int i=0; i<this.plateau.getNbCartesJoueur2();i++)
 				if (this.plateau.getCartesJoueur1().cartes[i].getEffet().getNom().compareTo("provocation")==0)
 					return true;
 			return false;}
