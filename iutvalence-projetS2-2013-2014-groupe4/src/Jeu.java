@@ -69,6 +69,14 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 			joueur.getHeros().setNbManaCourant(joueur.getHeros().getNbMana());
 	}
 	
+	/**
+	 * Methode qui permet de poser une carte
+	 * @param carte
+	 * carte à poser
+	 * @param joueur
+	 * joueur posant la carte
+	 * @return String
+	 */
 	public String poserCarte(Carte carte, Joueur joueur) {
 		if (this.plateau.estPlein(joueur))
 			return "plateau plein";
@@ -86,6 +94,16 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	
 	/**
 	 * Permet d'utiliser la carte (invoquer ou attaquer)
+	 * @param action 
+	 * action de la carte
+	 * @param carte 
+	 * carte utilisée
+	 * @param personnage 
+	 * personnage qui utilise la carte
+	 * @param joueur 
+	 * joueur qui utilise la carte
+	 * @return String
+	 * 
 	 */
 	public String utiliserCarte(String action, Carte carte, Personnage personnage,Joueur joueur) {
 		if (action.compareTo("attaquer") == 0) {
@@ -102,6 +120,15 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 
 	}
 
+	/**
+	 * @param carte
+	 * Carte ciblée
+	 * @param personnage
+	 * personnage ciblé
+	 * @param joueur
+	 * joueur ciblé
+	 * @return boolean
+	 */
 	private boolean cibleViable(Carte carte, Personnage personnage,Joueur joueur) {
 		if (this.existeProvocation(joueur))
 			if (!(personnage instanceof Carte))
@@ -111,6 +138,14 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		return true;
 	}
 
+	/**
+	 * Methode qui permet de savoir s'il existe une carte avec provocation sur le terrain adverse
+	 * (on ne peut frapper que les cartes avec provocation s'il y en a)
+	 * @param joueur
+	 * Joueur jouant son tour
+	 * @return boolean
+	 * Dit si oui ou non il y a une provocation sur le terrain adverse
+	 */
 	private boolean existeProvocation(Joueur joueur) {
 		if (joueur.getNumeroJoueur()==1){
 			for (int i=0; i<this.plateau.getNbCartesJoueur1();i++)
@@ -124,10 +159,20 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 			return false;}
 	}
 
+	/**
+	 * Methode qui renvoi le tableau des joueurs de la partie
+	 * @return joueurs
+	 * Les joueurs de la partie 
+	 */
 	public Joueur[] getJoueurs() {
 		return this.joueurs;
 	}
 	
+	/**
+	 * Methode qui permet de crée un deck
+	 * @param liste
+	 * Liste qui fait office de deck
+	 */
 	public void construireDeck(ListeDeCartes liste){
 		int compteurCarte=0;
 		while (compteurCarte < 60)
@@ -139,9 +184,15 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 			
 	}
 	
+	/**
+	 * Méthode qui crée la liste de carte générale
+	 * @return liste
+	 * Liste de carte générale
+	 * 
+	 */
 	public static ListeDeCartes creerListeDeCartesGenerale(){
 		ListeDeCartes liste=new ListeDeCartes(200);
-		liste.cartes[0]=new Carte("Teemo",)
+		liste.cartes[0]= new Carte("Teemo", 3, 2, null, 3, "Petite peste");
 		return liste;
 	}
 }
