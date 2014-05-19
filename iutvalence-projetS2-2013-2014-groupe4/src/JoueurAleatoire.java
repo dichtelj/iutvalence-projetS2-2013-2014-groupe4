@@ -3,13 +3,14 @@ public class JoueurAleatoire extends Joueur {
 	
 	
 	
-	public JoueurAleatoire(int numeroDuJoueur) {
-		super(numeroDuJoueur);
+	public JoueurAleatoire(int numeroDuJoueur, Heros heros) {
+		super(numeroDuJoueur, heros);
 	}
 
 
 
 	public Carte choisirCarte(ListeDeCartes liste) {
+		return null;
 
 	}
 }

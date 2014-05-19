@@ -22,6 +22,8 @@ public abstract class Joueur {
 	 */
 	private int curseurDeck;
 	
+	private Heros heros;
+	
 
 /**
  * Permet de créer un joueur avec un numero, un deck, une main de départ et un cimetière
@@ -30,12 +32,13 @@ public abstract class Joueur {
  * @param mainJoueur main du joueur 
  * @param cimetiereJoueur cimetiere du joueur
  */
-	public Joueur(int numeroDuJoueur)
+	public Joueur(int numeroDuJoueur, Heros heros)
 	{
 		this.numeroJoueur=numeroDuJoueur;
 		this.deck=new ListeDeCartes(60);
 		this.main=new ListeDeCartes(10);
 		this.cimetiere=new ListeDeCartes(60);
+		this.heros=heros;
 	}
 
 	/**
@@ -133,8 +136,8 @@ public abstract class Joueur {
 	/**
 	 * Renvoi le curseur plateau du joueur
 	 */
-	public int getNbCartesPlateau(Joueur joueur, Plateau plateau) {
-		if (joueur==this)
+	public int getNbCartesPlateau(Plateau plateau) {
+		if (this.getNumeroJoueur()==1)
 			return plateau.getCartesJoueur1().nbCartes;
 		else return plateau.getCartesJoueur2().nbCartes;
 	}
@@ -154,5 +157,9 @@ public abstract class Joueur {
 	}
 	
 	public abstract Carte choisirCarte(ListeDeCartes liste);
+
+	public Heros getHeros() {
+		return this.heros;
+	}
 
 }
