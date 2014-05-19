@@ -27,4 +27,28 @@ public class Heros extends Personnage {
 	this.nbMana=0;
 	this.nbManaCourant=0;		
 	}
+
+	public void setNbMana(int nbMana) {
+		this.nbMana = nbMana;
+	}
+
+	public int getNbMana() {
+		return this.nbMana;
+	}
+	
+	public int getNbManaCourant() {
+		return this.nbManaCourant;
+	}
+
+	public void setNbManaCourant(int nbManaCourant) {
+		this.nbManaCourant = nbManaCourant;
+	}
+	
+	public void decrementerNbManaCourant(int nbmana){
+		this.nbMana-=nbmana;
+	}
+	
+	public void incrementerNbMana(){
+		this.nbMana++;
+	}
 }

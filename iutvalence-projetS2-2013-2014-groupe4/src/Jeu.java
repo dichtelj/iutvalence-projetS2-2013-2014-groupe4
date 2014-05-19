@@ -34,9 +34,16 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * joueur qui débute son tour
 	 */
 	public void debutTour(Joueur joueur){
+		for (int i=0; i<this.joueurs[0].getNbCartesPlateau(this.plateau);i++)
+			if (this.plateau.getCartesJoueur1().cartes[i].getEffet().getActivation().compareTo("debut")==0)
+				this.plateau.getCartesJoueur1().cartes[i].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
+		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++)
+			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("debut")==0)
+				this.plateau.getCartesJoueur2().cartes[j].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
 		if (joueur.getMain().nbCartes == joueur.getMain().nbCartesMax)
 			joueur.incrementerCurseurDeck();
 		else joueur.piocherCarte();
+		joueur.getHeros().incrementerNbMana();
 	}
 	
 	/**
@@ -45,24 +52,34 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * joueur qui fini son tour
 	 */
 	public void finTour(Joueur joueur){
-			if (joueur==this.joueurs[0]){
+		for (int i=0; i<this.joueurs[0].getNbCartesPlateau(this.plateau);i++)
+			if (this.plateau.getCartesJoueur1().cartes[i].getEffet().getActivation().compareTo("fin")==0)
+				this.plateau.getCartesJoueur1().cartes[i].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
+		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++)
+			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("fin")==0)
+				this.plateau.getCartesJoueur2().cartes[j].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
+			if (joueur.getNumeroJoueur()==1){
 				for(int i=0;i<this.plateau.getNbCartesJoueur1();i++)
 					this.plateau.getCartesJoueur1().cartes[i].modeActive();
 			}
 			else {
 				for(int i=0;i<this.plateau.getNbCartesJoueur2();i++)
 					this.plateau.getCartesJoueur2().cartes[i].modeActive();
-		}
+			}
+			joueur.getHeros().setNbManaCourant(joueur.getHeros().getNbMana());
 	}
 	
 	public String poserCarte(Carte carte, Joueur joueur) {
 		if (this.plateau.estPlein(joueur))
 			return "plateau plein";
+		if (carte.getCoutEnMana() > joueur.getHeros().getNbManaCourant())
+			return "Pas assez de mana";
 		if (carte.getEffet().getActivation().compareTo("invocation")==0)
-			carte.getEffet().appliquerEffet(this.plateau, joueur);
+			carte.getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
 		if (joueur.getNumeroJoueur()==1)
 			this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte;
 		else this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte;
+		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
 		return "";
 	}
 	
@@ -95,7 +112,7 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	}
 
 	private boolean existeProvocation(Joueur joueur) {
-		if (joueur==this.joueurs[0]){
+		if (joueur.getNumeroJoueur()==1){
 			for (int i=0; i<this.plateau.getNbCartesJoueur1();i++)
 				if (this.plateau.getCartesJoueur2().cartes[i].getEffet().getNom().compareTo("provocation")==0)
 					return true;
@@ -120,5 +137,11 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 			
 		}
 			
+	}
+	
+	public static ListeDeCartes creerListeDeCartesGenerale(){
+		ListeDeCartes liste=new ListeDeCartes(200);
+		liste.cartes[0]=new Carte("Teemo",)
+		return liste;
 	}
 }

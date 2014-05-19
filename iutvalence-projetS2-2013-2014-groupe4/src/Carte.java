@@ -97,4 +97,8 @@ public class Carte extends Personnage {
 	public Effet getEffet() {
 		return this.effet;
 	}
+	
+	public int getCoutEnMana(){
+		return this.coutEnMana;
+	}
 }
