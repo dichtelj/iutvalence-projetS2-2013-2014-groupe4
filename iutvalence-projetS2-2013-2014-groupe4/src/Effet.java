@@ -57,11 +57,12 @@ public class Effet {
 	}
 	
 	public void appliquerEffet(Plateau plateau, Joueur joueur, int numeroJoueur){
-		if ((this.nom).compareTo("sort")==0)
+		Carte cartechoisie;
+		if ((this.nom).compareTo("sort")==0)	
 			for (int i=0; i<this.nbCible;i++)
 				if (numeroJoueur==1)
-					Carte cartechoisie=joueur.choisirCarte(plateau.getCartesJoueur2());
-				else Carte cartechoisie=joueur.choisirCarte(plateau.getCartesJoueur1());
+					cartechoisie=joueur.choisirCarte(plateau.getCartesJoueur2());
+				else cartechoisie=joueur.choisirCarte(plateau.getCartesJoueur1());
 		
 		
 	}
