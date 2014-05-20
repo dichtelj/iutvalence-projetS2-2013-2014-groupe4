@@ -192,7 +192,18 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 */
 	public static ListeDeCartes creerListeDeCartesGenerale(){
 		ListeDeCartes liste=new ListeDeCartes(200);
-		liste.cartes[0]= new Carte("Teemo", 3, 2, null, 3, "Petite peste");
+		liste.cartes[0]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
 		return liste;
+	}
+	
+	public void viderPlateau(){
+		for (int i=0; i<this.joueurs[0].getNbCartesPlateau(this.plateau);i++)
+			if (this.plateau.getCartesJoueur1().cartes[i].getPointsDeVie()==0){
+				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur1().cartes[i]);
+				this.plateau.getCartesJoueur1().decretementerNbCartes();
+			}
+		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++)
+			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("fin")==0)
+				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur2().cartes[j]);
 	}
 }

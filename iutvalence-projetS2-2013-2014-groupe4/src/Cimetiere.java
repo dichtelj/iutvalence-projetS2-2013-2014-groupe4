@@ -56,7 +56,12 @@ public class Cimetiere extends ListeDeCartes {
 
 	}
 
-	public void incrementerNbCartes(){
-		this.nbCartes++;
+	
+	/**
+	 * Envoi la care passer en paramètre dans le cimetière
+	 */
+	public void jeterCarte(Carte carte){
+		this.cartes[this.nbCartes]=carte;
+		this.incrementerNbCartes();
 	}
 }

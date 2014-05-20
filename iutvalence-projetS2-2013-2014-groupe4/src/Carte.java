@@ -88,7 +88,7 @@ public class Carte extends Personnage {
 	 * @param personnage
 	 *            : Le personnage cible par l'attaque
 	 */
-	public void infligerDegats(Personnage personnage) 
+	public void infligerDegats(Personnage personnage)
 	{
 		personnage.pointDeVie = personnage.pointDeVie - this.pointsDAttaque;
 		this.pointDeVie = this.pointDeVie - personnage.pointsDAttaque;
@@ -101,4 +101,9 @@ public class Carte extends Personnage {
 	public int getCoutEnMana(){
 		return this.coutEnMana;
 	}
+	
+	public int getPointsDeVie(){
+		return this.pointDeVie;
+	}
+	
 }
