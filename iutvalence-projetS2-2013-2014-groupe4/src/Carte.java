@@ -19,6 +19,7 @@ public class Carte extends Personnage {
 	/**
 	 * Description de la carte
 	 */
+	@SuppressWarnings("unused")
 	private String description;
 
 	/**
@@ -94,20 +95,40 @@ public class Carte extends Personnage {
 		this.subirDegats(personnage.pointsDAttaque);
 	}
 
+	/**
+	 * methode qui renvoi l'effet de la carte
+	 * @return effet
+	 * effet de  la carte
+	 */
 	public Effet getEffet() {
 		return this.effet;
 	}
 	
+	/**
+	 * methode qui renvoi le cout en mana de la carte
+	 * @return int	
+	 * cout en mana de la carte
+	 */
 	public int getCoutEnMana(){
 		return this.coutEnMana;
 	}
 	
+	/**
+	 * methode qui permet d'obtenir les points de vie de la carte
+	 * @return int
+	 * point de vie de la carte
+	 */
 	public int getPointsDeVie(){
 		return this.pointDeVie;
 	}
 	
-	public void subirDegats(int degatsSubits){
-		this.pointDeVie-=degatsSubits;
+	/**
+	 * methode qui permet d'enlever de la vie par rapport aux dégats subis
+	 * @param degatsSubit
+	 * dégats subis
+	 */
+	public void subirDegats(int degatsSubit){
+		this.pointDeVie-=degatsSubit;
 	}
 		
 }

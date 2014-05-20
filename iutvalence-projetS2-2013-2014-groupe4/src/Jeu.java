@@ -67,6 +67,7 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 					this.plateau.getCartesJoueur2().cartes[i].modeActive();
 			}
 			joueur.getHeros().setNbManaCourant(joueur.getHeros().getNbMana());
+			viderPlateau();
 	}
 	
 	/**
@@ -196,14 +197,18 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		return liste;
 	}
 	
+	/**
+	 * 
+	 * Methode qui permet d'enlever du plateau les cartes n'ayant plus de vie.
+	 */
 	public void viderPlateau(){
 		for (int i=0; i<this.joueurs[0].getNbCartesPlateau(this.plateau);i++)
-			if (this.plateau.getCartesJoueur1().cartes[i].getPointsDeVie()==0){
+			if (this.plateau.getCartesJoueur1().cartes[i].getPointsDeVie()<=0){
 				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur1().cartes[i]);
 				this.plateau.getCartesJoueur1().decretementerNbCartes();
 			}
 		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++)
-			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("fin")==0)
+			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("fin")<=0)
 				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur2().cartes[j]);
 	}
 }
