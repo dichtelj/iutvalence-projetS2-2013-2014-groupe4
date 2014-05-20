@@ -91,7 +91,7 @@ public class Carte extends Personnage {
 	public void infligerDegats(Personnage personnage)
 	{
 		personnage.pointDeVie = personnage.pointDeVie - this.pointsDAttaque;
-		this.pointDeVie = this.pointDeVie - personnage.pointsDAttaque;
+		this.subirDegats(personnage.pointsDAttaque);
 	}
 
 	public Effet getEffet() {
@@ -106,4 +106,8 @@ public class Carte extends Personnage {
 		return this.pointDeVie;
 	}
 	
+	public void subirDegats(int degatsSubits){
+		this.pointDeVie-=degatsSubits;
+	}
+		
 }

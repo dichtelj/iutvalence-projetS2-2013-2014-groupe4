@@ -29,7 +29,7 @@ public class Effet {
 
 	
 	
-	private Effet(String activation, String nom, int montantDeDegat, int nbCible){
+	public Effet(String activation, String nom, int montantDeDegat, int nbCible){
 		this.activation=activation;
 		this.montantDeDegat=montantDeDegat;
 		this.nbCible=nbCible;
@@ -57,12 +57,13 @@ public class Effet {
 	}
 	
 	public void appliquerEffet(Plateau plateau, Joueur joueur, int numeroJoueur){
-		Carte cartechoisie;
+		Carte carteChoisie=null;;
 		if ((this.nom).compareTo("sort")==0)	
 			for (int i=0; i<this.nbCible;i++)
 				if (numeroJoueur==1)
-					cartechoisie=joueur.choisirCarte(plateau.getCartesJoueur2());
-				else cartechoisie=joueur.choisirCarte(plateau.getCartesJoueur1());
+					carteChoisie=joueur.choisirCarte(plateau.getCartesJoueur2());
+				else carteChoisie=joueur.choisirCarte(plateau.getCartesJoueur1());
+				carteChoisie.subirDegats(this.montantDeDegat);
 		
 		
 	}

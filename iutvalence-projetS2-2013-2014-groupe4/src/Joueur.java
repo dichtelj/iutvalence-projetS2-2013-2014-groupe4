@@ -65,8 +65,8 @@ public abstract class Joueur {
 	/**
 	 * Renvoi le cimetiere du joueur
 	 */
-	public ListeDeCartes getCimetiere() {
-		return this.cimetiere;
+	public Cimetiere getCimetiere() {
+		return (Cimetiere)this.cimetiere;
 	}
 
 	/**

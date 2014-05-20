@@ -29,4 +29,12 @@ public class ListeDeCartes {
 		this.cartes= new Carte[this.nbCartesMax];
 		this.nbCartes=0;
 	}
+	
+	public void incrementerNbCartes(){
+		this.nbCartes++;
+	}
+
+	public void decretementerNbCartes(){
+		this.nbCartes--;
+	}
 }
