@@ -57,7 +57,7 @@ public class Effet {
 	}
 	
 	public void appliquerEffet(Plateau plateau, Joueur joueur, int numeroJoueur){
-		Carte carteChoisie=null;;
+		Carte carteChoisie=null;
 		if ((this.nom).compareTo("sort")==0)	
 			for (int i=0; i<this.nbCible;i++)
 				if (numeroJoueur==1)
