@@ -214,7 +214,7 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur2().cartes[j]);
 				this.plateau.getCartesJoueur2().cartes[j]=null;
 				this.plateau.getCartesJoueur2().decretementerNbCartes();
-				this.reOrganiserCartes(this.joueurs[1]);
+				this.reOrganiserCartes(this.joueurs[1]) ;
 	}
 		}
 	
