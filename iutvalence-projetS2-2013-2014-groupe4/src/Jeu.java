@@ -205,10 +205,29 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		for (int i=0; i<this.joueurs[0].getNbCartesPlateau(this.plateau);i++)
 			if (this.plateau.getCartesJoueur1().cartes[i].getPointsDeVie()<=0){
 				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur1().cartes[i]);
+				this.plateau.getCartesJoueur1().cartes[i]=null;
 				this.plateau.getCartesJoueur1().decretementerNbCartes();
+				this.reOrganiserCartes(this.joueurs[0]);
 			}
-		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++)
+		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++){
 			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("fin")<=0)
 				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur2().cartes[j]);
+				this.plateau.getCartesJoueur2().cartes[j]=null;
+				this.plateau.getCartesJoueur2().decretementerNbCartes();
+				this.reOrganiserCartes(this.joueurs[1]);
 	}
+		}
+	
+	public void reOrganiserCartes(Joueur joueur){
+		if (joueur.getNumeroJoueur()==1){
+			for (int i=0; i < 7; i++)
+				if (!(this.plateau.getCartesJoueur1().cartes[i] instanceof Carte))
+					for (int j=i; j < 7; j++)
+						this.plateau.getCartesJoueur1().cartes[j]=this.plateau.getCartesJoueur1().cartes[j+1];		}
+		else 
+			for (int i=0; i < 7; i++)
+			if (!(this.plateau.getCartesJoueur2().cartes[i] instanceof Carte))
+				for (int j=i; j < 7; j++)
+					this.plateau.getCartesJoueur2().cartes[j]=this.plateau.getCartesJoueur1().cartes[j+1];		}
 }
+
