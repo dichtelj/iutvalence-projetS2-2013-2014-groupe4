@@ -35,9 +35,9 @@ public abstract class Joueur {
 	public Joueur(int numeroDuJoueur, Heros heros)
 	{
 		this.numeroJoueur=numeroDuJoueur;
-		this.deck=new ListeDeCartes(60);
-		this.main=new ListeDeCartes(10);
-		this.cimetiere=new ListeDeCartes(60);
+		this.deck=new ListeDeCartes(Jeu.NB_CARTES_DECK);
+		this.main=new ListeDeCartes(Jeu.NB_CARTES_MAIN);
+		this.cimetiere=new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.heros=heros;
 	}
 

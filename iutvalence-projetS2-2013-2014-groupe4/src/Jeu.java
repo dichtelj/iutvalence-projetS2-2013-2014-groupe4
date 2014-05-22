@@ -1,7 +1,14 @@
+import java.util.Random;
+
 /**
  * Definition d'une partie de Battle for Demacia
  */
 public class Jeu {
+	
+	
+	public final static int NB_CARTES_DECK=60;
+
+	public static final int NB_CARTES_MAIN = 10;
 
 	/**
 	 * Plateau de la partie
@@ -176,7 +183,7 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 */
 	public void construireDeck(ListeDeCartes liste){
 		int compteurCarte=0;
-		while (compteurCarte < 60)
+		while (compteurCarte < NB_CARTES_DECK)
 		{
 			Carte carteChoisie=this.joueurs[0].choisirCarte(liste);
 			this.joueurs[0].setDeck(carteChoisie);
@@ -228,6 +235,31 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 			for (int i=0; i < 7; i++)
 			if (!(this.plateau.getCartesJoueur2().cartes[i] instanceof Carte))
 				for (int j=i; j < 7; j++)
-					this.plateau.getCartesJoueur2().cartes[j]=this.plateau.getCartesJoueur1().cartes[j+1];		}
+					this.plateau.getCartesJoueur2().cartes[j]=this.plateau.getCartesJoueur1().cartes[j+1];		
+		}
+	
+	
+	public void melangerDeck(Joueur joueur){
+		Random generateurDeNombresAleatoires = new Random();
+
+		for (int nombreDePermutations = 0; nombreDePermutations < 100; nombreDePermutations++)
+		{
+		int indexSrc = generateurDeNombresAleatoires.nextInt(NB_CARTES_DECK);
+		int indexDest = generateurDeNombresAleatoires.nextInt(NB_CARTES_DECK);
+		if (joueur.getNumeroJoueur()==1){
+			Carte carteEchangee = this.joueurs[0].getDeck().cartes[indexSrc];
+			this.joueurs[0].getDeck().cartes[indexSrc]=carteEchangee;
+			this.joueurs[0].getDeck().cartes[indexSrc]=this.joueurs[0].getDeck().cartes[indexDest];
+			this.joueurs[0].getDeck().cartes[indexDest]=carteEchangee;
+		}}
+	}
+	public void attribuerMainDepart(Joueur joueur){
+		joueur.piocherCarte();
+		joueur.piocherCarte();
+		joueur.piocherCarte();
+	}
 }
+
+
+
 

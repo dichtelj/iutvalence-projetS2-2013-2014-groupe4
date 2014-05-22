@@ -10,10 +10,10 @@ public class Cimetiere extends ListeDeCartes {
 	 * @param nbCartesMax 
 	 * Nombre de cartes maximale du cimetiere
 	 */
-	public Cimetiere(int nbCartesMax)
+	public Cimetiere()
 	{
-		super(nbCartesMax);
-		this.cartes = new Carte[super.nbCartesMax];
+		super(Jeu.NB_CARTES_DECK);
+		this.cartes = new Carte[Jeu.NB_CARTES_DECK];
 		this.nbCartes = 0;
 	}
 
