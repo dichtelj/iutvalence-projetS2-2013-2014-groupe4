@@ -57,14 +57,13 @@ public class Effet {
 	}
 	
 	public void appliquerEffet(Plateau plateau, Joueur joueur, int numeroJoueur){
-		Carte carteChoisie=null;
+		Position carteChoisie=null;
 		if ((this.nom).compareTo("sort")==0)	
 			for (int i=0; i<this.nbCible;i++)
 				if (numeroJoueur==1)
-					carteChoisie=joueur.choisirCarte(plateau.getCartesJoueur2());
-				else carteChoisie=joueur.choisirCarte(plateau.getCartesJoueur1());
-				carteChoisie.subirDegats(this.montantDeDegat);
-		
+					carteChoisie=joueur.choisirCarteAAttaquer(plateau.getCartesJoueur2());
+				else carteChoisie=joueur.choisirCarteAAttaquer(plateau.getCartesJoueur1());
+				carteChoisie.getListe().cartes[carteChoisie.getIndex()].subirDegats(this.montantDeDegat);		
 		
 	}
 }

@@ -17,4 +17,14 @@ public abstract class Personnage
 	 * Points d'attaque du personnage
 	 */
 	protected int pointsDAttaque;
+	
+	
+	/**
+	 * methode qui permet d'obtenir les points de vie de la carte
+	 * @return int
+	 * point de vie de la carte
+	 */
+	public int getPointsDeVie(){
+		return this.pointDeVie;
+	}
 }

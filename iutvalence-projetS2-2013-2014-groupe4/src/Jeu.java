@@ -55,16 +55,55 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		joueur.getHeros().incrementerNbMana();
 	}
 	
-	public boolean lancerPartie() throws DeckInvalide{
+	public void preparerPartie() throws DeckInvalide{
 		if (!(this.joueurs[0].getDeck().cartes[NB_CARTES_DECK-1] instanceof Carte)) throw new DeckInvalide();				
 		JoueurAleatoire joueur2= (JoueurAleatoire) this.joueurs[1];
 		joueur2.attribuerDeckAleatoire(LISTE_CARTE_GENERALE);
 		this.attribuerMainDepart(this.joueurs[0]);		
-		this.attribuerMainDepart(this.joueurs[1]);		
-		return true;				
+		this.attribuerMainDepart(this.joueurs[1]);	
 	}
 	
 	
+	public void jouer(){
+		int indiceJoueurCourant = 0;
+		Joueur joueurCourant = this.joueurs[indiceJoueurCourant];
+		while (!(this.partieFinie()))
+		{
+		this.debutTour(joueurCourant);
+		this.jouerTour(joueurCourant);
+		this.finTour(joueurCourant);
+		joueurCourant = this.joueurs[(indiceJoueurCourant + 1) % 2];
+		}
+		}
+	
+	
+	private void jouerTour(Joueur joueurCourant) {
+		while("bouton pas appuyé"){
+			this.jouerTourIntermediaire(joueurCourant);
+		}
+		}
+
+	private void jouerTourIntermediaire(Joueur joueurCourant) {
+		Position carteAUtiliser=joueurCourant.choisirCarteAUtiliser();
+		if (this.estDansMain(carteAUtiliser))
+			if (joueurCourant.getNumeroJoueur()==1)
+				this.utiliserCarte("invocation",carteAUtiliser,joueurCourant.choisirCarteAAttaquer(this.plateau.getCartesJoueur2()), joueurCourant);
+		
+	}
+	
+	public boolean estDansMain(Position carte){
+		if (carte.getListe().getNbCartesMax() == 10)
+			return true;
+		return false;
+	}
+
+
+
+	public boolean partieFinie(){
+		if ((this.joueurs[0].getHeros().getPointsDeVie()<0) || (this.joueurs[1].getHeros().getPointsDeVie() <0))
+				return true;
+		return false;
+	}
 	/**
 	 * Méthode permettant a un joueur de finir son tour
 	 * @param joueur
@@ -97,17 +136,17 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * joueur posant la carte
 	 * @return String
 	 */
-	public String poserCarte(Carte carte, Joueur joueur) {
+	public String poserCarte(Position carte, Joueur joueur) {
 		if (this.plateau.estPlein(joueur))
 			return "plateau plein";
-		if (carte.getCoutEnMana() > joueur.getHeros().getNbManaCourant())
+		if (carte.getListe().cartes[carte.getIndex()].getCoutEnMana() > joueur.getHeros().getNbManaCourant())
 			return "Pas assez de mana";
-		if (carte.getEffet().getActivation().compareTo("invocation")==0)
-			carte.getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
+		if (carte.getListe().cartes[carte.getIndex()].getEffet().getActivation().compareTo("invocation")==0)
+			carte.getListe().cartes[carte.getIndex()].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
 		if (joueur.getNumeroJoueur()==1)
-			this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte;
-		else this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte;
-		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
+			this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte.getListe().cartes[carte.getIndex()];
+		else this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte.getListe().cartes[carte.getIndex()];
+		joueur.getHeros().decrementerNbManaCourant(carte.getListe().cartes[carte.getIndex()].getCoutEnMana());
 		return "";
 	}
 	
@@ -125,13 +164,13 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * @return String
 	 * 
 	 */
-	public String utiliserCarte(String action, Carte carte, Personnage personnage,Joueur joueur) {
+	public String utiliserCarte(String action, Position carte, Personnage personnage,Joueur joueur) {
 		if (action.compareTo("attaquer") == 0) {
-			if (carte.estInactif())
+			if (carte.getListe().cartes[carte.getIndex()].estInactif())
 				return "ne peut pas attaquer";
-			if (this.cibleViable(carte, personnage, joueur))
-			carte.infligerDegats(personnage);
-			carte.modeInactive();
+			if (this.cibleViable(personnage.getListe().cartes[personnage.getIndex()], joueur))
+			carte.getListe().cartes[carte.getIndex()].infligerDegats(personnage.getListe().cartes[personnage.getIndex()]);
+			carte.getListe().cartes[carte.getIndex()].modeInactive();
 		}
 		if (action.compareTo("invoquer") == 0) {
 			this.poserCarte(carte, joueur);
@@ -149,7 +188,7 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * joueur ciblé
 	 * @return boolean
 	 */
-	private boolean cibleViable(Carte carte, Personnage personnage,Joueur joueur) {
+	private boolean cibleViable(Personnage personnage,Joueur joueur) {
 		if (this.existeProvocation(joueur))
 			if (!(personnage instanceof Carte))
 				return false;
@@ -197,9 +236,8 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		int compteurCarte=0;
 		while (compteurCarte < NB_CARTES_DECK)
 		{
-			Carte carteChoisie=this.joueurs[0].choisirCarte(liste);
-			this.joueurs[0].setDeck(carteChoisie);
-			
+			Carte carteChoisie=this.joueurs[0].choisirCarteDeck();
+			this.joueurs[0].setDeck(carteChoisie);			
 		}
 			
 	}

@@ -113,14 +113,6 @@ public class Carte extends Personnage {
 		return this.coutEnMana;
 	}
 	
-	/**
-	 * methode qui permet d'obtenir les points de vie de la carte
-	 * @return int
-	 * point de vie de la carte
-	 */
-	public int getPointsDeVie(){
-		return this.pointDeVie;
-	}
 	
 	/**
 	 * methode qui permet d'enlever de la vie par rapport aux dégats subis

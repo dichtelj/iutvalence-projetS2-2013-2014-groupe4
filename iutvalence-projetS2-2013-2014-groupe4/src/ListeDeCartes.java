@@ -37,4 +37,12 @@ public class ListeDeCartes {
 	public void decretementerNbCartes(){
 		this.nbCartes--;
 	}
+	
+	public int getNbCartes(){
+		return this.nbCartes;
+	}
+	
+	public int getNbCartesMax(){
+		return this.getNbCartesMax();
+	}
 }

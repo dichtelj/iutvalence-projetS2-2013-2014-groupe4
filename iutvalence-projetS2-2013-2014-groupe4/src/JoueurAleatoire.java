@@ -17,11 +17,29 @@ public class JoueurAleatoire extends Joueur {
 	}
 	
 	public void attribuerDeckAleatoire(ListeDeCartes liste) {
-		Random generateurDeNombresAleatoires= new Random();
 		for (int nbCartesDeck=0; nbCartesDeck < Jeu.NB_CARTES_DECK; nbCartesDeck++){
-			int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(Jeu.NB_CARTES_DECK);
-			this.setDeck(liste.cartes[indexCarteChoisie]);
+			this.setDeck(choisirCarteDeck());
 			}
+	}
+
+
+	public Carte choisirCarteDeck() {
+		Random generateurDeNombresAleatoires= new Random();
+		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(Jeu.NB_CARTES_DECK);
+			return Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie];
+	}
+
+
+	public Position choisirCarteAUtiliser() {
+
+		return null;
+	}
+
+
+
+
+	public Position choisirCarteAAttaquer(ListeDeCartes liste) {
 		
+		return null;
 	}
 }

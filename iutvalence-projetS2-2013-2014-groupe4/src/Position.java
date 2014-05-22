@@ -33,5 +33,4 @@ public class Position {
 		return this.liste;
 	}
 	
-	
 }
