@@ -18,7 +18,7 @@ public class Plateau {
 	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur
 	 * le terrain
 	 */
-	private final int DEFAULT_CONSTANT_CARTEMAX = 7;
+	public final static int DEFAULT_CONSTANT_CARTEMAX = 7;
 
 
 	public Plateau(){

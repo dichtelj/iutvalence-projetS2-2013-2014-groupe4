@@ -9,6 +9,8 @@ public class Jeu {
 	public final static int NB_CARTES_DECK=60;
 
 	public static final int NB_CARTES_MAIN = 10;
+	
+	public static final ListeDeCartes LISTE_CARTE_GENERALE=Jeu.creerListeDeCartesGenerale();
 
 	/**
 	 * Plateau de la partie
@@ -47,11 +49,21 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++)
 			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("debut")==0)
 				this.plateau.getCartesJoueur2().cartes[j].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
-		if (joueur.getMain().nbCartes == joueur.getMain().nbCartesMax)
-			joueur.incrementerCurseurDeck();
-		else joueur.piocherCarte();
+		if (!(joueur.getMain().nbCartes == joueur.getMain().nbCartesMax))
+			joueur.piocherCarte();
+		joueur.incrementerCurseurDeck();
 		joueur.getHeros().incrementerNbMana();
 	}
+	
+	public boolean lancerPartie() throws DeckInvalide{
+		if (!(this.joueurs[0].getDeck().cartes[NB_CARTES_DECK-1] instanceof Carte)) throw new DeckInvalide();				
+		JoueurAleatoire joueur2= (JoueurAleatoire) this.joueurs[1];
+		joueur2.attribuerDeckAleatoire(LISTE_CARTE_GENERALE);
+		this.attribuerMainDepart(this.joueurs[0]);		
+		this.attribuerMainDepart(this.joueurs[1]);		
+		return true;				
+	}
+	
 	
 	/**
 	 * Méthode permettant a un joueur de finir son tour
@@ -227,14 +239,14 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	
 	public void reOrganiserCartes(Joueur joueur){
 		if (joueur.getNumeroJoueur()==1){
-			for (int i=0; i < 7; i++)
+			for (int i=0; i < Plateau.DEFAULT_CONSTANT_CARTEMAX; i++)
 				if (!(this.plateau.getCartesJoueur1().cartes[i] instanceof Carte))
-					for (int j=i; j < 7; j++)
+					for (int j=i; j < Plateau.DEFAULT_CONSTANT_CARTEMAX; j++)
 						this.plateau.getCartesJoueur1().cartes[j]=this.plateau.getCartesJoueur1().cartes[j+1];		}
 		else 
-			for (int i=0; i < 7; i++)
+			for (int i=0; i < Plateau.DEFAULT_CONSTANT_CARTEMAX; i++)
 			if (!(this.plateau.getCartesJoueur2().cartes[i] instanceof Carte))
-				for (int j=i; j < 7; j++)
+				for (int j=i; j < Plateau.DEFAULT_CONSTANT_CARTEMAX; j++)
 					this.plateau.getCartesJoueur2().cartes[j]=this.plateau.getCartesJoueur1().cartes[j+1];		
 		}
 	
