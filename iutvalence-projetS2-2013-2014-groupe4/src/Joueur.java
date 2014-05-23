@@ -156,15 +156,15 @@ public abstract class Joueur {
 		this.curseurDeck--;
 	}
 	
-	public abstract Carte choisirCarteDeck();
-	
-	public abstract Carte choisirCarteAUtiliser();
-
 	public Heros getHeros() {
 		return this.heros;
 	}
+	
+	public abstract Carte choisirCarteDeck();
+	
+	public abstract Position choisirCarteAUtiliser();
 
-	public abstract Personnage choisirCarteAAttaquer();
+	public abstract Personnage choisirPersonnageAAttaquer(Plateau plateau);
 	
 
 }

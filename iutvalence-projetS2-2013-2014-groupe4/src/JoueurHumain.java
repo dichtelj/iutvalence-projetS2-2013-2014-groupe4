@@ -23,7 +23,7 @@ public class JoueurHumain extends Joueur {
 
 
 	@Override
-	public Carte choisirCarteAUtiliser() {
+	public Position choisirCarteAUtiliser() {
 
 		return null;
 	}

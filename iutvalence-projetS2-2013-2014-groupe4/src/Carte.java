@@ -46,8 +46,8 @@ public class Carte extends Personnage {
 		this.effet = effet;
 		this.coutEnMana = mana;
 		if (this.effet.getNom().compareTo("charge")==0)
-			this.estInactive = true;
-		else this.estInactive=false;
+			this.estInactive = false;
+		else this.estInactive=true;
 		this.description = description;
 	}
 

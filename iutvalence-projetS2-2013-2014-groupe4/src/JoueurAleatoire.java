@@ -30,7 +30,7 @@ public class JoueurAleatoire extends Joueur {
 	}
 
 
-	public Carte choisirCarteAUtiliser() {
+	public Position choisirCarteAUtiliser() {
 
 		return null;
 	}
