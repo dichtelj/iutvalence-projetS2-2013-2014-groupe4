@@ -130,23 +130,20 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * @param joueur
 	 * joueur posant la carte
 	 * @return String
+	 * @throws PlateauPlein 
+	 * @throws ManaInsuffisant 
 	 */
-	public String poserCarte(Carte carte, Joueur joueur) {
+	public String poserCarte(Position carte, Joueur joueur) throws PlateauPlein, ManaInsuffisant {
 		if (this.plateau.estPlein(joueur))
-			return "plateau plein";
-		if (carte.getCoutEnMana() > joueur.getHeros().getNbManaCourant())
-			return "Pas assez de mana";
-		if (carte.getEffet().getActivation().compareTo("invocation")==0)
-			carte.getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
+			throw new PlateauPlein();
+		if (carte.getListe().cartes[carte.getIndex()].getCoutEnMana() > joueur.getHeros().getNbManaCourant())
+			throw new ManaInsuffisant();
+		if (carte.getListe().cartes[carte.getIndex()].getEffet().getActivation().compareTo("invocation")==0)
+			carte.getListe().cartes[carte.getIndex()].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
 		if (joueur.getNumeroJoueur()==1)
-			if (!(carte.getCoutEnMana() > this.joueurs[0].getHeros().getNbManaCourant()))
-				this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte;
-			else return "Pas assez de mana";
-		else 
-			if (!(carte.getCoutEnMana() > this.joueurs[1].getHeros().getNbManaCourant()))		
-				this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte;
-			else return "Pas assez de mana";
-		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
+			this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte.getListe().cartes[carte.getIndex()];
+		else this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte.getListe().cartes[carte.getIndex()];
+		joueur.getHeros().decrementerNbManaCourant(carte.getListe().cartes[carte.getIndex()].getCoutEnMana());
 		return "";
 	}
 	
@@ -162,20 +159,24 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * @param joueur 
 	 * joueur qui utilise la carte
 	 * @return String
+	 * @throws CibleInvalide 
 	 * 
 	 */
-	public String utiliserCarte(String action, Carte carte, Personnage personnage,Joueur joueur) {
+	public void utiliserCarte(String action, Position carte, Personnage personnage,Joueur joueur) throws CibleInvalide, EstInactif {
 		if (action.compareTo("attaquer") == 0) {
-			if (carte.estInactif())
-				return "ne peut pas attaquer";
-			if (this.cibleViable(personnage, joueur))
-			carte.infligerDegats(personnage);
-			carte.modeInactive();
+			if (carte.getListe().cartes[carte.getIndex()].estInactif())
+				throw new EstInactif();
+			if (!(this.cibleViable(personnage, joueur)))
+				throw new CibleInvalide();
+			carte.getListe().cartes[carte.getIndex()].infligerDegats(personnage);
+			carte.getListe().cartes[carte.getIndex()].modeInactive();
+			this.viderPlateau();
+			this.reOrganiserCartes(joueur);
 		}
 		if (action.compareTo("invoquer") == 0) {
 			this.poserCarte(carte, joueur);
 		}
-		return "";
+		
 
 	}
 
