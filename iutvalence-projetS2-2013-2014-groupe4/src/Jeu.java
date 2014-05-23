@@ -59,8 +59,10 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		if (!(this.joueurs[0].getDeck().cartes[NB_CARTES_DECK-1] instanceof Carte)) throw new DeckInvalide();				
 		JoueurAleatoire joueur2= (JoueurAleatoire) this.joueurs[1];
 		joueur2.attribuerDeckAleatoire(LISTE_CARTE_GENERALE);
-		this.attribuerMainDepart(this.joueurs[0]);		
-		this.attribuerMainDepart(this.joueurs[1]);	
+		this.attribuerMainDepart(this.joueurs[0]);
+		this.melangerDeck(this.joueurs[0]);
+		this.attribuerMainDepart(this.joueurs[1]);
+		
 	}
 	
 	
@@ -91,13 +93,6 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		
 	}
 	
-	public boolean estDansMain(Position carte){
-		if (carte.getListe().getNbCartesMax() == 10)
-			return true;
-		return false;
-	}
-
-
 
 	public boolean partieFinie(){
 		if ((this.joueurs[0].getHeros().getPointsDeVie()<0) || (this.joueurs[1].getHeros().getPointsDeVie() <0))
@@ -136,17 +131,22 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * joueur posant la carte
 	 * @return String
 	 */
-	public String poserCarte(Position carte, Joueur joueur) {
+	public String poserCarte(Carte carte, Joueur joueur) {
 		if (this.plateau.estPlein(joueur))
 			return "plateau plein";
-		if (carte.getListe().cartes[carte.getIndex()].getCoutEnMana() > joueur.getHeros().getNbManaCourant())
+		if (carte.getCoutEnMana() > joueur.getHeros().getNbManaCourant())
 			return "Pas assez de mana";
-		if (carte.getListe().cartes[carte.getIndex()].getEffet().getActivation().compareTo("invocation")==0)
-			carte.getListe().cartes[carte.getIndex()].getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
+		if (carte.getEffet().getActivation().compareTo("invocation")==0)
+			carte.getEffet().appliquerEffet(this.plateau, joueur, joueur.getNumeroJoueur());
 		if (joueur.getNumeroJoueur()==1)
-			this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte.getListe().cartes[carte.getIndex()];
-		else this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte.getListe().cartes[carte.getIndex()];
-		joueur.getHeros().decrementerNbManaCourant(carte.getListe().cartes[carte.getIndex()].getCoutEnMana());
+			if (!(carte.getCoutEnMana() > this.joueurs[0].getHeros().getNbManaCourant()))
+				this.plateau.getCartesJoueur1().cartes[this.plateau.getNbCartesJoueur1()]=carte;
+			else return "Pas assez de mana";
+		else 
+			if (!(carte.getCoutEnMana() > this.joueurs[1].getHeros().getNbManaCourant()))		
+				this.plateau.getCartesJoueur2().cartes[this.plateau.getNbCartesJoueur2()]=carte;
+			else return "Pas assez de mana";
+		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
 		return "";
 	}
 	
@@ -164,13 +164,13 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 * @return String
 	 * 
 	 */
-	public String utiliserCarte(String action, Position carte, Personnage personnage,Joueur joueur) {
+	public String utiliserCarte(String action, Carte carte, Personnage personnage,Joueur joueur) {
 		if (action.compareTo("attaquer") == 0) {
-			if (carte.getListe().cartes[carte.getIndex()].estInactif())
+			if (carte.estInactif())
 				return "ne peut pas attaquer";
-			if (this.cibleViable(personnage.getListe().cartes[personnage.getIndex()], joueur))
-			carte.getListe().cartes[carte.getIndex()].infligerDegats(personnage.getListe().cartes[personnage.getIndex()]);
-			carte.getListe().cartes[carte.getIndex()].modeInactive();
+			if (this.cibleViable(personnage, joueur))
+			carte.infligerDegats(personnage);
+			carte.modeInactive();
 		}
 		if (action.compareTo("invoquer") == 0) {
 			this.poserCarte(carte, joueur);
@@ -251,6 +251,23 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	public static ListeDeCartes creerListeDeCartesGenerale(){
 		ListeDeCartes liste=new ListeDeCartes(200);
 		liste.cartes[0]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[1]= new Carte("Katarina", 5, 5, (new Effet("fin", "lotus mortel", 2, 7)), 3, "Lama sinistre");
+		liste.cartes[2]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[3]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[4]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[5]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[6]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[7]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[8]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[9]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[10]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[11]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[12]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[13]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[14]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[15]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		liste.cartes[16]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
+		
 		return liste;
 	}
 	

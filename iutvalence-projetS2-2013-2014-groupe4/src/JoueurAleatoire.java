@@ -30,7 +30,7 @@ public class JoueurAleatoire extends Joueur {
 	}
 
 
-	public Position choisirCarteAUtiliser() {
+	public Carte choisirCarteAUtiliser() {
 
 		return null;
 	}
@@ -38,8 +38,16 @@ public class JoueurAleatoire extends Joueur {
 
 
 
-	public Position choisirCarteAAttaquer(ListeDeCartes liste) {
+	public Personnage choisirCarteAAttaquer(ListeDeCartes liste) {
 		
+		return null;
+	}
+
+
+
+	@Override
+	public Personnage choisirCarteAAttaquer() {
+
 		return null;
 	}
 }

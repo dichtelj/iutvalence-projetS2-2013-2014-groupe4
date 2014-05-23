@@ -22,15 +22,15 @@ public class Plateau {
 
 
 	public Plateau(){
-		this.cartesJoueur1=new ListeDeCartes(this.DEFAULT_CONSTANT_CARTEMAX);		
-		this.cartesJoueur2=new ListeDeCartes(this.DEFAULT_CONSTANT_CARTEMAX);
+		this.cartesJoueur1=new ListeDeCartes(Plateau.DEFAULT_CONSTANT_CARTEMAX);		
+		this.cartesJoueur2=new ListeDeCartes(Plateau.DEFAULT_CONSTANT_CARTEMAX);
 	}
 
 	/**
 	 * Renvoi vrai si le joueur a pose DEFAULT_CONSTANT_CARTEMAX sur le terrain
 	 */
 	public boolean estPlein(Joueur joueur) {
-		if(joueur.getNbCartesPlateau(this)==this.DEFAULT_CONSTANT_CARTEMAX)
+		if(joueur.getNbCartesPlateau(this)==Plateau.DEFAULT_CONSTANT_CARTEMAX)
 			return true;
 		else
 			return false;	

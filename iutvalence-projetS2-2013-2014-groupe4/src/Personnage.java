@@ -27,4 +27,13 @@ public abstract class Personnage
 	public int getPointsDeVie(){
 		return this.pointDeVie;
 	}
+	
+	/**
+	 * methode qui permet d'enlever de la vie par rapport aux dégats subis
+	 * @param degatsSubit
+	 * dégats subis
+	 */
+	public void subirDegats(int degatsSubit){
+		this.pointDeVie-=degatsSubit;
+	}
 }

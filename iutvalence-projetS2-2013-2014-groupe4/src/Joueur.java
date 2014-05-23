@@ -158,13 +158,13 @@ public abstract class Joueur {
 	
 	public abstract Carte choisirCarteDeck();
 	
-	public abstract Position choisirCarteAUtiliser();
+	public abstract Carte choisirCarteAUtiliser();
 
 	public Heros getHeros() {
 		return this.heros;
 	}
 
-	public abstract Personnage choisirCarteAAttaquer(ListeDeCartes liste);
+	public abstract Personnage choisirCarteAAttaquer();
 	
 
 }

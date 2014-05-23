@@ -112,15 +112,5 @@ public class Carte extends Personnage {
 	public int getCoutEnMana(){
 		return this.coutEnMana;
 	}
-	
-	
-	/**
-	 * methode qui permet d'enlever de la vie par rapport aux dégats subis
-	 * @param degatsSubit
-	 * dégats subis
-	 */
-	public void subirDegats(int degatsSubit){
-		this.pointDeVie-=degatsSubit;
-	}
 		
 }
