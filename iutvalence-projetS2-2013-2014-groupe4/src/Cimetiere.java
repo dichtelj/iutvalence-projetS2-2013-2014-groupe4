@@ -15,9 +15,7 @@ public class Cimetiere extends ListeDeCartes {
 		super(Jeu.NB_CARTES_DECK);
 		this.cartes = new Carte[Jeu.NB_CARTES_DECK];
 		this.nbCartes = 0;
-	}
-
-	
+	}	
 
 
 	/**
@@ -56,12 +54,12 @@ public class Cimetiere extends ListeDeCartes {
 
 	}
 
-	
-	/**
-	 * Envoi la care passer en paramètre dans le cimetière
-	 */
-	public void jeterCarte(Carte carte){
+
+	public void setCimetiere(Carte carte) {
 		this.cartes[this.nbCartes]=carte;
-		this.incrementerNbCartes();
+		
 	}
+
+	
+
 }

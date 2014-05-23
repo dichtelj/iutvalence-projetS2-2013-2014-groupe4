@@ -35,5 +35,4 @@ public abstract class Personnage
 	 */
 	public void subirDegats(int degatsSubit){
 		this.pointDeVie-=degatsSubit;
-	}
-}
+	}}

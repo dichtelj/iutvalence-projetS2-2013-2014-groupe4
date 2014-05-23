@@ -58,7 +58,7 @@ public class Effet {
 	
 	public void appliquerEffet(Plateau plateau, Joueur joueur, int numeroJoueur){
 		Personnage carteChoisie=null;
-		if (((this.nom.compareTo("sort"))==0) && (this.nbCible==7)){
+		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7)){
 			if (numeroJoueur==1)
 				for (int nbCible=0; nbCible < Plateau.DEFAULT_CONSTANT_CARTEMAX; nbCible++)
 					plateau.getCartesJoueur2().cartes[nbCible].subirDegats(this.montantDeDegat);
@@ -66,12 +66,31 @@ public class Effet {
 				for (int nbCible=0; nbCible < Plateau.DEFAULT_CONSTANT_CARTEMAX; nbCible++)
 				plateau.getCartesJoueur1().cartes[nbCible].subirDegats(this.montantDeDegat);
 		}
-		if ((this.nom).compareTo("sort")==0){
+		if ((this.nom).compareTo("degat direct")==0){
 			for (int i=0; i<this.nbCible;i++)
 				if (numeroJoueur==1)
 					carteChoisie=joueur.choisirCarteAAttaquer();
 				else carteChoisie=joueur.choisirCarteAAttaquer();
 				carteChoisie.subirDegats(this.montantDeDegat);
 		}
+		
+		if (this.nom.compareTo("buff attaque")==0){
+			carteChoisie=joueur.choisirCarteAAttaquer();
+			((Carte)carteChoisie).setDegatAttaque(this.montantDeDegat);				
+		}
+		
+		if (this.nom.compareTo("buff vie")==0){
+			carteChoisie=joueur.choisirCarteAAttaquer();
+			((Carte)carteChoisie).setPointDeVie(this.montantDeDegat);
+		}
+		
+		if (this.nom.compareTo("heal")==0){
+			carteChoisie=joueur.choisirCarteAAttaquer();
+			carteChoisie.subirDegats(-this.montantDeDegat);
+		}
+		
+		if(this.nom.compareTo("piocher")==0)
+			for (int cartePiochees=0; cartePiochees < this.montantDeDegat; cartePiochees++)
+				joueur.piocherCarte();
 	}
 }

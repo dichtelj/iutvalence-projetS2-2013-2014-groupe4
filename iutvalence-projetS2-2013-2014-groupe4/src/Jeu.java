@@ -250,24 +250,23 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	 */
 	public static ListeDeCartes creerListeDeCartesGenerale(){
 		ListeDeCartes liste=new ListeDeCartes(200);
-		liste.cartes[0]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[1]= new Carte("Katarina", 5, 5, (new Effet("fin", "lotus mortel", 2, 7)), 3, "Lama sinistre");
-		liste.cartes[2]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[3]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[4]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[5]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[6]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[7]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[8]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[9]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[10]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[11]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[12]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[13]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[14]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[15]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		liste.cartes[16]= new Carte("Teemo", 3, 2, (new Effet("debut", "fromage", 3, 3)), 3, "Petite peste");
-		
+		liste.cartes[0]= new Carte("Teemo", 2, 2, (new Effet("invocation", "degat direct", 3, 3)), 5, "Petite peste");
+		liste.cartes[1]= new Carte("Katarina", 5, 5, (new Effet("fin", "degat direct", 2, 7)), 6, "Lama sinistre");
+		liste.cartes[2]= new Carte("Jarvan IV", 4, 5, null, 4, "Exemple Demacien");
+		liste.cartes[3]= new Carte("Yasuo", 2, 3, (new Effet("invocation", "degat direct", 2, 1)), 3, "Le disgracie");
+		liste.cartes[4]= new Carte("Creuset de michael", 0, 0, (new Effet("invocation", "heal", 2, 1)), 3, "Cloche regeneratrice");
+		liste.cartes[5]= new Carte("Syndra", 6, 6, (new Effet("invocation", "piocher", 2, 0)), 7, "Souveraine obscure");
+		liste.cartes[6]= new Carte("Malzahar", 0, 3, (new Effet("fin", "piocher", 1, 0)), 3, "Le prophete du vide");
+		liste.cartes[7]= new Carte("Darius", 5, 6, (new Effet("fin", "degat direct", 1, 7)), 8, "Main de noxus");
+		liste.cartes[8]= new Carte("BF glaive", 0, 0, (new Effet("invocation", "buff attaque", 3, 1)), 1, "L'epee des heros");
+		liste.cartes[9]= new Carte("Ashe", 3, 2, (new Effet("invocation", "degat direct", 1, 7)), 3, "Archere de givre");
+		liste.cartes[10]= new Carte("Aatrox", 4, 5, (new Effet("invocation", "heal", 2, 2)), 5, "Epee des darkin");
+		liste.cartes[11]= new Carte("Irelia", 4, 4, (new Effet("invocation", "piocher", 1, 4)), 5, "Volonte des lames");
+		liste.cartes[12]= new Carte("Jinx", 2, 2, null, 1, "La gachette folle");
+		liste.cartes[13]= new Carte("Thresh", 3, 3, (new Effet("invocation", "heal", 2, 1)), 3, "Garde aux chaines");
+		liste.cartes[14]= new Carte("Shen", 6, 6, (new Effet("invocation", "buff vie", 3, 1)), 6, "Oeil du crepuscule");
+		liste.cartes[15]= new Carte("Anivia", 5, 5, null, 5, "Cryophenix");
+		liste.cartes[16]= new Carte("Poppy", 8, 8, null, 8, "Ambassadeur de fer");		
 		return liste;
 	}
 	
@@ -278,14 +277,14 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 	public void viderPlateau(){
 		for (int i=0; i<this.joueurs[0].getNbCartesPlateau(this.plateau);i++)
 			if (this.plateau.getCartesJoueur1().cartes[i].getPointsDeVie()<=0){
-				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur1().cartes[i]);
+				this.jeterCarte(this.plateau.getCartesJoueur1().cartes[i], this.plateau, this.joueurs[0], this.joueurs[0].getNumeroJoueur());
 				this.plateau.getCartesJoueur1().cartes[i]=null;
 				this.plateau.getCartesJoueur1().decretementerNbCartes();
 				this.reOrganiserCartes(this.joueurs[0]);
 			}
 		for (int j=0; j<this.joueurs[0].getNbCartesPlateau(this.plateau);j++){
 			if (this.plateau.getCartesJoueur2().cartes[j].getEffet().getActivation().compareTo("fin")<=0)
-				this.joueurs[1].getCimetiere().jeterCarte(this.plateau.getCartesJoueur2().cartes[j]);
+				this.jeterCarte(this.plateau.getCartesJoueur2().cartes[j], this.plateau, this.joueurs[1], this.joueurs[1].getNumeroJoueur());
 				this.plateau.getCartesJoueur2().cartes[j]=null;
 				this.plateau.getCartesJoueur2().decretementerNbCartes();
 				this.reOrganiserCartes(this.joueurs[1]) ;
@@ -324,6 +323,17 @@ public Jeu(Joueur[] joueurs, Affichage affichage) {
 		joueur.piocherCarte();
 		joueur.piocherCarte();
 		joueur.piocherCarte();
+	}
+	
+	
+	/**
+	 * Envoi la carte passer en paramètre dans le cimetière
+	 */
+	public void jeterCarte(Carte carte, Plateau plateau, Joueur joueur, int numeroJoueur){
+		if (carte.effet.getActivation().compareTo("mort")==0)
+			carte.effet.appliquerEffet(plateau, joueur, joueur.getNumeroJoueur());
+		this.joueurs[0].getCimetiere().setCimetiere(carte);
+		this.joueurs[0].getCimetiere().incrementerNbCartes();
 	}
 }
 

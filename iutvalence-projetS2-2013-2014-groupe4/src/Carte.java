@@ -45,7 +45,9 @@ public class Carte extends Personnage {
 		this.pointsDAttaque = attaque;
 		this.effet = effet;
 		this.coutEnMana = mana;
-		this.estInactive = false;
+		if (this.effet.getNom().compareTo("charge")==0)
+			this.estInactive = true;
+		else this.estInactive=false;
 		this.description = description;
 	}
 
@@ -111,6 +113,16 @@ public class Carte extends Personnage {
 	 */
 	public int getCoutEnMana(){
 		return this.coutEnMana;
+	}
+	
+	
+	public void setDegatAttaque(int attaque){
+		this.pointsDAttaque+=attaque;
+	}
+	
+	
+	public void setPointDeVie(int vie){
+		this.pointDeVie+=vie;
 	}
 		
 }
