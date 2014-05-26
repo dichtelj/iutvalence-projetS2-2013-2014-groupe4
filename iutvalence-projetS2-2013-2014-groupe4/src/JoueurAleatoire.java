@@ -50,4 +50,15 @@ public class JoueurAleatoire extends Joueur {
 
 		return null;
 	}
+
+
+
+	@Override
+	public Personnage choisirPersonnageAAttaquer(Plateau plateau)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
 }

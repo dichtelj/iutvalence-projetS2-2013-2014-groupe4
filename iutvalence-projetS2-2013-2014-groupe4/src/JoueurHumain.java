@@ -34,4 +34,12 @@ public class JoueurHumain extends Joueur {
 
 		return null;
 	}
+
+
+	@Override
+	public Personnage choisirPersonnageAAttaquer(Plateau plateau)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

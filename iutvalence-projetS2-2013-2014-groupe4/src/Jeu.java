@@ -85,10 +85,10 @@ public class Jeu {
 	}
 
 	private void jouerTour(Joueur joueurCourant) {
-		while ("bouton pas appuyé") {
+		while (peutEncoreJouer(joueurCourant)) {		
 			this.jouerTourIntermediaire(joueurCourant);
+			}
 		}
-	}
 
 	private void jouerTourIntermediaire(Joueur joueurCourant) {
 		Position carteAUtiliser = joueurCourant.choisirCarteAUtiliser();
@@ -96,8 +96,7 @@ public class Jeu {
 			if (joueurCourant.getNumeroJoueur() == 1) {
 				try {
 					this.utiliserCarte("invoquer", carteAUtiliser,
-							joueurCourant.choisirPersonnageAAttaquer(this.plateau
-									.getCartesJoueur2()), joueurCourant);
+							joueurCourant.choisirPersonnageAAttaquer(this.plateau), joueurCourant);
 				} catch (CibleInvalide e1) {
 					System.out.println("Cible invalide");
 				} catch (EstInactif e2) {
@@ -408,12 +407,32 @@ public class Jeu {
 	/**
 	 * Envoi la carte passer en paramètre dans le cimetière
 	 */
-	public void jeterCarte(Carte carte, Plateau plateau, Joueur joueur,
-			int numeroJoueur) {
+	public void jeterCarte(Carte carte, Plateau plateau, Joueur joueur) {
 		if (carte.effet.getActivation().compareTo("mort") == 0)
 			carte.effet.appliquerEffet(plateau, joueur,
 					joueur.getNumeroJoueur());
+		if (joueur.getNumeroJoueur()==1){
 		this.joueurs[0].getCimetiere().setCimetiere(carte);
 		this.joueurs[0].getCimetiere().incrementerNbCartes();
+		}
+		else{
+		this.joueurs[1].getCimetiere().setCimetiere(carte);
+		this.joueurs[1].getCimetiere().incrementerNbCartes();
+		}
+	}
+	
+	public boolean peutEncoreJouer(Joueur joueur){
+		for (int indiceCarte=0;indiceCarte<joueur.getNbCartesMain();indiceCarte++)
+			if (joueur.getMain().cartes[indiceCarte].getCoutEnMana() < joueur.getHeros().getNbManaCourant())
+				return true;
+		for (int indiceCarte=0;indiceCarte<joueur.getNbCartesPlateau(this.plateau);indiceCarte++)
+			if (joueur.getNumeroJoueur()==1){
+				if (this.plateau.getCartesJoueur1().cartes[indiceCarte].estInactif()==false){
+					return true;}
+			else
+				if (this.plateau.getCartesJoueur2().cartes[indiceCarte].estInactif()==false)
+					return true;
+			}
+		return false;
 	}
 }
