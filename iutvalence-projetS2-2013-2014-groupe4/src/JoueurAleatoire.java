@@ -37,26 +37,9 @@ public class JoueurAleatoire extends Joueur {
 
 
 
-
-	public Personnage choisirCarteAAttaquer(ListeDeCartes liste) {
-		
-		return null;
-	}
-
-
-
-	@Override
-	public Personnage choisirCarteAAttaquer() {
-
-		return null;
-	}
-
-
-
-	@Override
 	public Personnage choisirPersonnageAAttaquer(Plateau plateau)
 	{
-		// TODO Auto-generated method stub
+		Random generateurNombreAleatoire= new Random();		
 		return null;
 	}
 	

@@ -30,11 +30,9 @@ public class Jeu {
 	 * @param affichage
 	 *            Le type d'affichage du jeu
 	 */
-	public Jeu(Joueur[] joueurs, Affichage affichage) {
-
+	public Jeu(Joueur[] joueurs) {
 		this.joueurs = joueurs;
 		this.plateau = new Plateau();
-
 	}
 
 	/**
@@ -347,8 +345,7 @@ public class Jeu {
 		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(this.plateau); i++)
 			if (this.plateau.getCartesJoueur1().cartes[i].getPointsDeVie() <= 0) {
 				this.jeterCarte(this.plateau.getCartesJoueur1().cartes[i],
-						this.plateau, this.joueurs[0],
-						this.joueurs[0].getNumeroJoueur());
+						this.plateau, this.joueurs[0]);
 				this.plateau.getCartesJoueur1().cartes[i] = null;
 				this.plateau.getCartesJoueur1().decretementerNbCartes();
 				this.reOrganiserCartes(this.joueurs[0]);
@@ -357,8 +354,7 @@ public class Jeu {
 			if (this.plateau.getCartesJoueur2().cartes[j].getEffet()
 					.getActivation().compareTo("fin") <= 0)
 				this.jeterCarte(this.plateau.getCartesJoueur2().cartes[j],
-						this.plateau, this.joueurs[1],
-						this.joueurs[1].getNumeroJoueur());
+						this.plateau, this.joueurs[1]);
 			this.plateau.getCartesJoueur2().cartes[j] = null;
 			this.plateau.getCartesJoueur2().decretementerNbCartes();
 			this.reOrganiserCartes(this.joueurs[1]);
@@ -434,5 +430,19 @@ public class Jeu {
 					return true;
 			}
 		return false;
+	}
+	
+	
+	public Personnage choisirCarteAAttaquerAleatoire(Joueur joueur){
+		Random generateurNombreAleatoire= new Random();
+		int indexPersonnageAAttaque= generateurNombreAleatoire.nextInt(joueur.getNbCartesPlateau(this.plateau)+1);
+			if (joueur.getNumeroJoueur()==1){
+				if ((indexPersonnageAAttaque) == joueur.getNbCartesPlateau(this.plateau))
+					return this.joueurs[1].getHeros();
+			return this.plateau.getCartesJoueur2().cartes[indexPersonnageAAttaque];}
+			else
+				if ((indexPersonnageAAttaque) > joueur.getNbCartesPlateau(this.plateau))
+					return this.joueurs[0].getHeros();
+				return this.plateau.getCartesJoueur2().cartes[indexPersonnageAAttaque];				
 	}
 }

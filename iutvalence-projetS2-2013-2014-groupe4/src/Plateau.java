@@ -13,6 +13,7 @@ public class Plateau {
 	 * Cartes du joueur 2 presente sur le plateau
 	 */
 	private ListeDeCartes cartesJoueur2;
+	
 
 	/**
 	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur

@@ -69,23 +69,23 @@ public class Effet {
 		if ((this.nom).compareTo("degat direct")==0){
 			for (int i=0; i<this.nbCible;i++)
 				if (numeroJoueur==1)
-					carteChoisie=joueur.choisirCarteAAttaquer();
-				else carteChoisie=joueur.choisirCarteAAttaquer();
+					carteChoisie=joueur.choisirPersonnageAAttaquer(plateau);
+				else carteChoisie=joueur.choisirPersonnageAAttaquer(plateau);
 				carteChoisie.subirDegats(this.montantDeDegat);
 		}
 		
 		if (this.nom.compareTo("buff attaque")==0){
-			carteChoisie=joueur.choisirCarteAAttaquer();
+			carteChoisie=joueur.choisirPersonnageAAttaquer(plateau);
 			((Carte)carteChoisie).setDegatAttaque(this.montantDeDegat);				
 		}
 		
 		if (this.nom.compareTo("buff vie")==0){
-			carteChoisie=joueur.choisirCarteAAttaquer();
+			carteChoisie=joueur.choisirPersonnageAAttaquer(plateau);
 			((Carte)carteChoisie).setPointDeVie(this.montantDeDegat);
 		}
 		
 		if (this.nom.compareTo("heal")==0){
-			carteChoisie=joueur.choisirCarteAAttaquer();
+			carteChoisie=joueur.choisirPersonnageAAttaquer(plateau);
 			carteChoisie.subirDegats(-this.montantDeDegat);
 		}
 		

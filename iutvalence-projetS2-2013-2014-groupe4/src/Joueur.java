@@ -166,11 +166,4 @@ public abstract class Joueur {
 
 	public abstract Personnage choisirPersonnageAAttaquer(Plateau plateau);
 
-	public Personnage choisirCarteAAttaquer()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-
 }
