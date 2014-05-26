@@ -8,13 +8,6 @@ public class JoueurAleatoire extends Joueur {
 	public JoueurAleatoire(int numeroDuJoueur, Heros heros) {
 		super(numeroDuJoueur, heros);
 	}
-
-
-
-	public Carte choisirCarte(ListeDeCartes liste) {
-		return null;
-
-	}
 	
 	public void attribuerDeckAleatoire(ListeDeCartes liste) {
 		for (int nbCartesDeck=0; nbCartesDeck < Jeu.NB_CARTES_DECK; nbCartesDeck++){
@@ -31,7 +24,7 @@ public class JoueurAleatoire extends Joueur {
 
 
 	public Position choisirCarteAUtiliser() {
-
+		
 		return null;
 	}
 
@@ -39,7 +32,6 @@ public class JoueurAleatoire extends Joueur {
 
 	public Personnage choisirPersonnageAAttaquer(Plateau plateau)
 	{
-		Random generateurNombreAleatoire= new Random();		
 		return null;
 	}
 	

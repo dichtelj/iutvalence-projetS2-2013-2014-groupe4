@@ -24,6 +24,8 @@ public abstract class Joueur {
 	
 	private Heros heros;
 	
+	private ListeDeCartes cartesPosees;
+	
 
 /**
  * Permet de créer un joueur avec un numero, un deck, une main de départ et un cimetière
@@ -39,6 +41,7 @@ public abstract class Joueur {
 		this.main=new ListeDeCartes(Jeu.NB_CARTES_MAIN);
 		this.cimetiere=new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.heros=heros;
+		this.cartesPosees=new ListeDeCartes(Jeu.DEFAULT_CONSTANT_CARTEMAX);
 	}
 
 	/**
@@ -136,10 +139,8 @@ public abstract class Joueur {
 	/**
 	 * Renvoi le curseur plateau du joueur
 	 */
-	public int getNbCartesPlateau(Plateau plateau) {
-		if (this.getNumeroJoueur()==1)
-			return plateau.getCartesJoueur1().nbCartes;
-		else return plateau.getCartesJoueur2().nbCartes;
+	public int getNbCartesPlateau() {
+		return this.cartesPosees.nbCartes; 
 	}
 	
 
@@ -160,10 +161,31 @@ public abstract class Joueur {
 		return this.heros;
 	}
 	
+	public boolean estPlein(Joueur joueur) {
+		if(this.cartesPosees.nbCartes==Jeu.DEFAULT_CONSTANT_CARTEMAX)
+			return true;
+		else
+			return false;	
+	}
+	
+	public void incrementerNbCartes(){
+		this.cartesPosees.nbCartes++;
+	}
+	
+	public void decrementerNbCartes(){
+		this.cartesPosees.nbCartes--;
+	}
+	
+	public ListeDeCartes getCartesPosees(){
+		return this.cartesPosees;
+	}
+	
 	public abstract Carte choisirCarteDeck();
 	
 	public abstract Position choisirCarteAUtiliser();
 
-	public abstract Personnage choisirPersonnageAAttaquer(Plateau plateau);
+	public abstract Personnage choisirPersonnageAAttaquer();
+	
+	
 
 }
