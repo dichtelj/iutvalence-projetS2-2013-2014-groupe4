@@ -34,13 +34,13 @@ public abstract class Joueur {
  * @param mainJoueur main du joueur 
  * @param cimetiereJoueur cimetiere du joueur
  */
-	public Joueur(int numeroDuJoueur, Heros heros)
+	public Joueur(int numeroDuJoueur, String nomHeros)
 	{
 		this.numeroJoueur=numeroDuJoueur;
 		this.deck=new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.main=new ListeDeCartes(Jeu.NB_CARTES_MAIN);
 		this.cimetiere=new ListeDeCartes(Jeu.NB_CARTES_DECK);
-		this.heros=heros;
+		this.heros=new Heros(nomHeros);
 		this.cartesPosees=new ListeDeCartes(Jeu.DEFAULT_CONSTANT_CARTEMAX);
 	}
 

@@ -5,8 +5,8 @@ public class JoueurAleatoire extends Joueur {
 	
 	
 	
-	public JoueurAleatoire(int numeroDuJoueur, Heros heros) {
-		super(numeroDuJoueur, heros);
+	public JoueurAleatoire(int numeroDuJoueur, String nomHeros) {
+		super(numeroDuJoueur, nomHeros);
 	}
 	
 	public void attribuerDeckAleatoire(ListeDeCartes liste) {
