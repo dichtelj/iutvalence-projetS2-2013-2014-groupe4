@@ -277,18 +277,57 @@ public class Jeu {
 		
 		liste.cartes[27] = new Carte("Caitlyn",5,3,(new Effet("","charge",0,0)),5,"Agent de Piltover");
 		liste.cartes[28] = new Carte("Cassiopeia",6,4,null,5,"Etreinte du serpent");
+		liste.cartes[29] = new Carte("Cho'Gath",4,4,(new Effet("invocation","piocher",2,0)),4,"Terreur noire");
+		liste.cartes[30] = new Carte("Corki",4,5,null,4,"Artilleur téméraire");
 		liste.cartes[4] = new Carte("Creuset de michael", 0, 0, (new Effet("invocation", "heal", 2, 1)), 3, "Cloche regeneratrice");
 		
 		liste.cartes[7] = new Carte("Darius", 5, 6, (new Effet("fin", "degat direct", 1, 7)), 8, "Main de noxus");
+		liste.cartes[31] = new Carte("Diana",3,1,(new Effet("","charge",0,0)),3,"Mépris de la lune");
+		liste.cartes[32] = new Carte("Dr Mundo",3,3,(new Effet("","provocation",0,0)),2,"Dément de Zaun");
+		liste.cartes[33] = new Carte("Draven",6,6,(new Effet("invocation","buff attaque",1,7)),7,"Glorieux exécuteur");
+
+		liste.cartes[34] = new Carte("Elise",4,4,null,4,"Reine araignée");
+		liste.cartes[35] = new Carte("Evelynn",4,4,null,4,"Faiseuse de veuves");
+		liste.cartes[36] = new Carte("Ezreal",4,2,(new Effet("","charge",0,0)),5,"Explorateur prodigue");
+		
+		liste.cartes[37] = new Carte("Fiddlesticks",3,2,null,3,"faucheur");
+		liste.cartes[38] = new Carte("Fiora",2,3,(new Effet("invocation","piocher",1,0)),3,"sublime bretteuse");
+		liste.cartes[39] = new Carte("Fizz",3,3,null,3,"Filou des mers");
+		
+		liste.cartes[40] = new Carte("Galio",5,7,(new Effet("","provocation",0,0)),6,"Veilleur lugubre");
+		liste.cartes[41] = new Carte("Gangplank",3,2,(new Effet("invocation","piocher",2,0)),3,"Fléau des mers");
+		liste.cartes[42] = new Carte("Garen",4,5,null,4,"Force de Demacia");
+		liste.cartes[43] = new Carte("Gragas",4,4,null,4,"Agitateur");
+		liste.cartes[44] = new Carte("Graves",6,5,null,6,"le Hors-la-loi");
+		
+		liste.cartes[45] = new Carte("Hecarim",3,3,(new Effet("","provocation",0,0)),3,"Ombre de la guerre");
+		liste.cartes[46] = new Carte("Heimerdinger",2,1,(new Effet("debut","piocher",1,0)),3,"Inventeur réputé");
 		
 		liste.cartes[11] = new Carte("Irelia", 4, 4, (new Effet("invocation", "piocher", 1, 4)), 5, "Volonte des lames");
 		
+		liste.cartes[47] = new Carte("Janna",1,3,(new Effet("fin","heal",2,0)),3,"Avatar de l'air");
 		liste.cartes[2] = new Carte("Jarvan IV", 4, 5, null, 4, "Exemple Demacien");
+		liste.cartes[48] = new Carte("Jax",4,4,(new Effet("","provocation",0,0)),4,"Maître d'armes");
+		liste.cartes[49] = new Carte("Jayce",3,2,(new Effet("","piocher",1,0)),3,"Protecteur du futur");
 		liste.cartes[12] = new Carte("Jinx", 2, 2, null, 1, "La gachette folle");
 		
+		liste.cartes[50] = new Carte("Karma",3,2,(new Effet("fin","buff attaque",1,1)),4,"Sagesse incarnée");
+		liste.cartes[51] = new Carte("Karthus",4,4,(new Effet("invocation","buff attaque",3,1)),6,"Liche");
+		liste.cartes[52] = new Carte("kassadin",5,4,null,5,"Chasseur du néant");
 		liste.cartes[1] = new Carte("Katarina", 5, 5, (new Effet("fin", "degat direct", 2, 7)), 6, "Lame sinistre");
+		liste.cartes[53] = new Carte("Kayle",4,4,(new Effet("fin","heal",2,7)),5,"Justicière");
+		liste.cartes[54] = new Carte("kennen",4,3,null,3,"Coeur de la tempête");
+		liste.cartes[55] = new Carte("kha'zix",5,4,(new Effet("invocation","charge",0,0)),6,"Faucheur du Néant");
+		liste.cartes[56] = new Carte("Kog'Maw",4,4,null,4,"Gueule des abysses");
 		
+		liste.cartes[57] = new Carte("LeBlanc",8,8,(new Effet("debut","degat direct",4,4)),7,"Manipulatrice");
+		liste.cartes[58] = new Carte("Lee sin",4,4,null,4,"Moine Aveugle");
 		liste.cartes[17] = new Carte("Leona",5,5,(new Effet("invocation","buff vie",3,1)),6,"Aube radieuse");
+		liste.cartes[59] = new Carte("Lissandra",2,1,(new Effet("debut","piocher",1,0)),1,"Sorcière de glace");
+		liste.cartes[60] = new Carte("lucian",3,3,null,3,"le Purificateur");
+		liste.cartes[61] = new Carte("Lulu",2,1,(new Effet("invocation","buff vie",2,1)),2,"Sorcière féérique");
+		liste.cartes[62] = new Carte("lux",4,3,(new Effet("fin","degat direct",3,1)),4,"Dame de lumiere");
+
 		
 		liste.cartes[6] = new Carte("Malzahar", 0, 3, (new Effet("fin", "piocher", 1, 0)), 3, "Le prophete du vide");
 		
