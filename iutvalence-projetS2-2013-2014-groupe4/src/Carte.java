@@ -41,7 +41,8 @@ public class Carte extends Personnage {
 	public Carte(String nom, int attaque, int vie, Effet effet, int mana,
 			String description) {
 		this.nom = nom;
-		this.pointDeVie = vie;
+		this.pointsDeVieMax = vie;
+		this.pointDeVie=this.pointsDeVieMax;
 		this.pointsDAttaque = attaque;
 		this.effet = effet;
 		this.coutEnMana = mana;
@@ -123,6 +124,14 @@ public class Carte extends Personnage {
 	
 	public void setPointDeVie(int vie){
 		this.pointDeVie+=vie;
+	}
+
+
+
+	public void buffVieMax(int vie) {
+		this.pointsDeVieMax+=vie;
+		this.pointDeVie+=vie;
+		
 	}
 		
 }

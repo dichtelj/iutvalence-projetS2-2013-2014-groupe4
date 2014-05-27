@@ -261,24 +261,62 @@ public class Jeu {
 	 */
 	public static ListeDeCartes creerListeDeCartesGenerale() {
 		ListeDeCartes liste = new ListeDeCartes(200);
-		liste.cartes[0] = new Carte("Teemo", 2, 2, (new Effet("invocation", "degat direct", 3, 3)), 5, "Petite peste");
-		liste.cartes[1] = new Carte("Katarina", 5, 5, (new Effet("fin", "degat direct", 2, 7)), 6, "Lame sinistre");
-		liste.cartes[2] = new Carte("Jarvan IV", 4, 5, null, 4, "Exemple Demacien");
-		liste.cartes[3] = new Carte("Yasuo", 2, 3, (new Effet("invocation", "degat direct", 2, 1)), 3, "Le disgracie");
-		liste.cartes[4] = new Carte("Creuset de michael", 0, 0, (new Effet("invocation", "heal", 2, 1)), 3, "Cloche regeneratrice");
-		liste.cartes[5] = new Carte("Syndra", 6, 6, (new Effet("invocation", "piocher", 2, 0)), 7, "Souveraine obscure");
-		liste.cartes[6] = new Carte("Malzahar", 0, 3, (new Effet("fin", "piocher", 1, 0)), 3, "Le prophete du vide");
-		liste.cartes[7] = new Carte("Darius", 5, 6, (new Effet("fin", "degat direct", 1, 7)), 8, "Main de noxus");
-		liste.cartes[8] = new Carte("Big Fucking glaive", 0, 0, (new Effet("invocation", "buff attaque", 3, 1)), 1, "L'epee des heros");
-		liste.cartes[9] = new Carte("Ashe", 3, 2, (new Effet("invocation", "degat direct", 1, 7)), 3, "Archere de givre");
 		liste.cartes[10] = new Carte("Aatrox", 4, 5, (new Effet("invocation", "heal", 2, 2)), 5, "Epee des darkin");
-		liste.cartes[11] = new Carte("Irelia", 4, 4, (new Effet("invocation", "piocher", 1, 4)), 5, "Volonte des lames");
-		liste.cartes[12] = new Carte("Jinx", 2, 2, null, 1, "La gachette folle");
-		liste.cartes[13] = new Carte("Thresh", 3, 3, (new Effet("invocation", "heal", 2, 1)), 3, "Garde aux chaines");
-		liste.cartes[14] = new Carte("Shen", 6, 6, (new Effet("invocation", "buff vie", 3, 1)), 6, "Oeil du crepuscule");
+		liste.cartes[19] = new Carte("Ahri",4,4,(new Effet("invocation","degat direct",2,2)),4,"Renard a 9 queues");
+		liste.cartes[20] = new Carte("Akali",8,8,(new Effet("invocation","degat direct",4,1)),7,"Poing des ombres");
+		liste.cartes[21] = new Carte("Alistar",2,2,(new Effet("invocation","heal",2,1)),2,"Minotaure");
+		liste.cartes[22] = new Carte("Amumu",4,4,(new Effet("","provocation",0,0)),4,"Momie melancolique");
 		liste.cartes[15] = new Carte("Anivia", 5, 5, null, 5, "Cryophenix");
+		liste.cartes[23] = new Carte("Annie",1,4,(new Effet("","provocation",0,0)),3,"Enfant des tenebres");
+		liste.cartes[9] = new Carte("Ashe", 3, 2, (new Effet("invocation", "degat direct", 1, 7)), 3, "Archere de givre");
+		
+		liste.cartes[8] = new Carte("Big Fucking glaive", 0, 0, (new Effet("invocation", "buff attaque", 3, 1)), 1, "L'epee des heros");
+		liste.cartes[24] = new Carte("Blitzcrank",1,7,(new Effet("","provocation",0,0)),4,"Golem de vapeur");
+		liste.cartes[25] = new Carte("Brand",4,5,null,4,"Vengeur flamboyant");
+		liste.cartes[26] = new Carte("Braum",3,4,(new Effet ("","provocation",0,0)),3,"Coeur de Freljord");
+		
+		liste.cartes[27] = new Carte("Caitlyn",5,3,(new Effet("","charge",0,0)),5,"Agent de Piltover");
+		liste.cartes[28] = new Carte("Cassiopeia",6,4,null,5,"Etreinte du serpent");
+		liste.cartes[4] = new Carte("Creuset de michael", 0, 0, (new Effet("invocation", "heal", 2, 1)), 3, "Cloche regeneratrice");
+		
+		liste.cartes[7] = new Carte("Darius", 5, 6, (new Effet("fin", "degat direct", 1, 7)), 8, "Main de noxus");
+		
+		liste.cartes[11] = new Carte("Irelia", 4, 4, (new Effet("invocation", "piocher", 1, 4)), 5, "Volonte des lames");
+		
+		liste.cartes[2] = new Carte("Jarvan IV", 4, 5, null, 4, "Exemple Demacien");
+		liste.cartes[12] = new Carte("Jinx", 2, 2, null, 1, "La gachette folle");
+		
+		liste.cartes[1] = new Carte("Katarina", 5, 5, (new Effet("fin", "degat direct", 2, 7)), 6, "Lame sinistre");
+		
+		liste.cartes[17] = new Carte("Leona",5,5,(new Effet("invocation","buff vie",3,1)),6,"Aube radieuse");
+		
+		liste.cartes[6] = new Carte("Malzahar", 0, 3, (new Effet("fin", "piocher", 1, 0)), 3, "Le prophete du vide");
+		
 		liste.cartes[16] = new Carte("Poppy", 8, 8, null, 8, "Ambassadeur de fer");
-		return liste;
+		
+		liste.cartes[14] = new Carte("Shen", 6, 6, (new Effet("invocation", "buff vie", 3, 1)), 6, "Oeil du crepuscule");
+		liste.cartes[18] = new Carte("Sona",3,3, (new Effet("fin","heal",2,7)),4,"Virtuose de la harpe");
+		liste.cartes[5] = new Carte("Syndra", 6, 6, (new Effet("invocation", "piocher", 2, 0)), 7, "Souveraine obscure");
+		
+		liste.cartes[0] = new Carte("Teemo", 2, 2, (new Effet("invocation", "degat direct", 3, 3)), 5, "Petite peste");
+		liste.cartes[13] = new Carte("Thresh", 3, 3, (new Effet("invocation", "heal", 2, 1)), 3, "Garde aux chaines");
+				
+		liste.cartes[3] = new Carte("Yasuo", 2, 3, (new Effet("invocation", "degat direct", 2, 1)), 3, "Le disgracie");
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 	/**

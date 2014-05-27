@@ -12,6 +12,8 @@ public abstract class Personnage
 	 * Point de vie du personnage 
 	 */
 	protected int pointDeVie;
+	
+	protected int pointsDeVieMax;
 
 	/**
 	 * Points d'attaque du personnage
@@ -35,4 +37,12 @@ public abstract class Personnage
 	 */
 	public void subirDegats(int degatsSubit){
 		this.pointDeVie-=degatsSubit;
-	}}
+	}
+	
+	public void soigner(int vieSoigne) {
+		this.pointDeVie+=vieSoigne;
+		if (this.pointDeVie > this.pointsDeVieMax)
+			this.pointDeVie=this.pointsDeVieMax;		
+	}
+	
+}

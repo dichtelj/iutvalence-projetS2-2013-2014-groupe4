@@ -75,12 +75,17 @@ public class Effet {
 		
 		if (this.nom.compareTo("buff vie")==0){
 			carteChoisie=joueur.choisirPersonnageAAttaquer();
-			((Carte)carteChoisie).setPointDeVie(this.montantDeDegat);
+			((Carte)carteChoisie).buffVieMax(this.montantDeDegat);
 		}
 		
+		if (((this.nom.compareTo("heal"))==0) && (this.nbCible==7)){
+			for (int nbCible=0; nbCible < Jeu.DEFAULT_CONSTANT_CARTEMAX; nbCible++)
+				joueur.getCartesPosees().cartes[nbCible].soigner(this.montantDeDegat);
+		}
+			
 		if (this.nom.compareTo("heal")==0){
 			carteChoisie=joueur.choisirPersonnageAAttaquer();
-			carteChoisie.subirDegats(-this.montantDeDegat);
+			carteChoisie.soigner(this.montantDeDegat);
 		}
 		
 		if(this.nom.compareTo("piocher")==0)
