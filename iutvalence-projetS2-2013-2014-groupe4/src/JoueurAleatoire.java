@@ -8,7 +8,7 @@ public class JoueurAleatoire extends Joueur {
 		super(numeroDuJoueur, nomHeros);
 	}
 	
-	public void attribuerDeckAleatoire(ListeDeCartes liste) {
+	public void attribuerDeckAleatoire() {
 		for (int nbCartesDeck=0; nbCartesDeck < Jeu.NB_CARTES_DECK; nbCartesDeck++){
 			this.setDeck(choisirCarteDeck());
 			}
@@ -17,7 +17,8 @@ public class JoueurAleatoire extends Joueur {
 
 	public Carte choisirCarteDeck() {
 		Random generateurDeNombresAleatoires= new Random();
-		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(Jeu.NB_CARTES_DECK);
+		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
+		System.out.println(Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie].toString());
 			return Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie];
 	}
 
@@ -81,4 +82,13 @@ public class JoueurAleatoire extends Joueur {
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(Jeu.NB_CARTES_MAX_POSEES);
 			return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
+
+	@Override
+	public Carte choisirCarteABuffer() {
+		Random generateurDeNombresAleatoires= new Random();
+		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPlateau());
+			return this.getCartesPosees().cartes[indexCarteChoisie];
+	}
+	
+	
 }

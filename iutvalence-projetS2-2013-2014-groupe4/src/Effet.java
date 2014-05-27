@@ -56,7 +56,7 @@ public class Effet {
 		return this.nbCible;
 	}
 	
-	public void appliquerEffet(Joueur joueur){
+	public void appliquerEffet(Joueur joueur, Joueur joueurAdverse){
 		Personnage carteChoisie=null;
 		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7)){
 				for (int nbCible=0; nbCible < Jeu.NB_CARTES_MAX_POSEES; nbCible++)
@@ -64,17 +64,17 @@ public class Effet {
 		}
 		if ((this.nom).compareTo("degat direct")==0){
 			for (int i=0; i<this.nbCible;i++)
-				carteChoisie=joueur.choisirPersonnageAAttaquer();
+				carteChoisie=joueur.choisirPersonnageAAttaquer(joueurAdverse);
 				carteChoisie.subirDegats(this.montantDeDegat);
 		}
 		
 		if (this.nom.compareTo("buff attaque")==0){
-			carteChoisie=joueur.choisirPersonnageAAttaquer();
+			carteChoisie=joueur.choisirCarteABuffer();
 			((Carte)carteChoisie).setDegatAttaque(this.montantDeDegat);				
 		}
 		
 		if (this.nom.compareTo("buff vie")==0){
-			carteChoisie=joueur.choisirPersonnageAAttaquer();
+			carteChoisie=joueur.choisirCarteABuffer();
 			((Carte)carteChoisie).buffVieMax(this.montantDeDegat);
 		}
 		
@@ -84,7 +84,7 @@ public class Effet {
 		}
 			
 		if (this.nom.compareTo("heal")==0){
-			carteChoisie=joueur.choisirPersonnageAAttaquer();
+			carteChoisie=joueur.choisirCarteABuffer();
 			carteChoisie.soigner(this.montantDeDegat);
 		}
 		

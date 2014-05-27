@@ -44,10 +44,10 @@ public class Jeu {
 	public void debutTour(Joueur joueur) {
 		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(); i++)
 			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("debut") == 0)
-				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur);
+				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++)
 			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("debut") == 0)
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur);
+				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 		if (!(joueur.getMain().nbCartes == joueur.getMain().nbCartesMax))
 			joueur.piocherCarte();
 		joueur.incrementerCurseurDeck();
@@ -55,13 +55,14 @@ public class Jeu {
 	}
 
 	public void preparerPartie() throws DeckInvalide {
-		if (!(this.joueurs[0].getDeck().cartes[NB_CARTES_DECK - 1] instanceof Carte))
-			throw new DeckInvalide();
-		JoueurAleatoire joueur2 = (JoueurAleatoire) this.joueurs[1];
-		joueur2.attribuerDeckAleatoire(LISTE_CARTE_GENERALE);
+		((JoueurAleatoire) this.joueurs[1]).attribuerDeckAleatoire();
+		((JoueurAleatoire) this.joueurs[0]).attribuerDeckAleatoire();
 		this.attribuerMainDepart(this.joueurs[0]);
 		this.melangerDeck(this.joueurs[0]);
 		this.attribuerMainDepart(this.joueurs[1]);
+		if (!(this.joueurs[0].getDeck().cartes[NB_CARTES_DECK - 1] instanceof Carte))
+			throw new DeckInvalide();
+		System.out.println(this.toString());
 	}
 
 	public void jouer() {
@@ -83,6 +84,7 @@ public class Jeu {
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeur();
 				try {
 					this.poserCarte(carteAUtiliser, joueurCourant);
+					System.out.println(this.toString());
 				}
 				catch (PlateauPlein e1) {
 					System.out.println("Plateau Plein");
@@ -93,10 +95,11 @@ public class Jeu {
 				}
 			else {
 				for (int indiceCarte=0; indiceCarte<joueurCourant.getNbCartesPlateau();indiceCarte++){
-					Personnage personnageAttaque = this.choisirCarteAAttaquerAleatoire(joueurCourant);
+					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[1-joueurCourant.getNumeroJoueur()]);
 					Carte carteAttaquante=joueurCourant.choisirCarteAttaqueeAleatoire();
 				try {
 					this.attaquerAvecCarte(carteAttaquante, personnageAttaque, joueurCourant);
+					System.out.println(this.toString());
 				}
 				catch (CibleInvalide e1) {
 					System.out.println("Cible invalide");
@@ -112,8 +115,7 @@ public class Jeu {
 		Scanner sc= new Scanner(System.in);
 		String str=sc.nextLine();
 			while(str!="p")
-				this.jouerTourIntermediaire(joueurCourant);
-			
+				this.jouerTourIntermediaire(joueurCourant);		
 			
 	}
 	
@@ -133,7 +135,7 @@ public class Jeu {
 				}
 			}
 			else {
-				Personnage personnageAttaque = this.choisirCarteAAttaquerAleatoire(joueurCourant);
+				Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[1-joueurCourant.getNumeroJoueur()]);
 				try {
 					this.attaquerAvecCarte(carteAUtiliser.getListe().cartes[carteAUtiliser.getIndex()], personnageAttaque, joueurCourant);
 				}
@@ -168,11 +170,11 @@ public class Jeu {
 	public void finTour(Joueur joueur) {
 		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(); i++)
 			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("fin") == 0)
-				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur);
+				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++)
 			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("fin") == 0){
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur);
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur);
+				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
+				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 			}
 			for (int i = 0; i < joueur.getNbCartesPlateau(); i++)
 				joueur.getCartesPosees().cartes[i].modeActive();
@@ -197,7 +199,7 @@ public class Jeu {
 		if (carte.getCoutEnMana() > joueur.getHeros().getNbManaCourant())
 			throw new ManaInsuffisant();
 		if (carte.getEffet().getActivation().compareTo("invocation") == 0)
-			carte.getEffet().appliquerEffet(joueur);
+			carte.getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 		joueur.getCartesPosees().cartes[joueur.getNbCartesPlateau()] = carte;
 		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
 		this.viderPlateau();
@@ -452,10 +454,28 @@ public class Jeu {
 	 */
 	public void jeterCarte(Carte carte, Joueur joueur) {
 		if (carte.effet.getActivation().compareTo("mort") == 0)
-			carte.effet.appliquerEffet(joueur);
+			carte.effet.appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 			joueur.getCimetiere().setCimetiere(carte);
 			joueur.getCimetiere().incrementerNbCartes();
 
+	}
+	
+	public String toString(){
+		String partie="";
+		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
+				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
+		partie+="-------------------";
+		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
+			partie+=this.joueurs[1].getCartesPosees().cartes[indiceCarte].toString();
+		partie+="-------------------";
+		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
+			partie+=this.joueurs[0].getCartesPosees().cartes[indiceCarte].toString();
+		partie+="-------------------";
+		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
+			partie+=this.joueurs[0].getMain().cartes[indiceCarte].toString();
+		return partie;
+		
+		
 	}
 	
 }

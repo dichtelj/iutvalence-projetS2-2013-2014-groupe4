@@ -20,7 +20,7 @@ public class ListeDeCartes {
 	protected Carte[] cartes;
 
 	/**
-	 * Une liste de carte n'a pas de cartes a sa création mais on connait son nombres de cartes qu'ele pourras contenir
+	 * Une liste de carte n'a pas de cartes a sa création mais on connait son nombres de cartes qu'elle pourra contenir
 	 * @param nbCartesMax 
 	 * Nombres de cartes Max
 	 */
