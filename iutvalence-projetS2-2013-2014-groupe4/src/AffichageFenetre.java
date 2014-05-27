@@ -77,7 +77,7 @@ public class AffichageFenetre implements Affichage, Runnable, ActionListener
 		}
 		
 		if (itemSelectionne == this.menuItemRegles)
-		{
+		{ 
 			JOptionPane.showMessageDialog(this.fenetre, "anduin", "Regles du Memory", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}		
