@@ -133,7 +133,7 @@ public class Carte extends Personnage {
 	}
 	
 	public String toString(){
-		return ""+this.nom+" "+this.pointDeVie+" "+this.pointsDAttaque;
+		return ""+this.nom+" "+this.pointDeVie+" "+this.pointsDAttaque+"   "+"Cout:"+this.coutEnMana+"   ";
 	}
 		
 }

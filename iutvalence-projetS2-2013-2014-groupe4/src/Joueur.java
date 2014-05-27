@@ -64,6 +64,7 @@ public abstract class Joueur {
 	 */
 	public void setMain(Carte cartePiochee) {
 		this.main.cartes[this.main.nbCartes] = cartePiochee;
+		this.incrementerNbCartesMain();
 	}
 
 	/**
@@ -154,7 +155,6 @@ public abstract class Joueur {
 	}
 	
 	public void setDeck(Carte carteChoisie) {
-		System.out.println(this.curseurDeck);
 		this.deck.cartes[this.getCurseurDeck()]=carteChoisie;
 		if (this.curseurDeck > 0)
 			this.decrementerNbCartesDeck();

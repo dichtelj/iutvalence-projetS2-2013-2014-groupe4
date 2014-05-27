@@ -68,18 +68,23 @@ public class Jeu {
 	public void jouer() {
 		int indiceJoueurCourant = 0;
 		Joueur joueurCourant = this.joueurs[indiceJoueurCourant];
-		while (!(this.partieFinie())) {
+		int compteurTour=0;
+		do {
+			System.out.println("tour : "+compteurTour);
 			this.debutTour(joueurCourant);
+			System.out.println(this.toString());
 		if(joueurCourant instanceof JoueurAleatoire)
 			this.jouerTourBot((JoueurAleatoire)joueurCourant);
-		this.jouerTour(joueurCourant);
 			this.finTour(joueurCourant);
 			joueurCourant = this.joueurs[(indiceJoueurCourant + 1) % 2];
+			compteurTour++;
 		}
+		while (this.partieFinie());
 	}
 
 	private void jouerTourBot(JoueurAleatoire joueurCourant) {
-		while(joueurCourant.peutEncoreJouer())
+		System.out.println(""+joueurCourant.peutEncoreJouer());
+		while(joueurCourant.peutEncoreJouer())	
 			if(joueurCourant.peutPoserUneCarte()){
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeur();
 				try {
@@ -109,7 +114,8 @@ public class Jeu {
 				}
 			}
 			}
-	}
+			}
+
 
 	private void jouerTour(Joueur joueurCourant) {
 		Scanner sc= new Scanner(System.in);
@@ -156,9 +162,9 @@ public class Jeu {
 	}
 
 	public boolean partieFinie() {
-		if ((this.joueurs[0].getHeros().getPointsDeVie() < 0) || (this.joueurs[1].getHeros().getPointsDeVie() < 0))
-			return true;
-		return false;
+		if ((this.joueurs[0].getHeros().getPointsDeVie() > 0) || (this.joueurs[1].getHeros().getPointsDeVie() > 0)){
+			return false;}
+		return true;
 	}
 
 	/**
@@ -168,15 +174,16 @@ public class Jeu {
 	 *            joueur qui fini son tour
 	 */
 	public void finTour(Joueur joueur) {
-		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(); i++)
-			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("fin") == 0)
-				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
-		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++)
-			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("fin") == 0){
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
+		for (int indiceCarte = 0; indiceCarte < this.joueurs[0].getNbCartesPlateau(); indiceCarte++){
+			if (this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0)
+				this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);}
+		for (int indiceCarte = 0; indiceCarte < this.joueurs[1].getNbCartesPlateau(); indiceCarte++){
+				if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0){
+				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
+				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);}
 			}
 			for (int i = 0; i < joueur.getNbCartesPlateau(); i++)
+				
 				joueur.getCartesPosees().cartes[i].modeActive();
 		joueur.getHeros().setNbManaCourant(joueur.getHeros().getNbMana());
 		viderPlateau();

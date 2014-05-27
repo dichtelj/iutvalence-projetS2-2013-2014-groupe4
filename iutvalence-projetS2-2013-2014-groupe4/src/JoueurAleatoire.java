@@ -46,9 +46,9 @@ public class JoueurAleatoire extends Joueur {
 		return carteChoisie;
 	}
 	
-	public boolean peutEncoreJouer() {
-		if ((this.peutPoserUneCarte()) || (this.peutEncoreAttaquer()))
-			return true;
+	public boolean peutEncoreJouer() {	
+		if ((this.peutPoserUneCarte()) || (this.peutEncoreAttaquer())){
+			return true;}
 		return false;
 
 	}
@@ -83,7 +83,6 @@ public class JoueurAleatoire extends Joueur {
 			return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
 
-	@Override
 	public Carte choisirCarteABuffer() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPlateau());
