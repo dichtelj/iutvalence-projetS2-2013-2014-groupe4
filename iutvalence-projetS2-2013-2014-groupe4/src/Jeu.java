@@ -1,4 +1,5 @@
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * Definition d'une partie de Battle for Demacia
@@ -15,7 +16,7 @@ public class Jeu {
 	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur
 	 * le terrain
 	 */
-	public final static int DEFAULT_CONSTANT_CARTEMAX = 7;
+	public final static int NB_CARTES_MAX_POSEES = 7;
 
 	/**
 	 * Les decks des 2 joueurs de la partie
@@ -68,17 +69,54 @@ public class Jeu {
 		Joueur joueurCourant = this.joueurs[indiceJoueurCourant];
 		while (!(this.partieFinie())) {
 			this.debutTour(joueurCourant);
-			this.jouerTour(joueurCourant);
+		if(joueurCourant instanceof JoueurAleatoire)
+			this.jouerTourBot((JoueurAleatoire)joueurCourant);
+		this.jouerTour(joueurCourant);
 			this.finTour(joueurCourant);
 			joueurCourant = this.joueurs[(indiceJoueurCourant + 1) % 2];
 		}
 	}
 
-	private void jouerTour(Joueur joueurCourant) {
-		while (peutEncoreJouer(joueurCourant)) {
-			this.jouerTourIntermediaire(joueurCourant);
-		}
+	private void jouerTourBot(JoueurAleatoire joueurCourant) {
+		while(joueurCourant.peutEncoreJouer())
+			if(joueurCourant.peutPoserUneCarte()){
+				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeur();
+				try {
+					this.poserCarte(carteAUtiliser, joueurCourant);
+				}
+				catch (PlateauPlein e1) {
+					System.out.println("Plateau Plein");
+				}
+				catch (ManaInsuffisant e2) {
+					System.out.println("Mana Insuffisant");
+				}
+				}
+			else {
+				for (int indiceCarte=0; indiceCarte<joueurCourant.getNbCartesPlateau();indiceCarte++){
+					Personnage personnageAttaque = this.choisirCarteAAttaquerAleatoire(joueurCourant);
+					Carte carteAttaquante=joueurCourant.choisirCarteAttaqueeAleatoire();
+				try {
+					this.attaquerAvecCarte(carteAttaquante, personnageAttaque, joueurCourant);
+				}
+				catch (CibleInvalide e1) {
+					System.out.println("Cible invalide");
+				}
+				catch (EstInactif e2) {
+					System.out.println("La carte est inactive");
+				}
+			}
+			}
 	}
+
+	private void jouerTour(Joueur joueurCourant) {
+		Scanner sc= new Scanner(System.in);
+		String str=sc.nextLine();
+			while(str!="p")
+				this.jouerTourIntermediaire(joueurCourant);
+			
+			
+	}
+	
 
 	private void jouerTourIntermediaire(Joueur joueurCourant) {
 		Position carteAUtiliser = joueurCourant.choisirCarteAUtiliser();
@@ -320,7 +358,7 @@ public class Jeu {
 		liste.cartes[55] = new Carte("kha'zix",5,4,(new Effet("invocation","charge",0,0)),6,"Faucheur du Néant");
 		liste.cartes[56] = new Carte("Kog'Maw",4,4,null,4,"Gueule des abysses");
 		
-		liste.cartes[57] = new Carte("LeBlanc",8,8,(new Effet("debut","degat direct",4,4)),7,"Manipulatrice");
+		liste.cartes[57] = new Carte("LeBlanc",8,8,(new Effet("debut","degat direct",4,1)),7,"Manipulatrice");
 		liste.cartes[58] = new Carte("Lee sin",4,4,null,4,"Moine Aveugle");
 		liste.cartes[17] = new Carte("Leona",5,5,(new Effet("invocation","buff vie",3,1)),6,"Aube radieuse");
 		liste.cartes[59] = new Carte("Lissandra",2,1,(new Effet("debut","piocher",1,0)),1,"Sorcière de glace");
@@ -343,7 +381,7 @@ public class Jeu {
 		liste.cartes[3] = new Carte("Yasuo", 2, 3, (new Effet("invocation", "degat direct", 2, 1)), 3, "Le disgracie");
 		
 		
-		
+		return liste;
 		
 		
 		
@@ -380,7 +418,7 @@ public class Jeu {
 	}
 
 	public void reOrganiserCartes(Joueur joueur) {
-		for (int i = 0; i < Jeu.DEFAULT_CONSTANT_CARTEMAX; i++)
+		for (int i = 0; i < Jeu.NB_CARTES_MAX_POSEES; i++)
 			if (!(joueur.getCartesPosees().cartes[i] instanceof Carte)){
 				joueur.getCartesPosees().cartes[i] = joueur.getCartesPosees().cartes[i + 1];
 				joueur.getCartesPosees().cartes[i] = null;
@@ -420,15 +458,7 @@ public class Jeu {
 
 	}
 
-	public boolean peutEncoreJouer(Joueur joueur) {
-		for (int indiceCarte = 0; indiceCarte < joueur.getNbCartesMain(); indiceCarte++)
-			if (joueur.getMain().cartes[indiceCarte].getCoutEnMana() < joueur.getHeros().getNbManaCourant())
-				return true;
-		for (int indiceCarte = 0; indiceCarte < joueur.getNbCartesPlateau(); indiceCarte++)
-				if (joueur.getCartesPosees().cartes[indiceCarte].estInactif() == false)
-					return true;
-		return false;
-	}
+
 
 	public Personnage choisirCarteAAttaquerAleatoire(Joueur joueur) {
 		Random generateurNombreAleatoire = new Random();
@@ -443,10 +473,7 @@ public class Jeu {
 		return this.joueurs[1].getCartesPosees().cartes[indexPersonnageAAttaque];
 	}
 	
-	public Carte choisirCarteAUtilise(Joueur joueur){
-		Random generateurNombreAleatoire = new Random();
-		int indexPersonnageAAttaque = generateurNombreAleatoire.nextInt(joueur.getNbCartesPlateau());
-	}
+
 	
 	
 	

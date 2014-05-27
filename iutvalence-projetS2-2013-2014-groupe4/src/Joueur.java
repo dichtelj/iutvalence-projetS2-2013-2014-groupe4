@@ -41,7 +41,7 @@ public abstract class Joueur {
 		this.main=new ListeDeCartes(Jeu.NB_CARTES_MAIN);
 		this.cimetiere=new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.heros=new Heros(nomHeros);
-		this.cartesPosees=new ListeDeCartes(Jeu.DEFAULT_CONSTANT_CARTEMAX);
+		this.cartesPosees=new ListeDeCartes(Jeu.NB_CARTES_MAX_POSEES);
 	}
 
 	/**
@@ -125,8 +125,10 @@ public abstract class Joueur {
 	 * Pioche la carte sur le dessus du deck et la place dans la main du joueur
 	 */
 	public void piocherCarte(){
+		if (this.getDeck().nbCartes<Jeu.NB_CARTES_DECK){
 		this.setMain(this.deck.cartes[this.deck.nbCartes]);
 		this.incrementerCurseurDeck();
+		}
 	}
 	
 	/**
@@ -162,7 +164,7 @@ public abstract class Joueur {
 	}
 	
 	public boolean estPlein(Joueur joueur) {
-		if(this.cartesPosees.nbCartes==Jeu.DEFAULT_CONSTANT_CARTEMAX)
+		if(this.cartesPosees.nbCartes==Jeu.NB_CARTES_MAX_POSEES)
 			return true;
 		else
 			return false;	
@@ -184,8 +186,6 @@ public abstract class Joueur {
 	
 	public abstract Position choisirCarteAUtiliser();
 
-	public abstract Personnage choisirPersonnageAAttaquer();
-	
-	
+	public abstract Personnage choisirPersonnageAAttaquer(Joueur joueurAdverse);	
 
 }

@@ -59,7 +59,7 @@ public class Effet {
 	public void appliquerEffet(Joueur joueur){
 		Personnage carteChoisie=null;
 		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7)){
-				for (int nbCible=0; nbCible < Jeu.DEFAULT_CONSTANT_CARTEMAX; nbCible++)
+				for (int nbCible=0; nbCible < Jeu.NB_CARTES_MAX_POSEES; nbCible++)
 					joueur.getCartesPosees().cartes[nbCible].subirDegats(this.montantDeDegat);
 		}
 		if ((this.nom).compareTo("degat direct")==0){
@@ -79,7 +79,7 @@ public class Effet {
 		}
 		
 		if (((this.nom.compareTo("heal"))==0) && (this.nbCible==7)){
-			for (int nbCible=0; nbCible < Jeu.DEFAULT_CONSTANT_CARTEMAX; nbCible++)
+			for (int nbCible=0; nbCible < Jeu.NB_CARTES_MAX_POSEES; nbCible++)
 				joueur.getCartesPosees().cartes[nbCible].soigner(this.montantDeDegat);
 		}
 			
