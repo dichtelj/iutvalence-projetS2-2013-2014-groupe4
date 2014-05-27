@@ -457,24 +457,5 @@ public class Jeu {
 			joueur.getCimetiere().incrementerNbCartes();
 
 	}
-
-
-
-	public Personnage choisirCarteAAttaquerAleatoire(Joueur joueur) {
-		Random generateurNombreAleatoire = new Random();
-		int indexPersonnageAAttaque = generateurNombreAleatoire.nextInt(joueur.getNbCartesPlateau() + 1);
-		if (joueur.getNumeroJoueur() == 1) {
-			if ((indexPersonnageAAttaque) == joueur.getNbCartesPlateau())
-				return this.joueurs[1].getHeros();
-			return this.joueurs[0].getCartesPosees().cartes[indexPersonnageAAttaque];
-		}
-		else if ((indexPersonnageAAttaque) > joueur.getNbCartesPlateau())
-			return this.joueurs[0].getHeros();
-		return this.joueurs[1].getCartesPosees().cartes[indexPersonnageAAttaque];
-	}
-	
-
-	
-	
 	
 }
