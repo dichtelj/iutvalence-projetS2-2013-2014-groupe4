@@ -126,11 +126,12 @@ public abstract class Joueur {
 	 * Pioche la carte sur le dessus du deck et la place dans la main du joueur
 	 */
 	public void piocherCarte(){
-		if (this.getMain().nbCartes > Jeu.NB_CARTES_MAIN){
+		if (this.getMain().nbCartes < Jeu.NB_CARTES_MAIN){		
 		this.setMain(this.deck.cartes[this.curseurDeck]);
 		this.incrementerCurseurDeck();
 		this.incrementerNbCartesMain();
 		}
+
 	}
 	
 	/**

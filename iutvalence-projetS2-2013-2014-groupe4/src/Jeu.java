@@ -464,13 +464,15 @@ public class Jeu {
 		String partie="";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
 				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
-		partie+="-------------------";
+		partie+="\n-------------------\n";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
+			if (!(this.joueurs[1].getCartesPosees().cartes[indiceCarte]==null))
 			partie+=this.joueurs[1].getCartesPosees().cartes[indiceCarte].toString();
-		partie+="-------------------";
+		partie+="\n-------------------\n";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
+			if (!(this.joueurs[0].getCartesPosees().cartes[indiceCarte]==null))
 			partie+=this.joueurs[0].getCartesPosees().cartes[indiceCarte].toString();
-		partie+="-------------------";
+		partie+="\n-------------------\n";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
 			partie+=this.joueurs[0].getMain().cartes[indiceCarte].toString();
 		return partie;

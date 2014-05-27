@@ -13,6 +13,8 @@ import javax.swing.WindowConstants;
 public class AffichageFenetre implements Affichage, Runnable
 {
 
+	private JFrame fenetre;
+	
 	@Override
 	public void run()
 	{
