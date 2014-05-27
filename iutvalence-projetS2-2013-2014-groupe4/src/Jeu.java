@@ -470,7 +470,7 @@ public class Jeu {
 	public String toString(){
 		String partie="";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
-				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
+				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString(); 
 		partie+="\n-------------------\n";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
 			if (!(this.joueurs[1].getCartesPosees().cartes[indiceCarte]==null))
