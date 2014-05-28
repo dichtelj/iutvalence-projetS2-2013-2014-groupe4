@@ -54,7 +54,7 @@ public class AffichageFenetre implements Affichage, Runnable, ActionListener
 		menu.add(this.menuItemFermer);		
 		barreDeMenu.add(menu);
 		barreDeMenu.add(aPropos);		
-//		this.fenetre.setJMenuBar(barreDeMenu);		
+		//this.fenetre.setJMenuBar(barreDeMenu);		
 		fenetre.setVisible(true);
 	}
 

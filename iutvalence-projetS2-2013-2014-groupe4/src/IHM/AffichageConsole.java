@@ -1,6 +1,5 @@
-package Moteur;
+package IHM;
 
-import IHM.Affichage;
 
 public class AffichageConsole implements Affichage{
 
