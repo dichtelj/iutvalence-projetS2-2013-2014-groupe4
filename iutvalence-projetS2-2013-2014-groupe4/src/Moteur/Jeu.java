@@ -86,12 +86,14 @@ public class Jeu implements Controleur {
 			this.finTour(joueurCourant);
 			joueurCourant = this.joueurs[(indiceJoueurCourant + 1) % 2];
 			compteurTour++;
+			System.out.println("partie finie :"+this.partieFinie());
 		}
-		while (this.partieFinie());
+		while (!(this.partieFinie()));
 	}
 
 	public void jouerTourBot(JoueurAleatoire joueurCourant) {
-		while(joueurCourant.peutEncoreJouer())	
+		System.out.println("anduin"+joueurCourant.peutEncoreJouer());
+		while(joueurCourant.peutEncoreJouer())
 			if(joueurCourant.peutPoserUneCarte()){
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeur();
 				try {
@@ -158,8 +160,9 @@ public class Jeu implements Controleur {
 					this.vue.afficherMessageErreur("La carte est inactive");
 				}
 			}
-
+	
 	}
+
 
 	public boolean partieFinie() {
 		if ((this.joueurs[0].getHeros().getPointsDeVie() > 0) || (this.joueurs[1].getHeros().getPointsDeVie() > 0)){
@@ -183,7 +186,6 @@ public class Jeu implements Controleur {
 				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);}
 			}
 			for (int i = 0; i < joueur.getNbCartesPlateau(); i++)
-				
 				joueur.getCartesPosees().cartes[i].modeActive();
 		joueur.getHeros().setNbManaCourant(joueur.getHeros().getNbMana());
 		viderPlateau();
@@ -206,7 +208,7 @@ public class Jeu implements Controleur {
 		if (carte.getCoutEnMana() > joueur.getHeros().getNbManaCourant())
 			throw new ManaInsuffisant();
 		if (carte.getEffet().getActivation().compareTo("invocation") == 0)
-			carte.getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
+			carte.getEffet().appliquerEffet(joueur,this.joueurs[2-joueur.getNumeroJoueur()]);
 		joueur.getCartesPosees().cartes[joueur.getNbCartesPlateau()] = carte;
 		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
 		this.viderPlateau();
@@ -450,7 +452,7 @@ public class Jeu implements Controleur {
 	 */
 	public void jeterCarte(Carte carte, Joueur joueur) {
 		if (carte.effet.getActivation().compareTo("mort") == 0)
-			carte.effet.appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
+			carte.effet.appliquerEffet(joueur,this.joueurs[2-joueur.getNumeroJoueur()]);
 			joueur.getCimetiere().setCimetiere(carte);
 			joueur.getCimetiere().incrementerNbCartes();
 

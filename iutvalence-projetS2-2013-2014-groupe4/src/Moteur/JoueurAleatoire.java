@@ -24,7 +24,6 @@ public class JoueurAleatoire extends Joueur {
 
 
 	public Position choisirCarteAUtiliser() {
-		
 		return null;
 	}
 

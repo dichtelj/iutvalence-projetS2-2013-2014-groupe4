@@ -131,7 +131,6 @@ public abstract class Joueur {
 		if (this.getMain().nbCartes < Jeu.NB_CARTES_MAIN){
 		this.setMain(this.deck.cartes[this.curseurDeck]);
 		this.incrementerCurseurDeck();
-		this.incrementerNbCartesMain();
 		}
 
 	}
