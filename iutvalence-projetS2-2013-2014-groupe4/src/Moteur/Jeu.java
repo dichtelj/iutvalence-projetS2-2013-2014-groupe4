@@ -1,16 +1,22 @@
+package Moteur;
 import java.util.Random;
 import java.util.Scanner;
+
+import IHM.Affichage;
 
 /**
  * Definition d'une partie de Battle for Demacia
  */
-public class Jeu {
+public class Jeu implements Controleur {
 
 	public final static int NB_CARTES_DECK = 60;
 
 	public static final int NB_CARTES_MAIN = 10;
 
 	public static final ListeDeCartes LISTE_CARTE_GENERALE = Jeu.creerListeDeCartesGenerale();
+	
+	private Affichage vue;
+	
 	
 	/**
 	 * Le joueur ne peut pas avoir plus de DEFAULT_CONSTANT_CARTEMAX cartes sur
@@ -31,8 +37,9 @@ public class Jeu {
 	 * @param affichage
 	 *            Le type d'affichage du jeu
 	 */
-	public Jeu(Joueur[] joueurs) {
+	public Jeu(Joueur[] joueurs, Affichage vue) {
 		this.joueurs = joueurs;
+		this.vue=vue;
 	}
 
 	/**
@@ -60,6 +67,7 @@ public class Jeu {
 		this.attribuerMainDepart(this.joueurs[0]);
 		this.melangerDeck(this.joueurs[0]);
 		this.attribuerMainDepart(this.joueurs[1]);
+		System.out.println(""+this.joueurs[1].getMain().cartes[0].toString());
 		if (!(this.joueurs[0].getDeck().cartes[NB_CARTES_DECK - 1] instanceof Carte))
 			throw new DeckInvalide();
 		System.out.println(this.toString());
@@ -82,8 +90,7 @@ public class Jeu {
 		while (this.partieFinie());
 	}
 
-	private void jouerTourBot(JoueurAleatoire joueurCourant) {
-		System.out.println(""+joueurCourant.peutEncoreJouer());
+	public void jouerTourBot(JoueurAleatoire joueurCourant) {
 		while(joueurCourant.peutEncoreJouer())	
 			if(joueurCourant.peutPoserUneCarte()){
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeur();
@@ -92,10 +99,10 @@ public class Jeu {
 					System.out.println(this.toString());
 				}
 				catch (PlateauPlein e1) {
-					System.out.println("Plateau Plein");
+					this.vue.afficherMessageErreur("Plateau Plein");
 				}
 				catch (ManaInsuffisant e2) {
-					System.out.println("Mana Insuffisant");
+					this.vue.afficherMessageErreur("Mana Insuffisant");
 				}
 				}
 			else {
@@ -107,17 +114,17 @@ public class Jeu {
 					System.out.println(this.toString());
 				}
 				catch (CibleInvalide e1) {
-					System.out.println("Cible invalide");
+					this.vue.afficherMessageErreur("Cible invalide");
 				}
 				catch (EstInactif e2) {
-					System.out.println("La carte est inactive");
+					this.vue.afficherMessageErreur("La carte est inactive");
 				}
 			}
 			}
 			}
 
 
-	private void jouerTour(Joueur joueurCourant) {
+	public void jouerTour(Joueur joueurCourant) {
 		Scanner sc= new Scanner(System.in);
 		String str=sc.nextLine();
 			while(str!="p")
@@ -126,18 +133,17 @@ public class Jeu {
 	}
 	
 
-	private void jouerTourIntermediaire(Joueur joueurCourant) {
+	public void jouerTourIntermediaire(Joueur joueurCourant) {
 		Position carteAUtiliser = joueurCourant.choisirCarteAUtiliser();
-		if (this.estDansMain(carteAUtiliser))
 			if (joueurCourant.getNumeroJoueur() == 1) {
 				try {
 					this.poserCarte(carteAUtiliser.getListe().cartes[carteAUtiliser.getIndex()], joueurCourant);
 				}
 				catch (PlateauPlein e1) {
-					System.out.println("Plateau Plein");
+					this.vue.afficherMessageErreur("Plateau Plein");
 				}
 				catch (ManaInsuffisant e2) {
-					System.out.println("Mana Insuffisant");
+					this.vue.afficherMessageErreur("Mana Insuffisant");
 				}
 			}
 			else {
@@ -146,19 +152,13 @@ public class Jeu {
 					this.attaquerAvecCarte(carteAUtiliser.getListe().cartes[carteAUtiliser.getIndex()], personnageAttaque, joueurCourant);
 				}
 				catch (CibleInvalide e1) {
-					System.out.println("Cible invalide");
+					this.vue.afficherMessageErreur("Cible invalide");
 				}
 				catch (EstInactif e2) {
-					System.out.println("La carte est inactive");
+					this.vue.afficherMessageErreur("La carte est inactive");
 				}
 			}
 
-	}
-
-	private boolean estDansMain(Position carte) {
-		if (carte.getListe().getNbCartesMax() == 10)
-			return true;
-		return false;
 	}
 
 	public boolean partieFinie() {
@@ -250,7 +250,7 @@ public class Jeu {
 	 *            joueur ciblé
 	 * @return boolean
 	 */
-	private boolean cibleViable(Personnage personnage, Joueur joueur) {
+	public boolean cibleViable(Personnage personnage, Joueur joueur) {
 		if (this.existeProvocation(joueur))
 			if (!(personnage instanceof Carte))
 				return false;
@@ -269,7 +269,7 @@ public class Jeu {
 	 * @return boolean Dit si oui ou non il y a une provocation sur le terrain
 	 *         adverse
 	 */
-	private boolean existeProvocation(Joueur joueur) {
+	public boolean existeProvocation(Joueur joueur) {
 			for (int i = 0; i < joueur.getNbCartesPlateau(); i++)
 				if (joueur.getCartesPosees().cartes[i].getEffet().getNom().compareTo("provocation") == 0)
 					return true;
@@ -390,18 +390,7 @@ public class Jeu {
 		liste.cartes[3] = new Carte("Yasuo", 2, 3, (new Effet("invocation", "degat direct", 2, 1)), 3, "Le disgracie");
 		
 		
-		return liste;
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		return liste;		
 		
 	}
 
@@ -470,7 +459,7 @@ public class Jeu {
 	public String toString(){
 		String partie="";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
-				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString(); 
+				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n"; 
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
 			if (!(this.joueurs[1].getCartesPosees().cartes[indiceCarte]==null))
@@ -485,6 +474,10 @@ public class Jeu {
 		return partie;
 		
 		
+	}
+	
+	public Affichage getVue(){
+		return this.vue;
 	}
 	
 }

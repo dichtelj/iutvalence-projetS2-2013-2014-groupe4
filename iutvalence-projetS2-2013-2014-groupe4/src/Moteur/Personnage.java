@@ -1,3 +1,4 @@
+package Moteur;
 /**
  * Definition d'un personnage du jeu(carte ou heros)
  */

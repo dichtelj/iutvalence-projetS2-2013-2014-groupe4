@@ -1,3 +1,4 @@
+package Moteur;
 
 /**
  * Décrit la position d'une carte dans une liste de carte donnée

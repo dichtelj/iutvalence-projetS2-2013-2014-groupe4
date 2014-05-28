@@ -1,3 +1,4 @@
+package Moteur;
 /**
  * 
  * Definition d'une carte de jeu

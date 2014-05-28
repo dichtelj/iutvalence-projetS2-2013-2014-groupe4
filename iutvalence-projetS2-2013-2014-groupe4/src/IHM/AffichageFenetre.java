@@ -1,27 +1,29 @@
-import javax.swing.ImageIcon;
-
-import java.awt.Container;
-import java.awt.GridLayout;
+package IHM;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+
+import Moteur.Controleur;
 
 public class AffichageFenetre implements Affichage, Runnable, ActionListener
 {
 
 	private JFrame fenetre;
+	
+	private Controleur controleur;
+	
+	private JPanel EcranDAccueil;
+	
+	private JPanel ListeCartesGenerales;
+	
+	private JPanel Partie;
 	
 	private JMenuItem menuItemFermer;
 	
@@ -52,13 +54,12 @@ public class AffichageFenetre implements Affichage, Runnable, ActionListener
 		menu.add(this.menuItemFermer);		
 		barreDeMenu.add(menu);
 		barreDeMenu.add(aPropos);		
-//		this.fenetre.setJMenuBar(barreDeMenu);	
-		
+//		this.fenetre.setJMenuBar(barreDeMenu);		
 		fenetre.setVisible(true);
 	}
 
 
-	@Override
+
 	public void actionPerformed(ActionEvent event)
 	{
 		JMenuItem itemSelectionne = (JMenuItem) event.getSource();
@@ -81,5 +82,10 @@ public class AffichageFenetre implements Affichage, Runnable, ActionListener
 			JOptionPane.showMessageDialog(this.fenetre, "anduin", "Regles du Memory", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}		
+	}
+
+
+	public void afficherMessageErreur(String str) {
+		
 	}
 }

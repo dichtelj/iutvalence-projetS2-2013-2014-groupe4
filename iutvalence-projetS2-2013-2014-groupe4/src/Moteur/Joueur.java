@@ -1,3 +1,4 @@
+package Moteur;
 
 public abstract class Joueur {
 	/**
@@ -42,7 +43,7 @@ public abstract class Joueur {
 		this.cimetiere=new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.heros=new Heros(nomHeros);
 		this.cartesPosees=new ListeDeCartes(Jeu.NB_CARTES_MAX_POSEES);
-		this.curseurDeck=59;
+		this.curseurDeck=Jeu.NB_CARTES_DECK-1;
 	}
 
 	/**
@@ -127,7 +128,7 @@ public abstract class Joueur {
 	 * Pioche la carte sur le dessus du deck et la place dans la main du joueur
 	 */
 	public void piocherCarte(){
-		if (this.getMain().nbCartes < Jeu.NB_CARTES_MAIN){		
+		if (this.getMain().nbCartes < Jeu.NB_CARTES_MAIN){
 		this.setMain(this.deck.cartes[this.curseurDeck]);
 		this.incrementerCurseurDeck();
 		this.incrementerNbCartesMain();

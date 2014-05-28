@@ -1,3 +1,4 @@
+package Moteur;
 /**
  * @author antoine 
  * Classe représentant le cimetière de chaque joueur

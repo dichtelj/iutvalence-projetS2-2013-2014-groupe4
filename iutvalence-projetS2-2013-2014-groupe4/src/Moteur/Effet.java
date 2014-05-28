@@ -1,3 +1,4 @@
+package Moteur;
 
 /**
  * Définit un effet d'une carte

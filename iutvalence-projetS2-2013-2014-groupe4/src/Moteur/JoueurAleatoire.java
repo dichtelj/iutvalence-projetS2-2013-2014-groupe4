@@ -1,3 +1,4 @@
+package Moteur;
 import java.util.Random;
 
 public class JoueurAleatoire extends Joueur {
@@ -18,7 +19,6 @@ public class JoueurAleatoire extends Joueur {
 	public Carte choisirCarteDeck() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
-		System.out.println(Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie].toString());
 			return Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie];
 	}
 
