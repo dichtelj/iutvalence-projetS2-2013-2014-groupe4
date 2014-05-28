@@ -12,4 +12,8 @@ public class AffichageConsole implements Affichage{
 		System.out.println(str);		
 	}
 
+	public void initialiserPartie() {
+		
+	}
+
 }

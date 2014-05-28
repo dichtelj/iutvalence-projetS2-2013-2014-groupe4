@@ -37,11 +37,13 @@ public class JoueurAleatoire extends Joueur {
 	}
 	
 	
-	public Carte carteDePlusHauteValeur(){
-		Carte carteChoisie=this.getMain().cartes[0];
-		for (int indiceCarte=1;indiceCarte<this.getMain().nbCartes;indiceCarte++)
-			if (this.getMain().cartes[indiceCarte].getCoutEnMana()<carteChoisie.getCoutEnMana())
+	public Carte carteDePlusHauteValeurJouable(){
+		Carte carteChoisie=new Carte(null, 0, 0, null, 0, null);
+		for (int indiceCarte=0;indiceCarte<this.getMain().nbCartes;indiceCarte++)
+			if (this.getMain().cartes[indiceCarte].getCoutEnMana() > carteChoisie.getCoutEnMana()){
+				System.out.println(""+this.getMain().cartes[indiceCarte].getCoutEnMana());
 				carteChoisie=this.getMain().cartes[indiceCarte];
+			}
 		return carteChoisie;
 	}
 	
@@ -53,9 +55,11 @@ public class JoueurAleatoire extends Joueur {
 	}
 	
 	public boolean peutPoserUneCarte(){
-		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++)
-			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())
-				return true;
+		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++){
+			System.out.println(" cout carte :"+this.getMain().cartes[indiceCarte].getCoutEnMana());
+			System.out.println("mana courant : "+this.getHeros().getNbManaCourant());
+			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())				
+				return true;}
 		return false;		
 	}
 	

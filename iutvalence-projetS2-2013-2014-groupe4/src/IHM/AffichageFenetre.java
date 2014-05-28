@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
 import Moteur.Controleur;
@@ -25,63 +26,44 @@ public class AffichageFenetre implements Affichage, Runnable, ActionListener
 	
 	private JPanel Partie;
 	
-	private JMenuItem menuItemFermer;
+	private MenuJeu menu;
 	
-	private JMenuItem menuItemAPropos;
-	
-	private JMenuItem menuItemRegles;
+
 	
 	
 	@Override
 	public void run()
 	{
 		JFrame fenetre= new JFrame();
-//		this.fenetre.setSize(950, 700);
-//		this.fenetre.setTitle("Battle for Demacia");
+		this.fenetre.setSize(950, 700);
+		this.fenetre.setTitle("Battle for Demacia");
 		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		
-		JMenuBar barreDeMenu = new JMenuBar();
-		JMenu menu = new JMenu("Menu");
-		JMenu aPropos = new JMenu("A Propos");		
-		this.menuItemAPropos = new JMenuItem("Informations");
-		this.menuItemAPropos.addActionListener(this);
-		aPropos.add(this.menuItemAPropos);		
-		this.menuItemRegles = new JMenuItem("Regles du jeu");
-		this.menuItemRegles.addActionListener(this);
-		menu.add(this.menuItemRegles);		
-		this.menuItemFermer = new JMenuItem("Fermer");
-		this.menuItemFermer.addActionListener(this);
-		menu.add(this.menuItemFermer);		
-		barreDeMenu.add(menu);
-		barreDeMenu.add(aPropos);		
-		//this.fenetre.setJMenuBar(barreDeMenu);		
-		fenetre.setVisible(true);
+		MenuJeu barreDeMenu= new MenuJeu(this.fenetre);
+		this.fenetre.setJMenuBar(barreDeMenu);
+		this.initialiserPartie();
 	}
+	
+	
+
+
+
+	public void initialiserPartie() {
+//		JPanel partie= new JPanel();
+//		JSplitPane splitPaneMilieuDEcran= new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+//		partie.add(splitPaneMilieuDEcran);
+//		JSplitPane splitPaneSuperieur = splitPaneMilieuDEcran.getTopComponent().add(new JSplitPane(JSplitPane.VERTICAL_SPLIT));
+//		JSplitPane splitPaneInferieur = splitPaneMilieuDEcran.getBottomComponent().add(new JSplitPane(JSplitPane.VERTICAL_SPLIT));
+//		
+//		
+	}
+
+
 
 
 
 	public void actionPerformed(ActionEvent event)
 	{
-		JMenuItem itemSelectionne = (JMenuItem) event.getSource();
-
-		if (itemSelectionne == this.menuItemAPropos)
-		{
-			JOptionPane.showMessageDialog(this.fenetre, "Battle For Demacia, jeu cree par 4 étudiants à l'iut de valence.", "A propos", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		}
-
-		if (itemSelectionne == this.menuItemFermer)
-		{
 		
-			if (JOptionPane.showConfirmDialog(this.fenetre, "Voulez-vous fermer le jeu?", "Confirmation", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.OK_OPTION)
-				this.fenetre.dispose();
-		}
-		
-		if (itemSelectionne == this.menuItemRegles)
-		{ 
-			JOptionPane.showMessageDialog(this.fenetre, "anduin", "Regles du Memory", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		}		
 	}
 
 

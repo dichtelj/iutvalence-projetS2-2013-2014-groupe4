@@ -99,8 +99,9 @@ public class Jeu implements Controleur {
 	public void jouerTourBot(JoueurAleatoire joueurCourant) {
 		while(joueurCourant.peutEncoreJouer())
 			if(joueurCourant.peutPoserUneCarte()){
-				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeur();
+				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeurJouable();
 				try {
+					System.out.println("mana heros"+joueurCourant.getHeros().getNbManaCourant());
 					this.poserCarte(carteAUtiliser, joueurCourant);
 				}
 				catch (PlateauPlein e1) {
@@ -409,7 +410,7 @@ public class Jeu implements Controleur {
 				if (this.joueurs[1].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("fin") == 0){
 				this.jeterCarte(this.joueurs[0].getCartesPosees().cartes[i], this.joueurs[0]);
 				this.joueurs[0].getCartesPosees().cartes[i] = null;
-				this.joueurs[0].decrementerNbCartes();
+				this.joueurs[0].decrementerNbCartesPosees();
 				this.reOrganiserCartes(this.joueurs[0]);
 			}
 		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++) {
@@ -417,7 +418,7 @@ public class Jeu implements Controleur {
 			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("fin") == 0)
 				this.jeterCarte(this.joueurs[1].getCartesPosees().cartes[j], this.joueurs[1]);
 			this.joueurs[1].getCartesPosees().cartes[j] = null;
-			this.joueurs[1].decrementerNbCartes();
+			this.joueurs[1].decrementerNbCartesPosees();
 			this.reOrganiserCartes(this.joueurs[1]);
 		}
 	}

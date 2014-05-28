@@ -69,22 +69,22 @@ public class Effet {
 				carteChoisie.subirDegats(this.montantDeDegat);
 		}
 		
-		if (this.nom.compareTo("buff attaque")==0){
+		if (this.nom.compareTo("buff attaque")==0 && joueur.getNbCartesPlateau() > 0){
 			carteChoisie=joueur.choisirCarteABuffer();
 			((Carte)carteChoisie).setDegatAttaque(this.montantDeDegat);				
 		}
 		
-		if (this.nom.compareTo("buff vie")==0){
+		if (this.nom.compareTo("buff vie")==0 && joueur.getNbCartesPlateau() > 0){
 			carteChoisie=joueur.choisirCarteABuffer();
 			((Carte)carteChoisie).buffVieMax(this.montantDeDegat);
 		}
 		
-		if (((this.nom.compareTo("heal"))==0) && (this.nbCible==7)){
-			for (int nbCible=0; nbCible < Jeu.NB_CARTES_MAX_POSEES; nbCible++)
+		if ((((this.nom.compareTo("heal"))==0) && (this.nbCible==7))){
+			for (int nbCible=0; nbCible < joueur.getNbCartesPlateau(); nbCible++)
 				joueur.getCartesPosees().cartes[nbCible].soigner(this.montantDeDegat);
 		}
 			
-		if (this.nom.compareTo("heal")==0){
+		if ((this.nom.compareTo("heal")==0 && joueur.getNbCartesPlateau() > 0)){
 			carteChoisie=joueur.choisirCarteABuffer();
 			carteChoisie.soigner(this.montantDeDegat);
 		}

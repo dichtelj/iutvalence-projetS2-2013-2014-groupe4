@@ -179,7 +179,8 @@ public abstract class Joueur {
 		this.cartesPosees.nbCartes++;
 	}
 	
-	public void decrementerNbCartes(){
+	public void decrementerNbCartesPosees(){
+		if (this.cartesPosees.nbCartes > 0)
 		this.cartesPosees.nbCartes--;
 	}
 	
