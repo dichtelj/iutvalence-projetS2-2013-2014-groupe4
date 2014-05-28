@@ -45,7 +45,7 @@ public class JoueurAleatoire extends Joueur {
 		return carteChoisie;
 	}
 	
-	public boolean peutEncoreJouer() {	
+	public boolean peutEncoreJouer() {
 		if ((this.peutPoserUneCarte()) || (this.peutEncoreAttaquer())){
 			return true;}
 		return false;
@@ -54,7 +54,7 @@ public class JoueurAleatoire extends Joueur {
 	
 	public boolean peutPoserUneCarte(){
 		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++)
-			if (this.getMain().cartes[indiceCarte].getCoutEnMana() < this.getHeros().getNbManaCourant())
+			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())
 				return true;
 		return false;		
 	}

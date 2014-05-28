@@ -8,7 +8,7 @@ public class Heros extends Personnage {
 	/**
 	 * Nombre de mana max par tour utilisable
 	 */
-	private int nbMana;
+	private int nbManaMax;
 	
 	/**
 	 * Nombre de mana qui peut changer si le joueur joue une carte qui coute du mana,
@@ -25,16 +25,16 @@ public class Heros extends Personnage {
 	
 	this.nom=nom;	
 	this.pointDeVie=30;
-	this.nbMana=0;
+	this.nbManaMax=0;
 	this.nbManaCourant=0;		
 	}
 
 	public void setNbMana(int nbMana) {
-		this.nbMana = nbMana;
+		this.nbManaMax = nbMana;
 	}
 
-	public int getNbMana() {
-		return this.nbMana;
+	public int getNbManaMax() {
+		return this.nbManaMax;
 	}
 	
 	public int getNbManaCourant() {
@@ -46,10 +46,10 @@ public class Heros extends Personnage {
 	}
 	
 	public void decrementerNbManaCourant(int nbmana){
-		this.nbMana-=nbmana;
+		this.nbManaMax-=nbmana;
 	}
 	
-	public void incrementerNbMana(){
-		this.nbMana++;
+	public void incrementerNbManaMax(){
+		this.nbManaMax++;
 	}
 }
