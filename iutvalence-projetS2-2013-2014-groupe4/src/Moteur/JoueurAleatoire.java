@@ -1,6 +1,5 @@
 package Moteur;
 import java.util.Random;
-
 public class JoueurAleatoire extends Joueur {
 		
 	
@@ -14,15 +13,11 @@ public class JoueurAleatoire extends Joueur {
 			this.setDeck(choisirCarteDeck());
 			}
 	}
-
-
 	public Carte choisirCarteDeck() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
 			return Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie];
 	}
-
-
 	public Position choisirCarteAUtiliser() {
 		return null;
 	}
@@ -39,7 +34,6 @@ public class JoueurAleatoire extends Joueur {
 		if ((this.peutPoserUneCarte()) || (this.peutEncoreAttaquer())){
 			return true;}
 		return false;
-
 	}
 	
 	public boolean peutPoserUneCarte(){
@@ -58,7 +52,6 @@ public class JoueurAleatoire extends Joueur {
 				return true;
 	return false;
 	}
-
 	@Override
 	public Personnage choisirPersonnageAAttaquer(Joueur joueurAdverse) {
 		Random generateurNombreAleatoire = new Random();
@@ -67,13 +60,11 @@ public class JoueurAleatoire extends Joueur {
 				return joueurAdverse.getHeros();
 			return joueurAdverse.getCartesPosees().cartes[indexPersonnageAAttaque];
 	}
-
 	public Carte choisirCarteAttaqueeAleatoire() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(Jeu.NB_CARTES_MAX_POSEES);
 			return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
-
 	public Carte choisirCarteABuffer() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPlateau());
