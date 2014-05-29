@@ -32,8 +32,6 @@ public interface Controleur {
 		public void construireDeck(ListeDeCartes liste);
 		
 		public void viderPlateau();
-		
-		public void reOrganiserCartes(Joueur joueur);		
 
 		public void melangerDeck(Joueur joueur);		
 

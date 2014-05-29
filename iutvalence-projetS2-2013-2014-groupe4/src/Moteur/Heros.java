@@ -29,10 +29,6 @@ public class Heros extends Personnage {
 	this.nbManaCourant=0;		
 	}
 
-	public void setNbMana(int nbMana) {
-		this.nbManaMax = nbMana;
-	}
-
 	public int getNbManaMax() {
 		return this.nbManaMax;
 	}
@@ -46,7 +42,7 @@ public class Heros extends Personnage {
 	}
 	
 	public void decrementerNbManaCourant(int nbmana){
-		this.nbManaMax-=nbmana;
+		this.nbManaCourant-=nbmana;
 	}
 	
 	public void incrementerNbManaMax(){

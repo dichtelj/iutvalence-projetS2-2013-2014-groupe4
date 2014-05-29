@@ -39,7 +39,7 @@ public abstract class Joueur {
 	{
 		this.numeroJoueur=numeroDuJoueur;
 		this.deck=new ListeDeCartes(Jeu.NB_CARTES_DECK);
-		this.main=new ListeDeCartes(Jeu.NB_CARTES_MAIN);
+		this.main=new ListeDeCartes(Jeu.NB_MAX_CARTES_MAIN);
 		this.cimetiere=new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.heros=new Heros(nomHeros);
 		this.cartesPosees=new ListeDeCartes(Jeu.NB_CARTES_MAX_POSEES);
@@ -128,7 +128,7 @@ public abstract class Joueur {
 	 * Pioche la carte sur le dessus du deck et la place dans la main du joueur
 	 */
 	public void piocherCarte(){
-		if (this.getMain().nbCartes < Jeu.NB_CARTES_MAIN){
+		if (this.getMain().nbCartes < Jeu.NB_MAX_CARTES_MAIN){
 		this.setMain(this.deck.cartes[this.curseurDeck]);
 		this.incrementerCurseurDeck();
 		}
@@ -188,12 +188,42 @@ public abstract class Joueur {
 		return this.cartesPosees;
 	}
 	
+	public void reOrganiserPlateau() {
+		for (int i = 0; i < Jeu.NB_CARTES_MAX_POSEES; i++)
+		if (!(this.getCartesPosees().cartes[i] instanceof Carte)){
+			int indiceProchaineCarteNonNull=i;
+			while(this.getMain().cartes[indiceProchaineCarteNonNull] == null)
+				if (indiceProchaineCarteNonNull < Jeu.NB_CARTES_MAX_POSEES-1)
+					indiceProchaineCarteNonNull++;
+			if (this.getMain().cartes[Jeu.NB_CARTES_MAX_POSEES-1] instanceof Carte)
+				indiceProchaineCarteNonNull=Jeu.NB_CARTES_MAX_POSEES;
+			this.getCartesPosees().cartes[i]=this.getCartesPosees().cartes[indiceProchaineCarteNonNull];
+			this.getCartesPosees().cartes[indiceProchaineCarteNonNull]=null;
+		}		
+		
+	}
+	
 	public abstract Carte choisirCarteDeck();
 	
 	public abstract Position choisirCarteAUtiliser();
 
 	public abstract Personnage choisirPersonnageAAttaquer(Joueur joueurAdverse);
 
-	public abstract Personnage choisirCarteABuffer();	
+	public abstract Personnage choisirCarteABuffer();
+
+	public void reOrganiserMain() {
+		for (int i = 0; i < Jeu.NB_MAX_CARTES_MAIN; i++)
+		if (!(this.getMain().cartes[i] instanceof Carte)){
+			int indiceProchaineCarteNonNull=i;
+			while(this.getMain().cartes[indiceProchaineCarteNonNull] == null)
+				if (indiceProchaineCarteNonNull < Jeu.NB_MAX_CARTES_MAIN-1)
+					indiceProchaineCarteNonNull++;
+			if (this.getMain().cartes[Jeu.NB_MAX_CARTES_MAIN-1] instanceof Carte)
+				indiceProchaineCarteNonNull=Jeu.NB_MAX_CARTES_MAIN;
+			this.getMain().cartes[i]=this.getMain().cartes[indiceProchaineCarteNonNull];
+			this.getMain().cartes[indiceProchaineCarteNonNull]=null;
+		}	
+		
+	}	
 
 }
