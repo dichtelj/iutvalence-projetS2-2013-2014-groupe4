@@ -438,7 +438,8 @@ public class Jeu implements Controleur {
 	}
 
 	public void attribuerMainDepart(Joueur joueur) {
-		joueur.piocherCarte();
+		joueur.setMain(LISTE_CARTE_GENERALE.cartes[59]);
+		joueur.incrementerCurseurDeck();
 		joueur.piocherCarte();
 		joueur.piocherCarte();
 	}
