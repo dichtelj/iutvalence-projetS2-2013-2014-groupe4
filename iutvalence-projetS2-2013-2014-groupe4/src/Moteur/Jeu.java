@@ -112,7 +112,6 @@ public class Jeu implements Controleur {
 				}
 				}
 			else {
-				for (int indiceCarte=0; indiceCarte<joueurCourant.getNbCartesPosees();indiceCarte++){
 					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[joueurCourant.getNumeroJoueur()-1]);
 					Carte carteAttaquante=joueurCourant.choisirCarteAttaquanteAleatoire();
 				try {
@@ -126,7 +125,7 @@ public class Jeu implements Controleur {
 				}
 			}
 			}
-			}
+			
 
 
 	public void jouerTour(Joueur joueurCourant) {
@@ -167,9 +166,9 @@ public class Jeu implements Controleur {
 
 
 	public boolean partieFinie() {
-		if ((this.joueurs[0].getHeros().getPointsDeVie() > 0) || (this.joueurs[1].getHeros().getPointsDeVie() > 0)){
-			return false;}
-		return true;
+		if ((this.joueurs[0].getHeros().getPointsDeVie() <= 0) || (this.joueurs[1].getHeros().getPointsDeVie() <= 0)){
+			return true;}
+		return false;
 	}
 
 	/**
@@ -253,7 +252,7 @@ public class Jeu implements Controleur {
 			carte.modeInactive();
 			this.viderPlateau();
 			joueur.reOrganiserPlateau();
-			System.out.println("CARTE : "+carte.toString()+"  ATTAQUANTE \n"+this.toString());
+			System.out.println("CARTE : "+carte.toString()+"  ATTAQUE"+personnage.toString()+"  \n"+this.toString());
 	}
 
 	/**
