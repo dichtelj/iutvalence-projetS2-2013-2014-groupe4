@@ -88,8 +88,8 @@ public class Jeu implements Controleur {
 			if(joueurCourant instanceof JoueurAleatoire)
 				this.jouerTourBot((JoueurAleatoire)joueurCourant);
 			this.finTour(joueurCourant);
+			System.out.println("FIN TOUR"+this.toString());
 			indiceJoueurCourant++;
-			System.out.println(this.toString());
 			compteurTourEfectif++;
 			if (compteurTourEfectif%2==0)
 				compteurTour++;
@@ -163,7 +163,6 @@ public class Jeu implements Controleur {
 					this.vue.afficherMessageErreur("La carte est inactive");
 				}
 			}
-			this.viderPlateau();
 	}
 
 
@@ -183,11 +182,13 @@ public class Jeu implements Controleur {
 		for (int indiceCarte = 0; indiceCarte < this.joueurs[0].getNbCartesPosees(); indiceCarte++){
 		if (this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet()!=null)
 			if (this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0)
-				this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[0],this.joueurs[1]);}
+				this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[0],this.joueurs[1]);
+		}
 		for (int indiceCarte = 0; indiceCarte < this.joueurs[1].getNbCartesPosees(); indiceCarte++){
 			if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet()!=null)
 			if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0){
-				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[1],this.joueurs[0]);}
+				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[1],this.joueurs[0]);
+				}
 			}
 			for (int i = 0; i < joueur.getNbCartesPosees(); i++)
 				joueur.getCartesPosees().cartes[i].modeActive();
@@ -223,6 +224,7 @@ public class Jeu implements Controleur {
 		joueur.reOrganiserMain();
 		this.viderPlateau();
 		joueur.reOrganiserPlateau();
+		System.out.println("CARTE : "+carte.toString()+"  POSÉE \n"+this.toString());
 	}
 
 	/**
@@ -250,7 +252,8 @@ public class Jeu implements Controleur {
 			carte.infligerDegats(personnage);
 			carte.modeInactive();
 			this.viderPlateau();
-			joueur.reOrganiserPlateau();		
+			joueur.reOrganiserPlateau();
+			System.out.println("CARTE : "+carte.toString()+"  ATTAQUANTE \n"+this.toString());
 	}
 
 	/**

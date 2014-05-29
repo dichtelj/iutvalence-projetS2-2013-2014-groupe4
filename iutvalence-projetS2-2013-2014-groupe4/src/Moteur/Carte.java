@@ -147,7 +147,7 @@ public class Carte extends Personnage {
 	}
 	
 	public String toString(){
-		return ""+this.nom+" "+this.pointsDAttaque+"/"+this.pointDeVie+" "+"Cout:"+this.coutEnMana+"  |  ";
+		return ""+this.nom+" "+this.pointsDAttaque+"/"+this.pointDeVie+" "+"Cout:"+this.coutEnMana+" "+"Inactive:"+this.estInactive+"  |  ";
 	}
 		
 }

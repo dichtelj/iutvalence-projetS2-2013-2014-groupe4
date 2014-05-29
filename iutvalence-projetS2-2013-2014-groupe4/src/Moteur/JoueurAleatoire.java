@@ -52,17 +52,18 @@ public class JoueurAleatoire extends Joueur {
 	}
 	
 	public boolean peutPoserUneCarte(){
-		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++)
+
+		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++){
 			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())
-				return true;
+				return true;}
 		return false;		
 	}
 	
 	
 	public boolean peutEncoreAttaquer(){
-		for (int indiceCarte = 0; indiceCarte < this.getNbCartesPosees(); indiceCarte++)
+		for (int indiceCarte = 0; indiceCarte < this.getNbCartesPosees(); indiceCarte++){
 			if (this.getCartesPosees().cartes[indiceCarte].estInactif() == false)
-				return true;
+				return true;}
 	return false;
 	}
 
@@ -80,8 +81,8 @@ public class JoueurAleatoire extends Joueur {
 	public Carte choisirCarteAttaquanteAleatoire() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
-		while (this.getCartesPosees().cartes[indexCarteChoisie].estInactif())
-			indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
+		while (this.getCartesPosees().cartes[indexCarteChoisie].estInactif()){
+			indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());}
 		return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
 
