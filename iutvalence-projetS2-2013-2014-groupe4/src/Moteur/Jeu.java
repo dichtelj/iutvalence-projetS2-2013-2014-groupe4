@@ -78,7 +78,7 @@ public class Jeu implements Controleur {
 		int compteurTour=1;
 		int compteurTourEfectif=0;
 		do {
-			System.out.println(("tour n° : "+compteurTour+"du joueur"+joueurCourant.getNumeroJoueur()));
+			System.out.println(("tour n° : "+compteurTour+"du joueur "+joueurCourant.getNumeroJoueur()));
 			this.debutTour(joueurCourant);
 		if(joueurCourant instanceof JoueurAleatoire)
 			this.jouerTourBot((JoueurAleatoire)joueurCourant);
@@ -99,6 +99,7 @@ public class Jeu implements Controleur {
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeurJouable();
 				try {
 					this.poserCarte(carteAUtiliser, joueurCourant);
+					this.toString();
 				}
 				catch (PlateauPlein e1) {
 					this.vue.afficherMessageErreur("Plateau Plein");
@@ -438,7 +439,8 @@ public class Jeu implements Controleur {
 	}
 
 	public void attribuerMainDepart(Joueur joueur) {
-		joueur.piocherCarte();
+		joueur.setMain(LISTE_CARTE_GENERALE.cartes[59]);
+		joueur.incrementerCurseurDeck();
 		joueur.piocherCarte();
 		joueur.piocherCarte();
 	}
@@ -460,7 +462,7 @@ public class Jeu implements Controleur {
 		partie+=" peut jouer : "+((JoueurAleatoire)this.joueurs[1]).peutEncoreJouer()+"\n";
 		partie+="mana max :"+this.joueurs[1].getHeros().getNbManaMax()+"\n";
 		partie+="mana courant :"+this.joueurs[1].getHeros().getNbManaCourant()+"\n";	
-		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
+		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes()-1;indiceCarte++)
 				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n"; 
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
@@ -471,8 +473,11 @@ public class Jeu implements Controleur {
 			if (!(this.joueurs[0].getCartesPosees().cartes[indiceCarte]==null))
 			partie+=this.joueurs[0].getCartesPosees().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n";
-		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
+		for (int indiceCarte=0;indiceCarte < this.joueurs[0].getMain().getNbCartes()-1;indiceCarte++){
+			System.out.println("carte qu'on veut écrire"+this.joueurs[0].getMain().cartes[indiceCarte].toString());
+			System.out.println("nb cartes main :"+this.joueurs[0].getMain().getNbCartes());
 			partie+=this.joueurs[0].getMain().cartes[indiceCarte].toString();
+		}
 		
 		partie+="\n point de vie héros :"+this.joueurs[0].getHeros().getPointsDeVie()+"\n";
 		partie+=" peut jouer : "+((JoueurAleatoire)this.joueurs[0]).peutEncoreJouer()+"\n";
@@ -488,8 +493,8 @@ public class Jeu implements Controleur {
 	
 	public int trouverIndexCarteDansMain(Carte carte, Joueur joueur){
 		int indiceCarteCherchee=0;
-			while(joueur.getMain().cartes[indiceCarteCherchee]!=carte)
-				indiceCarteCherchee++;
+		while(joueur.getMain().cartes[indiceCarteCherchee]!=carte)
+			indiceCarteCherchee++;
 		return indiceCarteCherchee;
 	}
 	

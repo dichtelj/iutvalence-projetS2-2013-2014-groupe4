@@ -44,8 +44,10 @@ public class JoueurAleatoire extends Joueur {
 	
 	public boolean peutPoserUneCarte(){
 		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++)
-			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())
-				return true;
+			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant()){
+				System.out.println("indice acrte"+indiceCarte);
+				System.out.println(this.getMain().cartes[indiceCarte].toString());
+				return true;}
 		return false;		
 	}
 	

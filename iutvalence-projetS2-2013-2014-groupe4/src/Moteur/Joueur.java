@@ -189,19 +189,16 @@ public abstract class Joueur {
 	}
 	
 	public void reOrganiserPlateau() {
-		for (int i = 0; i < Jeu.NB_CARTES_MAX_POSEES; i++)
+		for (int i = 0; i < this.getCartesPosees().getNbCartes(); i++)
 		if (!(this.getCartesPosees().cartes[i] instanceof Carte)){
-			int indiceProchaineCarteNonNull=i;
-			while(this.getMain().cartes[indiceProchaineCarteNonNull] == null)
-				if (indiceProchaineCarteNonNull < Jeu.NB_CARTES_MAX_POSEES-1)
+			int indiceProchaineCarteNonNull=i+1;
+			while(this.getCartesPosees().cartes[indiceProchaineCarteNonNull] == null && indiceProchaineCarteNonNull < this.getCartesPosees().getNbCartes())
 					indiceProchaineCarteNonNull++;
-			if (this.getMain().cartes[Jeu.NB_CARTES_MAX_POSEES-1] instanceof Carte)
-				indiceProchaineCarteNonNull=Jeu.NB_CARTES_MAX_POSEES;
+			if ((indiceProchaineCarteNonNull < this.getCartesPosees().getNbCartes()-1) || (this.getCartesPosees().cartes[indiceProchaineCarteNonNull]!=null)){	
 			this.getCartesPosees().cartes[i]=this.getCartesPosees().cartes[indiceProchaineCarteNonNull];
-			this.getCartesPosees().cartes[indiceProchaineCarteNonNull]=null;
+			this.getCartesPosees().cartes[indiceProchaineCarteNonNull]=null;}
+			}
 		}		
-		
-	}
 	
 	public abstract Carte choisirCarteDeck();
 	
@@ -212,18 +209,15 @@ public abstract class Joueur {
 	public abstract Personnage choisirCarteABuffer();
 
 	public void reOrganiserMain() {
-		for (int i = 0; i < Jeu.NB_MAX_CARTES_MAIN; i++)
+		for (int i = 0; i < this.getMain().getNbCartes(); i++)
 		if (!(this.getMain().cartes[i] instanceof Carte)){
-			int indiceProchaineCarteNonNull=i;
-			while(this.getMain().cartes[indiceProchaineCarteNonNull] == null)
-				if (indiceProchaineCarteNonNull < Jeu.NB_MAX_CARTES_MAIN-1)
+			int indiceProchaineCarteNonNull=i+1;
+			while(this.getMain().cartes[indiceProchaineCarteNonNull] == null && indiceProchaineCarteNonNull < this.getMain().getNbCartes())
 					indiceProchaineCarteNonNull++;
-			if (this.getMain().cartes[Jeu.NB_MAX_CARTES_MAIN-1] instanceof Carte)
-				indiceProchaineCarteNonNull=Jeu.NB_MAX_CARTES_MAIN;
+			if ((indiceProchaineCarteNonNull < this.getMain().getNbCartes()-1) || (this.getMain().cartes[indiceProchaineCarteNonNull]!=null)){	
 			this.getMain().cartes[i]=this.getMain().cartes[indiceProchaineCarteNonNull];
-			this.getMain().cartes[indiceProchaineCarteNonNull]=null;
-		}	
-		
+			this.getMain().cartes[indiceProchaineCarteNonNull]=null;}
+		}		
 	}	
 
 }
