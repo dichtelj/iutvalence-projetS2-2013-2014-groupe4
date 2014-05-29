@@ -115,17 +115,30 @@ public class Carte extends Personnage {
 		return this.coutEnMana;
 	}
 	
+	/**
+	 * methode qui attribue les points d'attaque à une carte
+	 * @return void
+	 * @param attaque 
+	 */
 	
 	public void setDegatAttaque(int attaque){
 		this.pointsDAttaque+=attaque;
 	}
-	
+	/**
+	 * methode qui attribue les points de vie à une carte
+	 * @return void
+	 * @param vie 
+	 */
 	
 	public void setPointDeVie(int vie){
 		this.pointDeVie+=vie;
 	}
 
-
+	/**
+	 * methode qui augmente les points de vie max et les points de vie courant de la carte
+	 * @return void
+	 * @param vie 
+	 */
 
 	public void buffVieMax(int vie) {
 		this.pointsDeVieMax+=vie;

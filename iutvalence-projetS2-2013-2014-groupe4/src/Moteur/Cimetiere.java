@@ -55,7 +55,11 @@ public class Cimetiere extends ListeDeCartes {
 
 	}
 
-
+	/**
+	 * methode qui attribue au cimetière les cartes
+	 * @return void
+	 * @param carte
+	 */
 	public void setCimetiere(Carte carte) {
 		this.cartes[this.nbCartes]=carte;
 		

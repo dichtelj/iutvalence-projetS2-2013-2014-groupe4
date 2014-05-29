@@ -456,36 +456,8 @@ public class Jeu implements Controleur {
 
 	}
 	
-	public String toString(){
-		String partie="";
-		partie+="point de vie héros :"+this.joueurs[1].getHeros().getPointsDeVie()+"\n";	
-		partie+=" peut jouer : "+((JoueurAleatoire)this.joueurs[1]).peutEncoreJouer()+"\n";
-		partie+="mana max :"+this.joueurs[1].getHeros().getNbManaMax()+"\n";
-		partie+="mana courant :"+this.joueurs[1].getHeros().getNbManaCourant()+"\n";	
-		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes()-1;indiceCarte++)
-				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
-		partie+="\n-------------------\n"; 
-		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
-			if (!(this.joueurs[1].getCartesPosees().cartes[indiceCarte]==null))
-			partie+=this.joueurs[1].getCartesPosees().cartes[indiceCarte].toString();
-		partie+="\n-------------------\n";
-		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
-			if (!(this.joueurs[0].getCartesPosees().cartes[indiceCarte]==null))
-			partie+=this.joueurs[0].getCartesPosees().cartes[indiceCarte].toString();
-		partie+="\n-------------------\n";
-		for (int indiceCarte=0;indiceCarte < this.joueurs[0].getMain().getNbCartes()-1;indiceCarte++){
-			System.out.println("carte qu'on veut écrire"+this.joueurs[0].getMain().cartes[indiceCarte].toString());
-			System.out.println("nb cartes main :"+this.joueurs[0].getMain().getNbCartes());
-			partie+=this.joueurs[0].getMain().cartes[indiceCarte].toString();
-		}
-		
-		partie+="\n point de vie héros :"+this.joueurs[0].getHeros().getPointsDeVie()+"\n";
-		partie+=" peut jouer : "+((JoueurAleatoire)this.joueurs[0]).peutEncoreJouer()+"\n";
-		partie+="mana max :"+this.joueurs[0].getHeros().getNbManaMax()+"\n";
-		partie+="mana courant :"+this.joueurs[0].getHeros().getNbManaCourant()+"\n \n \n";
-		return partie;
-		
-	}
+	public String toString(){ String partie=""; partie+="point de vie héros :"+this.joueurs[1].getHeros().getPointsDeVie()+"\n"; partie+=" peut jouer : "+((JoueurAleatoire)this.joueurs[1]).peutEncoreJouer()+"\n"; partie+="mana max :"+this.joueurs[1].getHeros().getNbManaMax()+"\n"; partie+="mana courant :"+this.joueurs[1].getHeros().getNbManaCourant()+"\n"; for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++) partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString(); partie+="\n-------------------\n"; for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++) if (!(this.joueurs[1].getCartesPosees().cartes[indiceCarte]==null)) partie+=this.joueurs[1].getCartesPosees().cartes[indiceCarte].toString(); partie+="\n-------------------\n"; for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++) if (!(this.joueurs[0].getCartesPosees().cartes[indiceCarte]==null)) partie+=this.joueurs[0].getCartesPosees().cartes[indiceCarte].toString(); partie+="\n-------------------\n"; for (int indiceCarte=0;indiceCarte < this.joueurs[0].getMain().getNbCartes();indiceCarte++){ System.out.println("carte qu'on veut écrire"+this.joueurs[0].getMain().cartes[indiceCarte].toString()); System.out.println("nb cartes main :"+this.joueurs[0].getMain().getNbCartes()); partie+=this.joueurs[0].getMain().cartes[indiceCarte].toString();}
+	return partie; }
 	
 	public Affichage getVue(){
 		return this.vue;

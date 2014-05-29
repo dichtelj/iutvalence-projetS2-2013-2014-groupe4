@@ -29,21 +29,40 @@ public class Heros extends Personnage {
 	this.nbManaCourant=0;		
 	}
 
+	/**
+	 * methode qui renvoie le nombre de mana maximum du heros
+	 * @return int 
+	 */
 	public int getNbManaMax() {
 		return this.nbManaMax;
 	}
-	
+	/**
+	 * methode qui renvoie le nombre de mana courant du heros
+	 * @return int
+	 */
 	public int getNbManaCourant() {
 		return this.nbManaCourant;
 	}
-
+	/**
+	 * methode qui attribue au heros un nombre de mana maximum du heros
+	 * @return void
+	 */
 	public void setNbManaCourant(int nbManaCourant) {
 		this.nbManaCourant = nbManaCourant;
 	}
+	/**
+	 * methode qui decremente le nombre de mana courant
+	 * @return void 
+	 * @param nbmana : le nombre de mana à decrementer
+	 */
 	
 	public void decrementerNbManaCourant(int nbmana){
 		this.nbManaCourant-=nbmana;
 	}
+	/**
+	 * methode qui incremente le nombre de mana maximum du heros
+	 * @return void
+	 */
 	
 	public void incrementerNbManaMax(){
 		this.nbManaMax++;

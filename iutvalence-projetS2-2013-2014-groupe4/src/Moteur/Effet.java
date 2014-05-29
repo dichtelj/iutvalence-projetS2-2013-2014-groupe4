@@ -37,26 +37,44 @@ public class Effet {
 		this.nom=nom;
 	}
 
-
+	/**
+	 * methode qui renvoie le mode d'activation de l'effet
+	 * @return String 
+	 */
 	public String getActivation() {
 		return this.activation;
 	}
 
-
+	/**
+	 * methode qui renvoie le nom de l'effet
+	 * @return String 
+	 */
 	public String getNom() {
 		return this.nom;
 	}
 
-
+	/**
+	 * methode qui renvoie le montant de dégats qu'occasionne l'effet
+	 * @return int 
+	 */
 	public int getMontantDeDegat() {
 		return this.montantDeDegat;
 	}
 
-
+	/**
+	 * methode qui renvoie le nombre de cibles affectées par l'effet
+	 * @return int
+	 */
 	public int getNbCible() {
 		return this.nbCible;
 	}
 	
+	/**
+	 * methode qui applique l'effet sur les cartes du joueur ou du joueur adverse , ou sur le joueur adverse
+	 * @return void 
+	 *@param joueur : le joueur lançant l'effet
+	 *@param joueurAdverse : le joueur adverse
+	 */
 	public void appliquerEffet(Joueur joueur, Joueur joueurAdverse){
 		Personnage carteChoisie=null;
 		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7)){
