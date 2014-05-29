@@ -67,4 +67,8 @@ public class Heros extends Personnage {
 	public void incrementerNbManaMax(){
 		this.nbManaMax++;
 	}
+	
+	public void setPointsDeVie(int pointDeVie){
+		this.pointDeVie=pointDeVie;
+	}
 }
