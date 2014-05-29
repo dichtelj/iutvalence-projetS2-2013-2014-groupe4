@@ -415,30 +415,27 @@ public class Jeu implements Controleur {
 	 * Methode qui permet d'enlever du plateau les cartes n'ayant plus de vie.
 	 */
 	public void viderPlateau() {
-		for (int i = 0; i < this.joueurs[0].getNbCartesPosees(); i++)
-			if (this.joueurs[0].getCartesPosees().cartes[i].getPointsDeVie() <= 0)
-			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet()!=null)
-				if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("fin") == 0)
-				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(this.joueurs[0], this.joueurs[1]);
-			else{
-				this.jeterCarte(this.joueurs[0].getCartesPosees().cartes[i], this.joueurs[0]);
-				this.joueurs[0].getCartesPosees().cartes[i] = null;
-				this.joueurs[0].decrementerNbCartesPosees();
-				this.joueurs[0].reOrganiserPlateau();
-			}
+		for (int i = 0; i < this.joueurs[0].getNbCartesPosees(); i++){
+			if (this.joueurs[0].getCartesPosees().cartes[i].getPointsDeVie() <= 0){
+						this.jeterCarte(this.joueurs[0].getCartesPosees().cartes[i], this.joueurs[0]);
+						this.joueurs[0].getCartesPosees().cartes[i] = null;
+						this.joueurs[0].decrementerNbCartesPosees();
+						this.joueurs[0].reOrganiserPlateau();
+					}
+		}
+				
+		
 		for (int j = 0; j < this.joueurs[1].getNbCartesPosees(); j++) {
-			if (this.joueurs[1].getCartesPosees().cartes[j].getPointsDeVie() <= 0)
-			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet()!=null)
-			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("fin") == 0)
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(this.joueurs[1], this.joueurs[0]);
-			else{
-				this.jeterCarte(this.joueurs[1].getCartesPosees().cartes[j], this.joueurs[1]);
-			this.joueurs[1].getCartesPosees().cartes[j] = null;
-			this.joueurs[1].decrementerNbCartesPosees();
-			this.joueurs[1].reOrganiserPlateau();
+			if (this.joueurs[1].getCartesPosees().cartes[j].getPointsDeVie() <= 0){
+						this.jeterCarte(this.joueurs[1].getCartesPosees().cartes[j], this.joueurs[1]);
+						this.joueurs[1].getCartesPosees().cartes[j] = null;
+						this.joueurs[1].decrementerNbCartesPosees();
+						this.joueurs[1].reOrganiserPlateau();
+					}
 		}
 		}
-	}
+	
+	
 
 	public void melangerDeck(Joueur joueur) {
 		Random generateurDeNombresAleatoires = new Random();
@@ -456,8 +453,7 @@ public class Jeu implements Controleur {
 	}
 
 	public void attribuerMainDepart(Joueur joueur) {
-		joueur.setMain(LISTE_CARTE_GENERALE.cartes[59]);
-		joueur.incrementerCurseurDeck();
+		joueur.piocherCarte();
 		joueur.piocherCarte();
 		joueur.piocherCarte();
 	}
@@ -466,11 +462,10 @@ public class Jeu implements Controleur {
 	 * Envoi la carte passer en paramètre dans le cimetière
 	 */
 	public void jeterCarte(Carte carte, Joueur joueur) {
+		if (carte.getEffet()!=null)
 		if (carte.effet.getActivation().compareTo("mort") == 0)
 			carte.effet.appliquerEffet(joueur,this.joueurs[2-joueur.getNumeroJoueur()]);
-			joueur.getCimetiere().setCimetiere(carte);
-			joueur.getCimetiere().incrementerNbCartes();
-
+		joueur.getCimetiere().setCimetiere(carte);
 	}
 	
 	public String toString(){

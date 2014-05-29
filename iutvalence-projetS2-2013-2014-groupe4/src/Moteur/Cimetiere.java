@@ -62,7 +62,7 @@ public class Cimetiere extends ListeDeCartes {
 	 */
 	public void setCimetiere(Carte carte) {
 		this.cartes[this.nbCartes]=carte;
-		
+		this.nbCartes++;
 	}
 
 	
