@@ -51,7 +51,7 @@ public class JoueurAleatoire extends Joueur {
 	
 	
 	public boolean peutEncoreAttaquer(){
-		for (int indiceCarte = 0; indiceCarte < this.getNbCartesPlateau(); indiceCarte++)
+		for (int indiceCarte = 0; indiceCarte < this.getNbCartesPosees(); indiceCarte++)
 			if (this.getCartesPosees().cartes[indiceCarte].estInactif() == false)
 				return true;
 	return false;
@@ -60,21 +60,23 @@ public class JoueurAleatoire extends Joueur {
 	@Override
 	public Personnage choisirPersonnageAAttaquer(Joueur joueurAdverse) {
 		Random generateurNombreAleatoire = new Random();
-		int indexPersonnageAAttaque = generateurNombreAleatoire.nextInt(joueurAdverse.getNbCartesPlateau() + 1);
-			if ((indexPersonnageAAttaque) == joueurAdverse.getNbCartesPlateau())
+		if (joueurAdverse.getNbCartesPosees()==0)
+			return joueurAdverse.getHeros();
+		int indexPersonnageAAttaque = generateurNombreAleatoire.nextInt(joueurAdverse.getNbCartesPosees() + 1);
+			if ((indexPersonnageAAttaque) == joueurAdverse.getNbCartesPosees())
 				return joueurAdverse.getHeros();
 			return joueurAdverse.getCartesPosees().cartes[indexPersonnageAAttaque];
 	}
 
-	public Carte choisirCarteAttaqueeAleatoire() {
+	public Carte choisirCarteAttaquanteAleatoire() {
 		Random generateurDeNombresAleatoires= new Random();
-		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(Jeu.NB_CARTES_MAX_POSEES);
+		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
 			return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
 
 	public Carte choisirCarteABuffer() {
 		Random generateurDeNombresAleatoires= new Random();
-		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPlateau());
+		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
 			return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
 	

@@ -78,31 +78,35 @@ public class Effet {
 	public void appliquerEffet(Joueur joueur, Joueur joueurAdverse){
 		Personnage carteChoisie=null;
 		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7)){
-				for (int nbCible=0; nbCible < joueurAdverse.getCartesPosees().nbCartes; nbCible++)
-					joueur.getCartesPosees().cartes[nbCible].subirDegats(this.montantDeDegat);
+				for (int i=0; i < joueurAdverse.getCartesPosees().nbCartes; i++)
+					joueur.getCartesPosees().cartes[i].subirDegats(this.montantDeDegat);
 		}
 		if ((this.nom).compareTo("degat direct")==0){
-			for (int i=0; i<this.nbCible;i++)
+			int nbCibleEffectif;
+			if (joueurAdverse.getCartesPosees().getNbCartes() < this.nbCible-1)
+				nbCibleEffectif=joueurAdverse.getCartesPosees().getNbCartes()+1;
+			nbCibleEffectif=this.nbCible;
+			for (int i=0; i<nbCibleEffectif;i++)
 				carteChoisie=joueur.choisirPersonnageAAttaquer(joueurAdverse);
 				carteChoisie.subirDegats(this.montantDeDegat);
 		}
 		
-		if (this.nom.compareTo("buff attaque")==0 && joueur.getNbCartesPlateau() > 0){
+		if (this.nom.compareTo("buff attaque")==0 && joueur.getNbCartesPosees() > 0){
 			carteChoisie=joueur.choisirCarteABuffer();
 			((Carte)carteChoisie).setDegatAttaque(this.montantDeDegat);				
 		}
 		
-		if (this.nom.compareTo("buff vie")==0 && joueur.getNbCartesPlateau() > 0){
+		if (this.nom.compareTo("buff vie")==0 && joueur.getNbCartesPosees() > 0){
 			carteChoisie=joueur.choisirCarteABuffer();
 			((Carte)carteChoisie).buffVieMax(this.montantDeDegat);
 		}
 		
 		if ((((this.nom.compareTo("heal"))==0) && (this.nbCible==7))){
-			for (int nbCible=0; nbCible < joueur.getNbCartesPlateau(); nbCible++)
-				joueur.getCartesPosees().cartes[nbCible].soigner(this.montantDeDegat);
+		for (int i=0; i < joueur.getCartesPosees().getNbCartes();i++)
+				joueur.getCartesPosees().cartes[i].soigner(this.montantDeDegat);
 		}
 			
-		if ((this.nom.compareTo("heal")==0 && joueur.getNbCartesPlateau() > 0)){
+		if ((this.nom.compareTo("heal")==0 && joueur.getNbCartesPosees() > 0)){
 			carteChoisie=joueur.choisirCarteABuffer();
 			carteChoisie.soigner(this.montantDeDegat);
 		}

@@ -16,7 +16,7 @@ public abstract class Joueur {
 	/**
 	 * Cartes dans le cimetiere du joueur
 	 */
-	private ListeDeCartes cimetiere;
+	private Cimetiere cimetiere;
 
 	/**
 	 * Permet de savoir où le joueur en ai de la pioche de son deck
@@ -44,7 +44,7 @@ public abstract class Joueur {
 		this.numeroJoueur = numeroDuJoueur;
 		this.deck = new ListeDeCartes(Jeu.NB_CARTES_DECK);
 		this.main = new ListeDeCartes(Jeu.NB_MAX_CARTES_MAIN);
-		this.cimetiere = new ListeDeCartes(Jeu.NB_CARTES_DECK);
+		this.cimetiere = new Cimetiere();
 		this.heros = new Heros(nomHeros);
 		this.cartesPosees = new ListeDeCartes(Jeu.NB_CARTES_MAX_POSEES);
 		this.curseurDeck = Jeu.NB_CARTES_DECK - 1;
@@ -76,7 +76,7 @@ public abstract class Joueur {
 	 * Renvoi le cimetiere du joueur
 	 */
 	public Cimetiere getCimetiere() {
-		return (Cimetiere) this.cimetiere;
+		return this.cimetiere;
 	}
 
 	/**
@@ -154,7 +154,7 @@ public abstract class Joueur {
 	/**
 	 * Renvoi le curseur plateau du joueur
 	 */
-	public int getNbCartesPlateau() {
+	public int getNbCartesPosees() {
 		return this.cartesPosees.nbCartes;
 	}
 
@@ -183,7 +183,7 @@ public abstract class Joueur {
 			return false;
 	}
 
-	public void incrementerNbCartes() {
+	public void incrementerNbCartesPosees() {
 		this.cartesPosees.nbCartes++;
 	}
 
@@ -231,5 +231,4 @@ public abstract class Joueur {
 				}
 			}
 	}
-
 }

@@ -46,12 +46,15 @@ public class Jeu implements Controleur {
 	 *            joueur qui débute son tour
 	 */
 	public void debutTour(Joueur joueur) {
-		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(); i++)
+		for (int i = 0; i < this.joueurs[0].getNbCartesPosees(); i++)
+			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet()!=null)
 			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("debut") == 0)
-				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
-		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++)
+				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(this.joueurs[0],this.joueurs[1]);
+		
+		for (int j = 0; j < this.joueurs[1].getNbCartesPosees(); j++)
+			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet()!=null)
 			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("debut") == 0)
-				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
+				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(this.joueurs[1],this.joueurs[0]);
 		if (joueur.getMain().nbCartes < Jeu.NB_MAX_CARTES_MAIN)
 			joueur.piocherCarte();
 		joueur.incrementerCurseurDeck();
@@ -78,19 +81,18 @@ public class Jeu implements Controleur {
 		int compteurTour=1;
 		int compteurTourEfectif=0;
 		while (!(this.partieFinie())){
+			System.out.println("partie finie : "+this.partieFinie());
 			joueurCourant = this.joueurs[(indiceJoueurCourant + 1) % 2];
-			System.out.println("indice joueur courant"+indiceJoueurCourant%2);
-			System.out.println(("tour n° : "+compteurTour+"du joueur "+joueurCourant.getNumeroJoueur()));
+			System.out.println("tour n°"+compteurTour+" du joueur "+joueurCourant.getNumeroJoueur());
 			this.debutTour(joueurCourant);
 			if(joueurCourant instanceof JoueurAleatoire)
-			this.jouerTourBot((JoueurAleatoire)joueurCourant);
+				this.jouerTourBot((JoueurAleatoire)joueurCourant);
 			this.finTour(joueurCourant);
 			indiceJoueurCourant++;
 			System.out.println(this.toString());
 			compteurTourEfectif++;
 			if (compteurTourEfectif%2==0)
 				compteurTour++;
-			System.out.println("partie finie : "+this.partieFinie());
 		}
 		System.out.println("PARTIE FINIE NIGGA");
 	}
@@ -111,9 +113,9 @@ public class Jeu implements Controleur {
 				}
 				}
 			else {
-				for (int indiceCarte=0; indiceCarte<joueurCourant.getNbCartesPlateau();indiceCarte++){
-					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[1-joueurCourant.getNumeroJoueur()]);
-					Carte carteAttaquante=joueurCourant.choisirCarteAttaqueeAleatoire();
+				for (int indiceCarte=0; indiceCarte<joueurCourant.getNbCartesPosees();indiceCarte++){
+					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[2-joueurCourant.getNumeroJoueur()]);
+					Carte carteAttaquante=joueurCourant.choisirCarteAttaquanteAleatoire();
 				try {
 					this.attaquerAvecCarte(carteAttaquante, personnageAttaque, joueurCourant);
 				}
@@ -151,7 +153,7 @@ public class Jeu implements Controleur {
 				}
 			}
 			else {
-				Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[1-joueurCourant.getNumeroJoueur()]);
+				Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[2-joueurCourant.getNumeroJoueur()]);
 				try {
 					this.attaquerAvecCarte(carteAUtiliser.getListe().cartes[carteAUtiliser.getIndex()], personnageAttaque, joueurCourant);
 				}
@@ -179,15 +181,18 @@ public class Jeu implements Controleur {
 	 *            joueur qui fini son tour
 	 */
 	public void finTour(Joueur joueur) {
-		for (int indiceCarte = 0; indiceCarte < this.joueurs[0].getNbCartesPlateau(); indiceCarte++){
+		for (int indiceCarte = 0; indiceCarte < this.joueurs[0].getNbCartesPosees(); indiceCarte++){
+		if (this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet()!=null)
 			if (this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0)
-				this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);}
-		for (int indiceCarte = 0; indiceCarte < this.joueurs[1].getNbCartesPlateau(); indiceCarte++){
-				if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0){
-				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
-				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);}
+				this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[0],this.joueurs[1]);}
+		for (int indiceCarte = 0; indiceCarte < this.joueurs[1].getNbCartesPosees(); indiceCarte++){
+			System.out.println("le joueur "+joueur.getNumeroJoueur()+" a "+joueur.getNbCartesPosees()+" carte posees sur le plateau");
+			System.out.println("indice carte fin :"+indiceCarte);
+			if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet()!=null)
+			if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0){
+				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[1],this.joueurs[0]);}
 			}
-			for (int i = 0; i < joueur.getNbCartesPlateau(); i++)
+			for (int i = 0; i < joueur.getNbCartesPosees(); i++)
 				joueur.getCartesPosees().cartes[i].modeActive();
 		this.viderPlateau();
 		
@@ -212,11 +217,12 @@ public class Jeu implements Controleur {
 		if(carte.getEffet()!=null)
 			if (carte.getEffet().getActivation().compareTo("invocation") == 0)
 				carte.getEffet().appliquerEffet(joueur,this.joueurs[2-joueur.getNumeroJoueur()]);
-		joueur.getCartesPosees().cartes[joueur.getNbCartesPlateau()] = carte;
+		joueur.getCartesPosees().cartes[joueur.getNbCartesPosees()] = carte;
 		joueur.getHeros().decrementerNbManaCourant(carte.getCoutEnMana());
 		int indexCartePosee=this.trouverIndexCarteDansMain(carte, joueur);
-		joueur.decrementerNbCartesMain();
 		joueur.getMain().cartes[indexCartePosee]=null;
+		joueur.decrementerNbCartesMain();
+		joueur.incrementerNbCartesPosees();
 		joueur.reOrganiserMain();
 		this.viderPlateau();
 		joueur.reOrganiserPlateau();
@@ -260,11 +266,14 @@ public class Jeu implements Controleur {
 	 * @return boolean
 	 */
 	public boolean cibleViable(Personnage personnage, Joueur joueur) {
-		if (this.existeProvocation(joueur))
+		if (this.existeProvocation(joueur)){
 			if (!(personnage instanceof Carte))
 				return false;
+		if(((Carte) personnage).getEffet()!=null)
+			return false;
 		if (((Carte) personnage).getEffet().getNom().compareTo("provocation") != 0)
 			return false;
+		}
 		return true;
 	}
 
@@ -279,8 +288,9 @@ public class Jeu implements Controleur {
 	 *         adverse
 	 */
 	public boolean existeProvocation(Joueur joueur) {
-			for (int i = 0; i < joueur.getNbCartesPlateau(); i++)
-				if (joueur.getCartesPosees().cartes[i].getEffet().getNom().compareTo("provocation") == 0)
+			for (int i = 0; i < joueur.getNbCartesPosees(); i++)
+				if(joueur.getCartesPosees().cartes[i].getEffet()!=null)
+					if (joueur.getCartesPosees().cartes[i].getEffet().getNom().compareTo("provocation") == 0)
 					return true;
 			return false;
 	}
@@ -408,21 +418,28 @@ public class Jeu implements Controleur {
 	 * Methode qui permet d'enlever du plateau les cartes n'ayant plus de vie.
 	 */
 	public void viderPlateau() {
-		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(); i++)
+		for (int i = 0; i < this.joueurs[0].getNbCartesPosees(); i++)
 			if (this.joueurs[0].getCartesPosees().cartes[i].getPointsDeVie() <= 0)
-				if (this.joueurs[1].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("fin") == 0){
+			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet()!=null)
+				if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("fin") == 0)
+				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(this.joueurs[0], this.joueurs[1]);
+			else{
 				this.jeterCarte(this.joueurs[0].getCartesPosees().cartes[i], this.joueurs[0]);
 				this.joueurs[0].getCartesPosees().cartes[i] = null;
 				this.joueurs[0].decrementerNbCartesPosees();
 				this.joueurs[0].reOrganiserPlateau();
 			}
-		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++) {
-			if (this.joueurs[0].getCartesPosees().cartes[j].getPointsDeVie() <= 0)
+		for (int j = 0; j < this.joueurs[1].getNbCartesPosees(); j++) {
+			if (this.joueurs[1].getCartesPosees().cartes[j].getPointsDeVie() <= 0)
+			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet()!=null)
 			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("fin") == 0)
+				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(this.joueurs[1], this.joueurs[0]);
+			else{
 				this.jeterCarte(this.joueurs[1].getCartesPosees().cartes[j], this.joueurs[1]);
 			this.joueurs[1].getCartesPosees().cartes[j] = null;
 			this.joueurs[1].decrementerNbCartesPosees();
 			this.joueurs[1].reOrganiserPlateau();
+		}
 		}
 	}
 
@@ -468,12 +485,10 @@ public class Jeu implements Controleur {
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
 				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n"; 
-		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
-			if (!(this.joueurs[1].getCartesPosees().cartes[indiceCarte]==null))
+		for (int indiceCarte=0;indiceCarte < this.joueurs[1].getCartesPosees().getNbCartes();indiceCarte++)
 			partie+=this.joueurs[1].getCartesPosees().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n";
-		for (int indiceCarte=0;indiceCarte<this.joueurs[0].getMain().getNbCartes();indiceCarte++)
-			if (!(this.joueurs[0].getCartesPosees().cartes[indiceCarte]==null))
+		for (int indiceCarte=0;indiceCarte < this.joueurs[0].getCartesPosees().getNbCartes();indiceCarte++)
 			partie+=this.joueurs[0].getCartesPosees().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n";
 		for (int indiceCarte=0;indiceCarte < this.joueurs[0].getMain().getNbCartes();indiceCarte++){
@@ -485,7 +500,6 @@ public class Jeu implements Controleur {
 		partie+="mana max :"+this.joueurs[0].getHeros().getNbManaMax()+"\n";
 		partie+="mana courant :"+this.joueurs[0].getHeros().getNbManaCourant()+"\n \n \n";
 		return partie;
-		
 	}
 	
 	public Affichage getVue(){

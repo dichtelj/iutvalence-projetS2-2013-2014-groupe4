@@ -5,7 +5,7 @@ import IHM.AffichageFenetre;
 public class Application {
 
 	public static void main(String[] args) {
-		Joueur[] joueurs= new Joueur[]{new JoueurAleatoire(1, "Noxus"), new JoueurAleatoire(2, "Demacia")};
+		Joueur[] joueurs= new Joueur[]{new JoueurAleatoire(2, "Noxus"), new JoueurAleatoire(1, "Demacia")};
 		Affichage ihm=new AffichageConsole();
 		Jeu jeu=new Jeu(joueurs, ihm);
 		try
