@@ -46,14 +46,13 @@ public class Jeu implements Controleur {
 	 *            joueur qui débute son tour
 	 */
 	public void debutTour(Joueur joueur) {
-		System.out.println("nb cartes plateau : "+joueur.getCartesPosees().getNbCartes());
 		for (int i = 0; i < this.joueurs[0].getNbCartesPlateau(); i++)
 			if (this.joueurs[0].getCartesPosees().cartes[i].getEffet().getActivation().compareTo("debut") == 0)
 				this.joueurs[0].getCartesPosees().cartes[i].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
 		for (int j = 0; j < this.joueurs[1].getNbCartesPlateau(); j++)
 			if (this.joueurs[1].getCartesPosees().cartes[j].getEffet().getActivation().compareTo("debut") == 0)
 				this.joueurs[1].getCartesPosees().cartes[j].getEffet().appliquerEffet(joueur,this.joueurs[1-joueur.getNumeroJoueur()]);
-		if (!(joueur.getMain().nbCartes == joueur.getMain().nbCartesMax))
+		if (joueur.getMain().nbCartes < Jeu.NB_MAX_CARTES_MAIN)
 			joueur.piocherCarte();
 		joueur.incrementerCurseurDeck();
 		if (joueur.getHeros().getNbManaMax() < NB_MANA_MAX)
@@ -76,17 +75,19 @@ public class Jeu implements Controleur {
 	public void jouer() {
 		int indiceJoueurCourant = 0;
 		Joueur joueurCourant = this.joueurs[indiceJoueurCourant];
-		int compteurTour=0;
+		int compteurTour=1;
+		int compteurTourEfectif=0;
 		do {
-			System.out.println("tour n° : "+compteurTour);
+			System.out.println(("tour n° : "+compteurTour+"du joueur"+joueurCourant.getNumeroJoueur()));
 			this.debutTour(joueurCourant);
-			System.out.println(""+this.joueurs[1].getHeros().getNbManaMax());
 		if(joueurCourant instanceof JoueurAleatoire)
 			this.jouerTourBot((JoueurAleatoire)joueurCourant);
 			this.finTour(joueurCourant);
 			System.out.println(this.toString());
 			joueurCourant = this.joueurs[(indiceJoueurCourant + 1) % 2];
-			compteurTour++;
+			compteurTourEfectif++;
+			if (compteurTourEfectif%2==0)
+				compteurTour++;
 			System.out.println("partie finie : "+this.partieFinie());
 		}
 		while (!(this.partieFinie()));
@@ -97,7 +98,6 @@ public class Jeu implements Controleur {
 			if(joueurCourant.peutPoserUneCarte()){
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeurJouable();
 				try {
-					System.out.println("mana heros"+joueurCourant.getHeros().getNbManaCourant());
 					this.poserCarte(carteAUtiliser, joueurCourant);
 				}
 				catch (PlateauPlein e1) {
@@ -479,7 +479,6 @@ public class Jeu implements Controleur {
 		partie+="mana max :"+this.joueurs[0].getHeros().getNbManaMax()+"\n";
 		partie+="mana courant :"+this.joueurs[0].getHeros().getNbManaCourant()+"\n \n \n";
 		return partie;
-		
 		
 	}
 	
