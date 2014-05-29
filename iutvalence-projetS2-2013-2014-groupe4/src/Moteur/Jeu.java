@@ -103,7 +103,6 @@ public class Jeu implements Controleur {
 				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeurJouable();
 				try {
 					this.poserCarte(carteAUtiliser, joueurCourant);
-					this.toString();
 				}
 				catch (PlateauPlein e1) {
 					this.vue.afficherMessageErreur("Plateau Plein");
@@ -114,7 +113,7 @@ public class Jeu implements Controleur {
 				}
 			else {
 				for (int indiceCarte=0; indiceCarte<joueurCourant.getNbCartesPosees();indiceCarte++){
-					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[2-joueurCourant.getNumeroJoueur()]);
+					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[joueurCourant.getNumeroJoueur()-1]);
 					Carte carteAttaquante=joueurCourant.choisirCarteAttaquanteAleatoire();
 				try {
 					this.attaquerAvecCarte(carteAttaquante, personnageAttaque, joueurCourant);
@@ -186,8 +185,6 @@ public class Jeu implements Controleur {
 			if (this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0)
 				this.joueurs[0].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[0],this.joueurs[1]);}
 		for (int indiceCarte = 0; indiceCarte < this.joueurs[1].getNbCartesPosees(); indiceCarte++){
-			System.out.println("le joueur "+joueur.getNumeroJoueur()+" a "+joueur.getNbCartesPosees()+" carte posees sur le plateau");
-			System.out.println("indice carte fin :"+indiceCarte);
 			if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet()!=null)
 			if (this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().getActivation().compareTo("fin") == 0){
 				this.joueurs[1].getCartesPosees().cartes[indiceCarte].getEffet().appliquerEffet(this.joueurs[1],this.joueurs[0]);}
@@ -245,7 +242,7 @@ public class Jeu implements Controleur {
 	 * @throws PlateauPlein
 	 * 
 	 */
-	public void attaquerAvecCarte(Carte carte, Personnage personnage, Joueur joueur) throws CibleInvalide, EstInactif{		
+	public void attaquerAvecCarte(Carte carte, Personnage personnage, Joueur joueur) throws CibleInvalide, EstInactif{
 			if (carte.estInactif())
 				throw new EstInactif();
 			if (!(this.cibleViable(personnage, joueur)))
@@ -265,13 +262,13 @@ public class Jeu implements Controleur {
 	 *            joueur ciblé
 	 * @return boolean
 	 */
-	public boolean cibleViable(Personnage personnage, Joueur joueur) {
-		if (this.existeProvocation(joueur)){
-			if (!(personnage instanceof Carte))
-				return false;
-		if(((Carte) personnage).getEffet()!=null)
+	public boolean cibleViable(Personnage personnageAttaque, Joueur joueur) {
+		if (this.existeProvocation(this.joueurs[joueur.getNumeroJoueur()-1])){
+		if (!(personnageAttaque instanceof Carte))
 			return false;
-		if (((Carte) personnage).getEffet().getNom().compareTo("provocation") != 0)
+		if(((Carte) personnageAttaque).getEffet()==null)
+			return false;
+		if (((Carte) personnageAttaque).getEffet().getNom().compareTo("provocation") != 0)
 			return false;
 		}
 		return true;
@@ -374,7 +371,7 @@ public class Jeu implements Controleur {
 		liste.cartes[47] = new Carte("Janna",1,3,(new Effet("fin","heal",2,0)),3,"Avatar de l'air");
 		liste.cartes[2] = new Carte("Jarvan IV", 4, 5, null, 4, "Exemple Demacien");
 		liste.cartes[48] = new Carte("Jax",4,4,(new Effet("","provocation",0,0)),4,"Maître d'armes");
-		liste.cartes[49] = new Carte("Jayce",3,2,(new Effet("","piocher",1,0)),3,"Protecteur du futur");
+		liste.cartes[49] = new Carte("Jayce",3,2,(new Effet("invocation","piocher",1,0)),3,"Protecteur du futur");
 		liste.cartes[12] = new Carte("Jinx", 2, 2, null, 1, "La gachette folle");
 		
 		liste.cartes[50] = new Carte("Karma",3,2,(new Effet("fin","buff attaque",1,1)),4,"Sagesse incarnée");

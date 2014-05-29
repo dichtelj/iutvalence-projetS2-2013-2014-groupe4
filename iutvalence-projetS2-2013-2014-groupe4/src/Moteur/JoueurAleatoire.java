@@ -19,9 +19,18 @@ public class JoueurAleatoire extends Joueur {
 	public Carte choisirCarteDeck() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
+			while (this.estDansDeck(Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie]))
+					indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
 			return Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie];
 	}
 
+
+	private boolean estDansDeck(Carte carte) {
+		for (int indiceCarte=this.getCurseurDeck(); indiceCarte < Jeu.NB_CARTES_DECK; indiceCarte++)
+			if (this.getDeck().cartes[this.getCurseurDeck()]==carte)
+				return true;
+		return false;
+	}
 
 	public Position choisirCarteAUtiliser() {
 		return null;
@@ -71,7 +80,9 @@ public class JoueurAleatoire extends Joueur {
 	public Carte choisirCarteAttaquanteAleatoire() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
-			return this.getCartesPosees().cartes[indexCarteChoisie];
+		while (this.getCartesPosees().cartes[indexCarteChoisie].estInactif())
+			indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
+		return this.getCartesPosees().cartes[indexCarteChoisie];
 	}
 
 	public Carte choisirCarteABuffer() {

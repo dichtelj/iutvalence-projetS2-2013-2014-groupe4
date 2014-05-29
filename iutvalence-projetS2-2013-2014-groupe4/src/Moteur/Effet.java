@@ -77,10 +77,10 @@ public class Effet {
 	 */
 	public void appliquerEffet(Joueur joueur, Joueur joueurAdverse){
 		Personnage carteChoisie=null;
-		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7)){
+		if (((this.nom.compareTo("degat direct"))==0) && (this.nbCible==7))
 				for (int i=0; i < joueurAdverse.getCartesPosees().nbCartes; i++)
 					joueur.getCartesPosees().cartes[i].subirDegats(this.montantDeDegat);
-		}
+		
 		if ((this.nom).compareTo("degat direct")==0){
 			int nbCibleEffectif;
 			if (joueurAdverse.getCartesPosees().getNbCartes() < this.nbCible-1)

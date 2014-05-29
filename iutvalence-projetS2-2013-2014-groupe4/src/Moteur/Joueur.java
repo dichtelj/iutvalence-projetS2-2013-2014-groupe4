@@ -165,10 +165,10 @@ public abstract class Joueur {
 	public void setDeck(Carte carteChoisie) {
 		this.deck.cartes[this.getCurseurDeck()] = carteChoisie;
 		if (this.curseurDeck > 0)
-			this.decrementerNbCartesDeck();
+			this.decrementerCurseurDeck();
 	}
 
-	public void decrementerNbCartesDeck() {
+	public void decrementerCurseurDeck() {
 		this.curseurDeck--;
 	}
 
