@@ -42,6 +42,8 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		
 		private BoutonPlateauJoueur[] boutonsPlateauJoueur;
 		
+		private BoutonFinDeTour boutonFinTour ;
+		
 	private MenuJeu menu;
 	
 	private Carte carteAttaquante;
@@ -53,6 +55,8 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	private Carte carteABuffer;
 	
 	private Carte carteDeck;
+
+	private boolean tourFini;
 	
 
 	
@@ -133,7 +137,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		infos.setLayout(new GridLayout(1,2));
 		mainJoueur.setLayout(new GridLayout(1,11,10 ,20));
 		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
-		cartesPoseesJoueur.setLayout(new GridLayout(1,7, 20, 20));
+		cartesPoseesJoueur.setLayout(new GridLayout(1,8, 20, 20));
 		panelAdverse.add(cartesPoseesAdverse);
 		panelJoueur.add(cartesPoseesJoueur);
 		panelMain.add(mainJoueur);
@@ -185,6 +189,10 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 			this.carteABuffer=((BoutonPlateauJoueur)boutonAppuye).getCarte();
 			this.carteAttaquante=null;
 			this.carteABuffer=null;
+		}
+		if (boutonAppuye instanceof BoutonFinDuTour)
+		{
+			this.tourFini=true;
 		}
 	}
 
@@ -243,6 +251,9 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	public void afficherPlateau(){
 		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees();indiceCarte++){
+			if (indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees())
+				   this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
+				   this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
 			try{
 				Thread.sleep(1000);
 			}
@@ -254,6 +265,9 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		}
 		
 		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees();indiceCarte++){
+			if (indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees())
+				   this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
+				   this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
 			try{
 				Thread.sleep(1000);
 			}
@@ -265,6 +279,9 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		}
 		
 		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesMain();indiceCarte++){
+			if (indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees())
+				   this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
+				   this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
 			try{
 				Thread.sleep(500);
 			}
@@ -280,6 +297,15 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	public Controleur getControleur(){
 		return controleur;
+	}
+
+
+
+
+
+	@Override
+	public boolean getTourFini() {
+		return this.tourFini;
 	}
 
 	}

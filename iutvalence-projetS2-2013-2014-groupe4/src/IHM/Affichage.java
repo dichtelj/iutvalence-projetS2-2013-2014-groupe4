@@ -32,4 +32,6 @@ public interface Affichage
 		
 		public void associerControleur(Controleur controleur);
 
+		public boolean getTourFini();
+
 }

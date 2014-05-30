@@ -75,4 +75,10 @@ public class AffichageConsole implements Affichage{
 		
 	}
 
+	@Override
+	public boolean getTourFini() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

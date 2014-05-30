@@ -30,11 +30,12 @@ public class BoutonPlateauJoueur extends JButton{
 	}
 	
 	public void afficherBouton(){
-		if (this.carte==null)
-			this.setEnabled(false);
-		else{
-			this.setEnabled(true);
-			this.setText("<html>"+this.carte.getNom()+"<br>"+this.carte.getAttaque()+"/"+this.carte.getVie()+"<br>"+"Cout:"+this.carte.getCout()+"</html>");
-		}
-	}
+		if (this.carte!=null){
+			   this.setEnabled(true);
+			   this.setText("<html>"+this.carte.getNom()+"<br>"+this.carte.getAttaque()+"/"+this.carte.getVie()+"<br>"+"Cout:"+this.carte.getCout()+"</html>");
+			   }
+			  else{
+			   this.setEnabled(false);
+			  }
+			 }
 }

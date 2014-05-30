@@ -163,6 +163,10 @@ public class Jeu implements Controleur {
 	 */
 
 	public void jouerTour(Joueur joueurCourant) {
+		while (this.vue.getTourFini() == false)
+		{
+			this.jouerTourIntermediaire(joueurCourant);
+		}
 	}
 	
 	/**
