@@ -41,6 +41,8 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		private BoutonPlateauAdverse[] boutonsPlateauAdverse;
 		
 		private BoutonPlateauJoueur[] boutonsPlateauJoueur;
+		
+		private BoutonHeros[] boutonsHeros;
 	
 	private MenuJeu menu;
 	
@@ -82,32 +84,40 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	public void initialiserPartie() {
 		JPanel partie= new JPanel();
 		JPanel mainAdverse= new JPanel();
-		mainAdverse.setBackground(Color.cyan);
+		mainAdverse.setOpaque(false);
 		JPanel cartesPoseesAdverse= new JPanel();
-		cartesPoseesAdverse.setBackground(Color.green);
+		cartesPoseesAdverse.setOpaque(false);
 		JPanel mainJoueur= new JPanel();
-		mainJoueur.setBackground(Color.magenta);
+		mainJoueur.setOpaque(true);
 		JPanel cartesPoseesJoueur= new JPanel();
 		this.boutonsMainJoueur=new BoutonMain[Jeu.NB_MAX_CARTES_MAIN];
 		this.boutonsPlateauAdverse=new BoutonPlateauAdverse[Jeu.NB_CARTES_MAX_POSEES];
 		this.boutonsPlateauJoueur=new BoutonPlateauJoueur[Jeu.NB_CARTES_MAX_POSEES];
+		this.boutonsHeros= new BoutonHeros[2];
 		
 		for (int indiceBouton=0; indiceBouton< Jeu.NB_CARTES_MAX_POSEES; indiceBouton++){
 			BoutonPlateauAdverse boutonCreer=new BoutonPlateauAdverse(this);
 			cartesPoseesAdverse.add(boutonCreer);
 			this.boutonsPlateauAdverse[indiceBouton]=boutonCreer;
 			BoutonPlateauJoueur boutonCreer2=new BoutonPlateauJoueur(this);
-			cartesPoseesJoueur.add(boutonCreer2);
 			this.boutonsPlateauJoueur[indiceBouton]=boutonCreer2;
+			cartesPoseesJoueur.add(boutonCreer2);
 		}
-		
-		mainJoueur.add(new BoutonHeros(this.controleur.getJoueurs()[0].getHeros(), this));
+
+//		BoutonHeros herosJoueur1=new BoutonHeros(this.controleur.getJoueurs()[1].getHeros(), this);
+//		BoutonHeros herosJoueur2=new BoutonHeros(this.controleur.getJoueurs()[0].getHeros(), this);
+//		mainAdverse.add(herosJoueur1);
+//		mainAdverse.add(herosJoueur2);
+//		this.boutonsHeros[0].setHeros(this.controleur.getJoueurs()[0].getHeros());
+//		this.boutonsHeros[1].setHeros(this.controleur.getJoueurs()[1].getHeros());
 		for (int indiceBouton=0;indiceBouton < Jeu.NB_MAX_CARTES_MAIN; indiceBouton++){
 			BoutonMain boutonCreer= new BoutonMain(this);
 			mainJoueur.add(boutonCreer);
 			this.boutonsMainJoueur[indiceBouton]=boutonCreer;
 		}
 		
+		
+		mainAdverse.setLayout(new GridLayout(1,2, 50, 50));
 		mainJoueur.setLayout(new GridLayout(1,11,20 ,20));
 		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
 		cartesPoseesJoueur.setLayout(new GridLayout(1,7, 20, 20));
@@ -215,17 +225,35 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	public void afficherPlateau(){
 		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees();indiceCarte++){
+			try{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e1){
+		
+			}
 			this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
 			this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
 		}
 		
 		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees();indiceCarte++){
+			try{
+				Thread.sleep(1000);
+			}
+			catch (InterruptedException e1){
+		
+			}
 			this.boutonsPlateauJoueur[indiceCarte].setCarte(this.controleur.getJoueurs()[0].getCartesPosees().getCartes()[indiceCarte]);
 			this.boutonsPlateauJoueur[indiceCarte].afficherBouton();
 		}
 		
 		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesMain();indiceCarte++){
-			System.out.println(""+this.boutonsMainJoueur[indiceCarte].getCarte().toString());
+			try{
+				Thread.sleep(500);
+			}
+			catch (InterruptedException e1){
+		
+			}
+			System.out.println(""+indiceCarte);
 			this.boutonsMainJoueur[indiceCarte].setCarte(this.controleur.getJoueurs()[0].getMain().getCartes()[indiceCarte]);
 			this.boutonsMainJoueur[indiceCarte].afficherBouton();
 		}

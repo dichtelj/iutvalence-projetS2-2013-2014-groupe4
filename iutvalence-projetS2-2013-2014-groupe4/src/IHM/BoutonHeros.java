@@ -20,4 +20,8 @@ public class BoutonHeros extends JButton{
 	public Heros getHeros(){
 		return this.heros;
 	}
+	
+	public void setHeros(Heros heros){
+		this.heros=heros;
+	}
 }

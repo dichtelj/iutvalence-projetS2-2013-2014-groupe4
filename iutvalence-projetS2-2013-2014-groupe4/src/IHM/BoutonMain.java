@@ -14,7 +14,7 @@ public class BoutonMain extends JButton{
 	
 	public BoutonMain(ActionListener auditeur)
 	{
-		this.carte=null;
+		this.carte= new Carte("anduin", 0, 0, null, 4, null);
 		this.addActionListener(auditeur);
 	}
 	
@@ -27,11 +27,9 @@ public class BoutonMain extends JButton{
 	}
 	
 	public void afficherBouton(){
-		if (this.carte==null)
-			this.setEnabled(false);
-		else{
+		if (this.carte!=null){
 			this.setEnabled(true);
 			this.setText(""+this.carte.toString());
-		}
+			}
 	}
 }

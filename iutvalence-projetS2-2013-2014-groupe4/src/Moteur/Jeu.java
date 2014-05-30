@@ -107,7 +107,8 @@ public class Jeu implements Controleur {
 			if(joueurCourant instanceof JoueurAleatoire)
 				this.jouerTourBot((JoueurAleatoire)joueurCourant);
 			this.finTour(joueurCourant);
-			System.out.println("FIN TOUR"+this.toString()+"\n");
+			System.out.println("FIN TOUR\n");
+			this.vue.afficherPlateau();
 			indiceJoueurCourant++;
 			compteurTourEfectif++;
 			if (compteurTourEfectif%2==0)
@@ -162,11 +163,6 @@ public class Jeu implements Controleur {
 	 */
 
 	public void jouerTour(Joueur joueurCourant) {
-		Scanner sc= new Scanner(System.in);
-		String str=sc.nextLine();
-			while(str!="p")
-				this.jouerTourIntermediaire(joueurCourant);		
-			
 	}
 	
 	/**
@@ -414,7 +410,7 @@ public class Jeu implements Controleur {
 		liste.cartes[7] = new Carte("Darius", 5, 6, (new Effet("fin", "degat direct", 1, 7)), 8, "Main de noxus");
 		liste.cartes[31] = new Carte("Diana",3,1,(new Effet("","charge",0,0)),3,"Mépris de la lune");
 		liste.cartes[32] = new Carte("Dr Mundo",3,3,(new Effet("","provocation",0,0)),2,"Dément de Zaun");
-		liste.cartes[33] = new Carte("Draven",6,6,(new Effet("invocation","buff attaque",1,7)),7,"Glorieux exécuteur");
+		liste.cartes[33] = new Carte("Draven",6,6,(new Effet("invocation","buff attaque",3,7)),7,"Glorieux exécuteur");
 
 		liste.cartes[34] = new Carte("Elise",4,4,null,4,"Reine araignée");
 		liste.cartes[35] = new Carte("Evelynn",4,4,null,4,"Faiseuse de veuves");
@@ -536,7 +532,7 @@ public class Jeu implements Controleur {
 		liste.cartes[118] = new Carte("Zed",6,6,null,6,"Maitre des ombres");
 		liste.cartes[119] = new Carte("Ziggs",7,4,null,6,"Expert des Hexplosifs");
 		liste.cartes[120] = new Carte("Zilean",12,12,(new Effet("debut","buf vie",4,7)),6,"Gardien du temps");
-		liste.cartes[121] = new Carte("Zyra",4,5,(new Effet("invocation","buff attaque",2,7)),6,"Dame aux ronces");
+		liste.cartes[121] = new Carte("Zyra",4,5,(new Effet("invocation","buff attaque",4,7)),6,"Dame aux ronces");
 		return liste;		
 		
 	}
