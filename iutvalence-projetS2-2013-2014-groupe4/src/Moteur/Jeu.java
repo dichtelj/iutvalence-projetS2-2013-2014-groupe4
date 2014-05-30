@@ -537,7 +537,7 @@ public class Jeu implements Controleur {
 		liste.cartes[119] = new Carte("Ziggs",7,4,null,6,"Expert des Hexplosifs");
 		liste.cartes[120] = new Carte("Zilean",12,12,(new Effet("debut","buf vie",4,7)),6,"Gardien du temps");
 		liste.cartes[121] = new Carte("Zyra",4,5,(new Effet("invocation","buff attaque",2,7)),6,"Dame aux ronces");
-		return liste;		
+		return liste;
 		
 	}
 
