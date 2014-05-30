@@ -11,10 +11,10 @@ public class BoutonHeros extends JButton{
 	
 	private Heros heros;
 	
-	public BoutonHeros(Heros heros, ActionListener auditeur)
+	public BoutonHeros(Heros heros)
 	{
 		this.heros=heros;
-		this.addActionListener(auditeur);
+		
 	}
 	
 	public Heros getHeros(){

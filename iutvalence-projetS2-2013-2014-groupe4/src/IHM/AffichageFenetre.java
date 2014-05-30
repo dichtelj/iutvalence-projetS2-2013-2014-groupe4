@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -34,7 +35,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	private JPanel ListeCartesGenerales;
 	
-	private JPanel Partie;
+	private ImagePanel Partie;
 		
 		private BoutonMain[] boutonsMainJoueur;
 		
@@ -64,7 +65,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	{
 		JFrame fenetre= new JFrame();
 		this.fenetre=fenetre;
-		this.fenetre.setSize(950, 700);
+		this.fenetre.setSize(950, 755);
 		this.fenetre.setTitle("Battle for Demacia");
 		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MenuJeu barreDeMenu= new MenuJeu(this.fenetre);
@@ -83,17 +84,17 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 
 	public void initialiserPartie() {
 		JPanel partie= new JPanel();
-		JPanel mainAdverse= new JPanel();
+		ImagePanel mainAdverse= new ImagePanel(new ImageIcon("images/quart4.jpg").getImage());
 		mainAdverse.setOpaque(false);
-		JPanel cartesPoseesAdverse= new JPanel();
+		ImagePanel cartesPoseesAdverse= new ImagePanel(new ImageIcon("images/quart3.png").getImage());
 		cartesPoseesAdverse.setOpaque(false);
-		JPanel mainJoueur= new JPanel();
+		ImagePanel mainJoueur= new ImagePanel(new ImageIcon("images/quart1.png").getImage());
 		mainJoueur.setOpaque(true);
-		JPanel cartesPoseesJoueur= new JPanel();
+		ImagePanel cartesPoseesJoueur= new ImagePanel(new ImageIcon("images/quart2.png").getImage());
 		this.boutonsMainJoueur=new BoutonMain[Jeu.NB_MAX_CARTES_MAIN];
 		this.boutonsPlateauAdverse=new BoutonPlateauAdverse[Jeu.NB_CARTES_MAX_POSEES];
 		this.boutonsPlateauJoueur=new BoutonPlateauJoueur[Jeu.NB_CARTES_MAX_POSEES];
-		this.boutonsHeros= new BoutonHeros[2];
+		
 		
 		for (int indiceBouton=0; indiceBouton< Jeu.NB_CARTES_MAX_POSEES; indiceBouton++){
 			BoutonPlateauAdverse boutonCreer=new BoutonPlateauAdverse(this);
@@ -104,8 +105,8 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 			cartesPoseesJoueur.add(boutonCreer2);
 		}
 
-//		BoutonHeros herosJoueur1=new BoutonHeros(this.controleur.getJoueurs()[1].getHeros(), this);
-//		BoutonHeros herosJoueur2=new BoutonHeros(this.controleur.getJoueurs()[0].getHeros(), this);
+//		BoutonHeros herosJoueur1=new BoutonHeros(this.getControleur().getJoueurs()[1].getHeros());
+//		BoutonHeros herosJoueur2=new BoutonHeros(this.getControleur().getJoueurs()[0].getHeros());
 //		mainAdverse.add(herosJoueur1);
 //		mainAdverse.add(herosJoueur2);
 //		this.boutonsHeros[0].setHeros(this.controleur.getJoueurs()[0].getHeros());
@@ -121,7 +122,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		mainJoueur.setLayout(new GridLayout(1,11,20 ,20));
 		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
 		cartesPoseesJoueur.setLayout(new GridLayout(1,7, 20, 20));
-		this.fenetre.setLayout(new GridLayout(4,1, 20, 20));
+		this.fenetre.setLayout(new GridLayout(4,1));
 		this.fenetre.add(mainAdverse);
 		this.fenetre.add(cartesPoseesAdverse);
 		this.fenetre.add(cartesPoseesJoueur);
@@ -259,5 +260,9 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		}
 		
 		}
+	
+	public Controleur getControleur(){
+		return controleur;
+	}
 
 	}

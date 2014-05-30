@@ -532,13 +532,9 @@ public class Jeu implements Controleur {
 		liste.cartes[118] = new Carte("Zed",6,6,null,6,"Maitre des ombres");
 		liste.cartes[119] = new Carte("Ziggs",7,4,null,6,"Expert des Hexplosifs");
 		liste.cartes[120] = new Carte("Zilean",12,12,(new Effet("debut","buf vie",4,7)),6,"Gardien du temps");
-<<<<<<< HEAD
 		liste.cartes[121] = new Carte("Zyra",4,5,(new Effet("invocation","buff attaque",4,7)),6,"Dame aux ronces");
 		return liste;		
-=======
-		liste.cartes[121] = new Carte("Zyra",4,5,(new Effet("invocation","buff attaque",2,7)),6,"Dame aux ronces");
-		return liste;
->>>>>>> branch 'master' of https://github.com/dichtelj/iutvalence-projetS2-2013-2014-groupe4.git
+	
 		
 	}
 
