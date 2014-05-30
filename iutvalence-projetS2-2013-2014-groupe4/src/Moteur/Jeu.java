@@ -555,7 +555,7 @@ public class Jeu implements Controleur {
 		partie+="point de vie héros :"+this.joueurs[1].getHeros().getPointsDeVie()+"\n";	
 		partie+=" peut jouer : "+((JoueurAleatoire)this.joueurs[1]).peutEncoreJouer()+"\n";
 		partie+="mana max :"+this.joueurs[1].getHeros().getNbManaMax()+"\n";
-		partie+="mana courant :"+this.joueurs[1].getHeros().getNbManaCourant()+"\n";	
+		partie+="mana courant :"+this.joueurs[1].getHeros().getNbManaCourant()+"\n";
 		for (int indiceCarte=0;indiceCarte<this.joueurs[1].getMain().getNbCartes();indiceCarte++)
 				partie+=this.joueurs[1].getMain().cartes[indiceCarte].toString();
 		partie+="\n-------------------\n"; 

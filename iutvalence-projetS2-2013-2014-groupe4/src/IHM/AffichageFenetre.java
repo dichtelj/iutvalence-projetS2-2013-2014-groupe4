@@ -20,6 +20,7 @@ import Moteur.Carte;
 import Moteur.Controleur;
 import Moteur.Jeu;
 import Moteur.Joueur;
+import Moteur.JoueurAleatoire;
 import Moteur.Personnage;
 import Moteur.Position;
 
@@ -29,11 +30,17 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	private Controleur controleur;
 	
-//    private JPanel EcranDAccueil;
-//	
-//	private JPanel ListeCartesGenerales;
-//	
-//	private JPanel Partie;
+    private JPanel EcranDAccueil;
+	
+	private JPanel ListeCartesGenerales;
+	
+	private JPanel Partie;
+		
+		private BoutonMain[] boutonsMainJoueurs;
+		
+		private BoutonPlateauAdverse[] boutonsPlateauAdverse;
+		
+		private BoutonPlateauJoueur[] boutonsPlateauJoueur;		
 	
 	private MenuJeu menu;
 	
@@ -85,14 +92,23 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		JPanel mainJoueur= new JPanel();
 		mainJoueur.setBackground(Color.magenta);
 		JPanel cartesPoseesJoueur= new JPanel();
+		this.boutonsMainJoueurs=new BoutonMain[Jeu.NB_MAX_CARTES_MAIN];
+		this.boutonsPlateauAdverse=new BoutonPlateauAdverse[Jeu.NB_CARTES_MAX_POSEES];
+		this.boutonsPlateauJoueur=new BoutonPlateauJoueur[Jeu.NB_CARTES_MAX_POSEES];
 		
 		for (int indiceBouton=0; indiceBouton< Jeu.NB_CARTES_MAX_POSEES; indiceBouton++){
-			cartesPoseesAdverse.add(new BoutonPlateauAdverse(this));
-			cartesPoseesJoueur.add(new BoutonPlateauJoueur(this));
+			BoutonPlateauAdverse boutonCreer=new BoutonPlateauAdverse(this);
+			cartesPoseesAdverse.add(boutonCreer);
+			this.boutonsPlateauAdverse[indiceBouton]=boutonCreer;
+			BoutonPlateauJoueur boutonCreer2=new BoutonPlateauJoueur(this);
+			cartesPoseesJoueur.add(boutonCreer2);
+			this.boutonsPlateauJoueur[indiceBouton]=boutonCreer2;
 		}
 		
-		for (int indiceBouton=0;indiceBouton < Jeu.NB_MAX_CARTES_MAIN; indiceBouton++)
-			mainJoueur.add(new BoutonMain(this));
+		for (int indiceBouton=0;indiceBouton < Jeu.NB_MAX_CARTES_MAIN; indiceBouton++){
+			BoutonMain boutonCreer= new BoutonMain(this);
+			mainJoueur.add(boutonCreer);
+		}
 		
 		mainJoueur.setLayout(new GridLayout(1,10,20 ,20));
 		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
@@ -193,4 +209,18 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	public Carte getCarteAttaquante() {
 		return this.carteAttaquante;
 	}
-}
+	
+	
+	public void afficherPlateau(){
+		
+		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees();indiceCarte++)
+			this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
+		
+		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees();indiceCarte++)
+			this.boutonsPlateauJoueur[indiceCarte].setCarte(this.controleur.getJoueurs()[0].getCartesPosees().getCartes()[indiceCarte]);
+		
+		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesMain();indiceCarte++)
+			this.boutonsMainJoueurs[indiceCarte].setCarte(this.controleur.getJoueurs()[0].getMain().getCartes()[indiceCarte]);
+		}
+
+	}

@@ -46,4 +46,8 @@ public class ListeDeCartes {
 	public int getNbCartesMax(){
 		return this.getNbCartesMax();
 	}
+	
+	public Carte[] getCartes(){
+		return this.cartes;
+	}
 }
