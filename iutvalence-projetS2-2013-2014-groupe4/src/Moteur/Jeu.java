@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import IHM.Affichage;
+import IHM.AffichageFenetre;
 
 /**
  * Definition d'une partie de Battle for Demacia
@@ -100,7 +101,7 @@ public class Jeu implements Controleur {
 	public void jouerTourBot(JoueurAleatoire joueurCourant) {
 		while(joueurCourant.peutEncoreJouer())
 			if(joueurCourant.peutPoserUneCarte()){
-				Carte carteAUtiliser=joueurCourant.carteDePlusHauteValeurJouable();
+				Carte carteAUtiliser=joueurCourant.choisirCarteAPoser();
 				try {
 					this.poserCarte(carteAUtiliser, joueurCourant);
 				}
@@ -113,7 +114,7 @@ public class Jeu implements Controleur {
 				}
 			else {
 					Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[joueurCourant.getNumeroJoueur()-1]);
-					Carte carteAttaquante=joueurCourant.choisirCarteAttaquanteAleatoire();
+					Carte carteAttaquante=joueurCourant.choisirCarteAttaquante();
 				try {
 					this.attaquerAvecCarte(carteAttaquante, personnageAttaque, joueurCourant);
 				}
@@ -138,10 +139,11 @@ public class Jeu implements Controleur {
 	
 
 	public void jouerTourIntermediaire(Joueur joueurCourant) {
-		Position carteAUtiliser = joueurCourant.choisirCarteAUtiliser();
-			if (joueurCourant.getNumeroJoueur() == 1) {
-				try {
-					this.poserCarte(carteAUtiliser.getListe().cartes[carteAUtiliser.getIndex()], joueurCourant);
+		while(this.veutPoser() || 	this.veutAttaquer());
+		if (this.veutPoser()){
+			Carte carteAPoser=joueurCourant.choisirCarteAPoser();
+		try {
+					this.poserCarte(carteAPoser, joueurCourant);
 				}
 				catch (PlateauPlein e1) {
 					this.vue.afficherMessageErreur("Plateau Plein");
@@ -151,9 +153,10 @@ public class Jeu implements Controleur {
 				}
 			}
 			else {
+				Carte carteAttaquante=joueurCourant.choisirCarteAttaquante();
 				Personnage personnageAttaque = joueurCourant.choisirPersonnageAAttaquer(this.joueurs[2-joueurCourant.getNumeroJoueur()]);
 				try {
-					this.attaquerAvecCarte(carteAUtiliser.getListe().cartes[carteAUtiliser.getIndex()], personnageAttaque, joueurCourant);
+					this.attaquerAvecCarte(carteAttaquante, personnageAttaque, joueurCourant);
 				}
 				catch (CibleInvalide e1) {
 					this.vue.afficherMessageErreur("Cible invalide");
@@ -171,6 +174,19 @@ public class Jeu implements Controleur {
 		return false;
 	}
 
+	
+	public boolean veutPoser(){
+		if (((AffichageFenetre)this.getVue()).getCarteAPoser()==null)
+				return false;
+		return true;
+	}
+	
+	
+	public boolean veutAttaquer(){
+		if (((AffichageFenetre)this.getVue()).getCarteAttaquante()==null)
+			return false;
+		return true;
+	}
 	/**
 	 * Méthode permettant a un joueur de finir son tour
 	 * 

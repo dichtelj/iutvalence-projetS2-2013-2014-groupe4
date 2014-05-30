@@ -36,7 +36,7 @@ public class JoueurAleatoire extends Joueur {
 		return null;
 	}
 	
-	public Carte carteDePlusHauteValeurJouable(){
+	public Carte choisirCarteAPoser(){
 		Carte carteChoisie=new Carte(null, 0, 0, null, 0, null);
 		for (int indiceCarte=0;indiceCarte<this.getMain().nbCartes;indiceCarte++)
 			if (this.getMain().cartes[indiceCarte].getCoutEnMana() > carteChoisie.getCoutEnMana() && this.getMain().cartes[indiceCarte].getCoutEnMana() <=this.getHeros().getNbManaCourant())
@@ -78,7 +78,7 @@ public class JoueurAleatoire extends Joueur {
 			return joueurAdverse.getCartesPosees().cartes[indexPersonnageAAttaque];
 	}
 
-	public Carte choisirCarteAttaquanteAleatoire() {
+	public Carte choisirCarteAttaquante() {
 		Random generateurDeNombresAleatoires= new Random();
 		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(this.getNbCartesPosees());
 		while (this.getCartesPosees().cartes[indexCarteChoisie].estInactif()){

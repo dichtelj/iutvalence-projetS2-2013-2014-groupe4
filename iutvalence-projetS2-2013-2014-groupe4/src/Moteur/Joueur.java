@@ -213,9 +213,11 @@ public abstract class Joueur {
 
 	public abstract Carte choisirCarteDeck();
 
-	public abstract Position choisirCarteAUtiliser();
+	public abstract Carte choisirCarteAttaquante();
 
 	public abstract Personnage choisirPersonnageAAttaquer(Joueur joueurAdverse);
+	
+	public abstract Carte choisirCarteAPoser();
 
 	public abstract Personnage choisirCarteABuffer();
 

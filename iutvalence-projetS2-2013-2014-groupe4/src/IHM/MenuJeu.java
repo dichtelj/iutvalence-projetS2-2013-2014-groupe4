@@ -36,6 +36,7 @@ public class MenuJeu extends JMenuBar implements ActionListener{
 		menu.add(this.menuItemFermer);		
 		barreDeMenu.add(menu);
 		barreDeMenu.add(aPropos);
+		this.add(barreDeMenu);
 	}
 	public void actionPerformed(ActionEvent event)
 	{

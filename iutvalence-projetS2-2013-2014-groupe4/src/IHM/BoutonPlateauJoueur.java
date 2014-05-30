@@ -15,4 +15,8 @@ public class BoutonPlateauJoueur extends JButton{
 		this.carte=carte;
 		this.addActionListener(auditeur);
 	}
+	
+	public Carte getCarte(){
+		return this.carte;
+	}
 }
