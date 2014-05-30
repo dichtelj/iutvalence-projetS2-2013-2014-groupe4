@@ -44,7 +44,7 @@ public class MenuJeu extends JMenuBar implements ActionListener{
 
 		if (itemSelectionne == this.menuItemAPropos)
 		{
-			JOptionPane.showMessageDialog(this.fenetre, "Battle For Demacia, jeu cree par 4 étudiants à l'iut de valence.", "A propos", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(this.fenetre, "Battle For Demacia, jeu cree par 5 étudiants à l'iut de valence.", "A propos", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
 

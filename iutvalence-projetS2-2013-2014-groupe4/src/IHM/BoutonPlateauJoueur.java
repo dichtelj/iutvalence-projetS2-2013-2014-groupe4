@@ -34,8 +34,9 @@ public class BoutonPlateauJoueur extends JButton{
 			   this.setEnabled(true);
 			   this.setText("<html>"+this.carte.getNom()+"<br>"+this.carte.getAttaque()+"/"+this.carte.getVie()+"<br>"+"Cout:"+this.carte.getCout()+"</html>");
 			   }
-			  else{
-			   this.setEnabled(false);
-			  }
-			 }
+		else{
+			this.setText(null);
+			this.setEnabled(false);
+		}
+	}
 }

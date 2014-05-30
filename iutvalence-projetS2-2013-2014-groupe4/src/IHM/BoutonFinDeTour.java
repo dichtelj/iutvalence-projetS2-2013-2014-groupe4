@@ -1,27 +1,16 @@
 package IHM;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
 public class BoutonFinDeTour extends JButton{
 	
-	private boolean tourFini;
-	
 	public BoutonFinDeTour(ActionListener auditeur)
 	{
-		this.tourFini=false;
 		this.addActionListener(auditeur);
+		this.setBackground(Color.green);
 		
-	}
-	
-	public boolean getTourFini()
-	{
-		return this.tourFini;
-	}
-	
-	public void setTourFini()
-	{
-		this.tourFini = tourFini;
 	}
 	
 	public void afficherBouton()

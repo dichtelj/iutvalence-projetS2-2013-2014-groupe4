@@ -17,7 +17,7 @@ public class JoueurAleatoire extends Joueur {
 	 */
 	public void attribuerDeckAleatoire() {
 		for (int nbCartesDeck=0; nbCartesDeck < Jeu.NB_CARTES_DECK; nbCartesDeck++){
-			this.setDeck(choisirCarteDeck());
+			this.setDeck(this.choisirCarteDeck());
 			}
 	}
 
@@ -27,9 +27,9 @@ public class JoueurAleatoire extends Joueur {
 	 */
 	public Carte choisirCarteDeck() {
 		Random generateurDeNombresAleatoires= new Random();
-		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
+		int indexCarteChoisie=generateurDeNombresAleatoires.nextInt(122);
 			while (this.estDansDeck(Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie]))
-					indexCarteChoisie=generateurDeNombresAleatoires.nextInt(63);
+					indexCarteChoisie=generateurDeNombresAleatoires.nextInt(122);
 			return Jeu.LISTE_CARTE_GENERALE.cartes[indexCarteChoisie];
 	}
 

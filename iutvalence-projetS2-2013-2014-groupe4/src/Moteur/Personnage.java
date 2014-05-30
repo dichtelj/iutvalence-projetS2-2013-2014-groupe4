@@ -49,4 +49,8 @@ public abstract class Personnage
 			this.pointDeVie=this.pointsDeVieMax;		
 	}
 	
+	public String getNom(){
+		return this.nom;
+	}
+	
 }

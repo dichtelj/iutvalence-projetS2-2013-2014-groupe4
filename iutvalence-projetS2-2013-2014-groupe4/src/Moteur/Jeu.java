@@ -390,7 +390,7 @@ public class Jeu implements Controleur {
 	 * 
 	 */
 	public static ListeDeCartes creerListeDeCartesGenerale() {
-		ListeDeCartes liste = new ListeDeCartes(200);
+		ListeDeCartes liste = new ListeDeCartes(122);
 		liste.cartes[10] = new Carte("Aatrox", 4, 5, (new Effet("invocation", "heal", 2, 2)), 5, "Epee des darkin");
 		liste.cartes[19] = new Carte("Ahri",4,4,(new Effet("invocation","degat direct",2,2)),4,"Renard a 9 queues");
 		liste.cartes[20] = new Carte("Akali",8,8,(new Effet("invocation","degat direct",4,1)),7,"Poing des ombres");
