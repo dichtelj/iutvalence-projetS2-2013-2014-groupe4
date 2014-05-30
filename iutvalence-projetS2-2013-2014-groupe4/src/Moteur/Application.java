@@ -5,9 +5,12 @@ import IHM.AffichageFenetre;
 public class Application {
 
 	public static void main(String[] args) {
-		Joueur[] joueurs= new Joueur[]{new JoueurAleatoire(2, "Noxus"), new JoueurAleatoire(1, "Demacia")};
-		Affichage ihm=new AffichageConsole();
+		Joueur[] joueurs= new Joueur[]{new JoueurAleatoire(2,"Noxus"), new JoueurAleatoire(1, "Demacia")};
+
+		Affichage ihm = new AffichageFenetre(2,"Noxus");
 		Jeu jeu=new Jeu(joueurs, ihm);
+		ihm.associerControleur(jeu);
+		ihm.initialiserPartie();
 		try
 		{
 			jeu.preparerPartie();

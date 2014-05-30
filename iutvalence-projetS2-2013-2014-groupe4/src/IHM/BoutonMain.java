@@ -2,6 +2,8 @@ package IHM;
 
 import java.awt.event.ActionListener;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import Moteur.Carte;
@@ -22,5 +24,14 @@ public class BoutonMain extends JButton{
 	
 	public void setCarte(Carte carte){
 		this.carte=carte;
+	}
+	
+	public void afficherBouton(){
+		if (this.carte==null)
+			this.setEnabled(false);
+		else{
+			this.setEnabled(true);
+			this.setText(""+this.carte.toString());
+		}
 	}
 }

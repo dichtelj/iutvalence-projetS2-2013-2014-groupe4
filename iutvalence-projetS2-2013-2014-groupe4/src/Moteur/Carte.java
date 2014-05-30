@@ -149,5 +149,9 @@ public class Carte extends Personnage {
 	public String toString(){
 		return ""+this.nom+" "+this.pointsDAttaque+"/"+this.pointDeVie+" "+"Cout:"+this.coutEnMana+"  |  ";
 	}
+	
+	public String getNom(){
+		return this.nom;
+	}
 		
 }

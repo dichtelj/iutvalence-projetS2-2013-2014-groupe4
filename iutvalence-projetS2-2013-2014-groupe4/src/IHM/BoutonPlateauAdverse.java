@@ -23,4 +23,13 @@ public class BoutonPlateauAdverse extends JButton{
 	public void setCarte(Carte carte){
 		this.carte=carte;
 	}
+	
+	public void afficherBouton(){
+		if (this.carte==null)
+			this.setEnabled(false);
+		else{
+			this.setEnabled(true);
+			this.setText(""+this.carte.toString());
+		}
+	}
 }
