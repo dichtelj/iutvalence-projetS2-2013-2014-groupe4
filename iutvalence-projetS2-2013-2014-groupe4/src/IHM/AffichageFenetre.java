@@ -81,10 +81,6 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 
 	public void initialiserPartie() {
 		JPanel partie= new JPanel();
-		JPanel coteHautEcran= new JPanel();
-		coteHautEcran.setBackground(Color.blue);
-		JPanel coteBasEcran= new JPanel();
-		coteBasEcran.setBackground(Color.black);
 		JPanel mainAdverse= new JPanel();
 		mainAdverse.setBackground(Color.cyan);
 		JPanel cartesPoseesAdverse= new JPanel();

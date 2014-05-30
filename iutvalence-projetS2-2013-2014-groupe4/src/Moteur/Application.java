@@ -13,7 +13,6 @@ public class Application {
 		Jeu jeu=new Jeu(joueurs, ihm);
 		SwingUtilities.invokeLater((Runnable) ihm);
 		ihm.associerControleur(jeu);
-		ihm.initialiserPartie();
 		try
 		{
 			jeu.preparerPartie();
