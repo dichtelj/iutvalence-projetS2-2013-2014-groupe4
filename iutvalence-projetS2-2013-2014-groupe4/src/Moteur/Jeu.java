@@ -393,21 +393,85 @@ public class Jeu implements Controleur {
 		liste.cartes[61] = new Carte("Lulu",2,1,(new Effet("invocation","buff vie",2,1)),2,"Sorcière féérique");
 		liste.cartes[62] = new Carte("lux",4,3,(new Effet("fin","degat direct",3,1)),4,"Dame de lumiere");
 
-		
+		liste.cartes[63] = new Carte("Malphite",4,5,null,4,"Éclat du Monolithe");
 		liste.cartes[6] = new Carte("Malzahar", 0, 3, (new Effet("fin", "piocher", 1, 0)), 3, "Le prophete du vide");
+		liste.cartes[64] = new Carte("Maokai",4,5,null,4,"Tréant torturé");
+		liste.cartes[65] = new Carte("MasterYi",6,6,(new Effet("","charge",0,0)),6," Fine lame Wuju");
+		liste.cartes[66] = new Carte("MissFortune",5,5,null,5,"Chasseur de primes");
+		liste.cartes[67] = new Carte("Mordekaiser",2,3,(new Effet("fin","piocher",1,0)),4,"Maître du métal");
+		liste.cartes[68] = new Carte("Morgana",2,7,(new Effet("invocation","buff attaque",2,1)),5,"Ange déchu");
+
+
+		liste.cartes[69] = new Carte("Nami",1,4,(new Effet("fin","heal",2,7)),4,"Aquamancienne");
+		liste.cartes[70] = new Carte("Nasus",5,5,(new Effet("debut","degat direct",2,7)),6,"Gardien des sables");
+		liste.cartes[71] = new Carte("Nautilus",4,5,null,4,"Titan des profondeurs");
+		liste.cartes[72] = new Carte("Nidalee",4,3,(new Effet("invocation","buff vie",2,1)),5,"Chasseresse Bestiale");
+		liste.cartes[73] = new Carte("Nocturne",4,5,null,4,"Eternel cauchemar");
+		liste.cartes[74] = new Carte("Nunu",4,5,null,4,"Dompteur de yéti");
 		
+		liste.cartes[75] = new Carte("Olaf",4,2,(new Effet("","charge",0,0)),4,"Berserker");
+		liste.cartes[76] = new Carte("Orianna",4,4,(new Effet("invocation","piocher",2,0)),4,"Demoiselle mécanique");
+
+		liste.cartes[77] = new Carte("Pantheon",4,5,null,4,"Artisan de la guerre");
 		liste.cartes[16] = new Carte("Poppy", 8, 8, null, 8, "Ambassadeur de fer");
 		
+		liste.cartes[78] = new Carte("Quinn",3,3,(new Effet ("","charge",0,0)),3,"Ailes de Demacia");
+		
+		liste.cartes[79] = new Carte("Rammus",3,3,(new Effet("","provocation",0,0)),4,"Tatou blindé");
+		liste.cartes[80] = new Carte("Renekton",6,7,(new Effet("","provocation",0,0)),6,"Dévoreur des sables");
+		liste.cartes[81] = new Carte("Rengar",4,5,null,4,"Fier traqueur");
+		liste.cartes[82] = new Carte("Riven",5,4,null,4,"Exilée brisée");
+		liste.cartes[83] = new Carte("Rumble",6,6,null,6,"Menace Mécanisée");
+		liste.cartes[84] = new Carte("Ryze",5,8,(new Effet("","provocation",0,0)),7,"Mage renégat");
+				
+		liste.cartes[85] = new Carte("Sejuani",4,5,null,4,"Colére de l'hiver");
 		liste.cartes[14] = new Carte("Shen", 6, 6, (new Effet("invocation", "buff vie", 3, 1)), 6, "Oeil du crepuscule");
+		liste.cartes[86] = new Carte("Shyvana",7,7,(new Effet("","provocation",0,0)),7,"Demi dragon");
+		liste.cartes[87] = new Carte("Singed",4,5,null,4,"Chimiste fou");
+		liste.cartes[88] = new Carte("sion",12,12,(new Effet("","charge",0,0)),6,"Abomubation mort-vivante");
+		liste.cartes[89] = new Carte("Sivir",6,5,null,6,"Vierge martiale");
+		liste.cartes[90] = new Carte("Skarner",4,5,null,4,"Gardien de cristal");
 		liste.cartes[18] = new Carte("Sona",3,3, (new Effet("fin","heal",2,7)),4,"Virtuose de la harpe");
+		liste.cartes[91] = new Carte("Soraka",12,12,(new Effet("debut","heal",4,7)),6,"Enfant des etoiles");
+		liste.cartes[92] = new Carte("Swain",6,6,(new Effet("","provocation",0,0)),6,"Maitre tacticien");
 		liste.cartes[5] = new Carte("Syndra", 6, 6, (new Effet("invocation", "piocher", 2, 0)), 7, "Souveraine obscure");
 		
+		liste.cartes[93] = new Carte("Talon",5,2,(new Effet("invocation","degat direct",2,1)),4,"Lame des ténebres");
+		liste.cartes[94] = new Carte("Taric",4,2,(new Effet("fin","heal",2,1)),4,"Chevalier au gemmes");
 		liste.cartes[0] = new Carte("Teemo", 2, 2, (new Effet("invocation", "degat direct", 3, 3)), 5, "Petite peste");
 		liste.cartes[13] = new Carte("Thresh", 3, 3, (new Effet("invocation", "heal", 2, 1)), 3, "Garde aux chaines");
-				
+		liste.cartes[95] = new Carte("Tristana",5,3,(new Effet("","charge",0,0)),5,"Cannonière Megling");
+		liste.cartes[97] = new Carte("Trundle",7,7,(new Effet("","provocation",0,0)),7,"Troll maudit");
+		liste.cartes[98] = new Carte("Tryndamere",12,12,(new Effet("","provocatio",0,0)),6,"Roi barbare");
+		liste.cartes[99] = new Carte("Twisted Fate",3,3,(new Effet("debut","piocher",2,0)),3,"Maitres des cartes");
+		liste.cartes[100] = new Carte("Twitch",12,12,(new Effet("fin","degat direct",5,1)),6,"Sémeur de peste");
+		
+		liste.cartes[101] = new Carte("Udyr",4,5,null,4,"Esprit annimal");
+		liste.cartes[102] = new Carte("urgot",3,3,null,3,"Fierté du bourreau");
+
+		liste.cartes[103] = new Carte("Varus",4,4,null,4,"la Fléche de la vengeance");
+		liste.cartes[104] = new Carte("Vayne",7,6,null,6,"Chasseur nocturne");
+		liste.cartes[105] = new Carte("Veigar",8,3,null,5,"Seigneur des maléfices");
+		liste.cartes[106] = new Carte("Vel'Koz",4,4,null,4,"Oeil du néant");
+		liste.cartes[107] = new Carte("Vi",8,8,(new Effet("","provocation",0,0)),8,"Gogne de Piltover");
+		liste.cartes[108] = new Carte("Viktor",5,5,null,5,"Héraut des machines");
+		liste.cartes[109] = new Carte("Vladimir",5,6,null,5,"Saigneur Pourpre");
+		liste.cartes[110] = new Carte("Volibear",5,6,(new Effet("","provocation",0,0)),5,"Grondement du tonnere");
+		
+		liste.cartes[111] = new Carte("Warwick",8,8,(new Effet("","provocation",0,0)),8,"Traque sang");
+		liste.cartes[112] = new Carte("Wukong",5,5,null,5,"Roi des singes");
+		
+		liste.cartes[113] = new Carte("Xerath",4,5,null,5,"Mage supréme");
+		liste.cartes[114] = new Carte("Xin Zhao",4,5,null,4,"Sénéchat de Démacia");
+		
 		liste.cartes[3] = new Carte("Yasuo", 2, 3, (new Effet("invocation", "degat direct", 2, 1)), 3, "Le disgracie");
+		liste.cartes[115] = new Carte("Yorick",4,4,(new Effet("invocation","buf vie",2,1)),4,"Fossoyeur");
 		
-		
+		liste.cartes[117] = new Carte("Zac",4,5,null,4,"Arme secrète");
+		liste.cartes[118] = new Carte("Zed",6,6,null,6,"Maitre des ombres");
+		liste.cartes[119] = new Carte("Ziggs",7,4,null,6,"Expert des Hexplosifs");
+		liste.cartes[120] = new Carte("Zilean",12,12,(new Effet("debut","buf vie",4,7)),6,"Gardien du temps");
+		liste.cartes[121] = new Carte("Zyra",4,5,(new Effet("invocation","buff attaque",2,7)),6,"Dame aux ronces");
 		return liste;		
 		
 	}
