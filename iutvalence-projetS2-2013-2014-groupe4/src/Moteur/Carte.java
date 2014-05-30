@@ -159,5 +159,17 @@ public class Carte extends Personnage {
 	public String getNom(){
 		return this.nom;
 	}
+
+	public String getAttaque(){
+		return ""+this.pointsDAttaque;
+	}
+
+	public String getVie(){
+		return ""+this.pointDeVie;
+	}
+	
+	public String getCout(){
+		return ""+this.coutEnMana;
+	}
 		
 }

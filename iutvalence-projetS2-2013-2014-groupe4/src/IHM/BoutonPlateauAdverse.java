@@ -1,5 +1,6 @@
 package IHM;
 
+import java.awt.Insets;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ public class BoutonPlateauAdverse extends JButton{
 	{
 		this.carte=null;
 		this.addActionListener(auditeur);
+		this.setMargin(new Insets(3, 3, 3, 3));
 	}
 	
 	public Carte getCarte(){
@@ -29,7 +31,7 @@ public class BoutonPlateauAdverse extends JButton{
 			this.setEnabled(false);
 		else{
 			this.setEnabled(true);
-			this.setText(""+this.carte.toString());
+			this.setText("<html>"+this.carte.getNom()+"<br>"+this.carte.getAttaque()+"/"+this.carte.getVie()+"<br>"+"Cout:"+this.carte.getCout()+"</html>");
 		}
 	}
 }
