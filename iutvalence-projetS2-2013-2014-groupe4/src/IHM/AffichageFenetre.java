@@ -14,7 +14,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSplitPane;
 import javax.swing.WindowConstants;
 
 import Moteur.Carte;
@@ -35,7 +34,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	private JPanel ListeCartesGenerales;
 	
-	private ImagePanel Partie;
+	private JPanel Partie;
 		
 		private BoutonMain[] boutonsMainJoueur;
 		
@@ -43,8 +42,6 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		
 		private BoutonPlateauJoueur[] boutonsPlateauJoueur;
 		
-		private BoutonHeros[] boutonsHeros;
-	
 	private MenuJeu menu;
 	
 	private Carte carteAttaquante;
@@ -84,6 +81,14 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 
 	public void initialiserPartie() {
 		JPanel partie= new JPanel();
+		PanelJoueur joueur1=new PanelJoueur(this.controleur.getJoueurs()[0].getHeros());
+		joueur1.setOpaque(true);
+		joueur1.setPreferredSize(new Dimension(375,120));
+		
+		PanelJoueur joueur2=new PanelJoueur(this.controleur.getJoueurs()[1].getHeros());
+		joueur2.setOpaque(false);
+		joueur2.setPreferredSize(new Dimension(375,120));
+		
 		ImagePanel infos= new ImagePanel(new ImageIcon("images/quart4.jpg").getImage());
 		infos.setOpaque(false);
 		
@@ -117,12 +122,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 			cartesPoseesJoueur.add(boutonCreer2);
 		}
 
-//		BoutonHeros herosJoueur1=new BoutonHeros(this.getControleur().getJoueurs()[1].getHeros());
-//		BoutonHeros herosJoueur2=new BoutonHeros(this.getControleur().getJoueurs()[0].getHeros());
-//		mainAdverse.add(herosJoueur1);
-//		mainAdverse.add(herosJoueur2);
-//		this.boutonsHeros[0].setHeros(this.controleur.getJoueurs()[0].getHeros());
-//		this.boutonsHeros[1].setHeros(this.controleur.getJoueurs()[1].getHeros());
+
 		for (int indiceBouton=0;indiceBouton < Jeu.NB_MAX_CARTES_MAIN; indiceBouton++){
 			BoutonMain boutonCreer= new BoutonMain(this);
 			mainJoueur.add(boutonCreer);
@@ -130,13 +130,15 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		}
 		
 		
-		infos.setLayout(new GridLayout(1,2, 50, 50));
-		mainJoueur.setLayout(new GridLayout(1,11,20 ,20));
+		infos.setLayout(new GridLayout(1,2));
+		mainJoueur.setLayout(new GridLayout(1,11,10 ,20));
 		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
 		cartesPoseesJoueur.setLayout(new GridLayout(1,7, 20, 20));
 		panelAdverse.add(cartesPoseesAdverse);
 		panelJoueur.add(cartesPoseesJoueur);
 		panelMain.add(mainJoueur);
+		infos.add(joueur1);
+		infos.add(joueur2);
 		this.fenetre.setLayout(new GridLayout(4,1));
 		this.fenetre.add(infos);
 		this.fenetre.add(panelAdverse);
