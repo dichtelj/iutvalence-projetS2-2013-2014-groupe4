@@ -52,6 +52,7 @@ public abstract class Joueur {
 
 	/**
 	 * Renvoi le deck du joueur
+	 * @return ListeDeCartes
 	 */
 	public ListeDeCartes getDeck() {
 		return this.deck;
@@ -59,6 +60,7 @@ public abstract class Joueur {
 
 	/**
 	 * Renvoi la main du joueur
+	 * @return ListeDeCartes
 	 */
 	public ListeDeCartes getMain() {
 		return this.main;
@@ -89,6 +91,7 @@ public abstract class Joueur {
 
 	/**
 	 * Renvoi le curseur deck du joueur
+	 * @return int
 	 */
 	public int getCurseurDeck() {
 		return this.curseurDeck;
@@ -110,6 +113,7 @@ public abstract class Joueur {
 
 	/**
 	 * Renvoi le curseur deck du joueur
+	 * @return int
 	 */
 	public int getNbCartesMain() {
 		return this.main.nbCartes;
@@ -117,6 +121,7 @@ public abstract class Joueur {
 
 	/**
 	 * Renvoi le curseur deck du joueur
+	 * @return int
 	 */
 	public int getNbCartesCimetiere() {
 		return this.cimetiere.nbCartes;
@@ -153,49 +158,75 @@ public abstract class Joueur {
 
 	/**
 	 * Renvoi le curseur plateau du joueur
+	 * @return int
 	 */
 	public int getNbCartesPosees() {
 		return this.cartesPosees.nbCartes;
 	}
-
+	/**
+	 * Renvoi le numero du joueur
+	 * @return int
+	 */
 	public int getNumeroJoueur() {
 		return this.numeroJoueur;
 	}
-
+	/**
+	 * Méthode qui affecte au deck la carte choisie en paramètre
+	 * @param carteChoisie
+	 */
 	public void setDeck(Carte carteChoisie) {
 		this.deck.cartes[this.getCurseurDeck()] = carteChoisie;
 		if (this.curseurDeck > 0)
 			this.decrementerCurseurDeck();
 	}
 
+	/**
+	 * décremente le curseur du deck
+	 */
 	public void decrementerCurseurDeck() {
 		this.curseurDeck--;
 	}
-
+	/**
+	 * Renvoi le heros
+	 * @return Heros
+	 */
 	public Heros getHeros() {
 		return this.heros;
 	}
-
+	/**
+	 * Méthode qui test si le nombre de cartes mc=ximum à poser est atteint 
+	 * @param joueur
+	 * @return boolean
+	 */
 	public boolean estPlein(Joueur joueur) {
 		if (this.cartesPosees.nbCartes == Jeu.NB_CARTES_MAX_POSEES)
 			return true;
 		else
 			return false;
 	}
-
+	/**
+	 * Incremente le nombre de cartes posées
+	 */
 	public void incrementerNbCartesPosees() {
 		this.cartesPosees.nbCartes++;
 	}
-
+	/**
+	 * Decremente le nombre de cartes posées
+	 */
 	public void decrementerNbCartesPosees() {
 		if (this.cartesPosees.nbCartes > 0)
 			this.cartesPosees.nbCartes--;
 	}
-
+	/**
+	 * Méthode qui renvoie la carte posée
+	 * @return ListeDeCartes
+	 */
 	public ListeDeCartes getCartesPosees() {
 		return this.cartesPosees;
 	}
-
+	/**
+	 * Méthode qui réorganise la plateau en fonction des cartes posées
+	 */
 	public void reOrganiserPlateau() {
 		for (int i = 0; i < this.getCartesPosees().getNbCartes(); i++)
 			if (!(this.getCartesPosees().cartes[i] instanceof Carte)) {
@@ -220,7 +251,9 @@ public abstract class Joueur {
 	public abstract Carte choisirCarteAPoser();
 
 	public abstract Personnage choisirCarteABuffer();
-
+	/**
+	 * Méthode qui réorganise la main en fonction des cartes de la main
+	 */
 	public void reOrganiserMain() {
 		for (int i = 0; i < this.getMain().getNbCartes(); i++)
 			if (!(this.getMain().cartes[i] instanceof Carte)) {

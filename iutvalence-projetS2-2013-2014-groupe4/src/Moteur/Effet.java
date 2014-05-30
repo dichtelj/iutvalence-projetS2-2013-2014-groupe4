@@ -28,7 +28,13 @@ public class Effet {
 	 */
 	private int nbCible;
 
-	
+	/**
+	 * Permet de créer un nouvel effet
+	 * @param activation
+	 * @param nom
+	 * @param montantDeDegat
+	 * @param nbCible
+	 */
 	
 	public Effet(String activation, String nom, int montantDeDegat, int nbCible){
 		this.activation=activation;

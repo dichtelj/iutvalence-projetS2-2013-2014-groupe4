@@ -30,23 +30,35 @@ public class ListeDeCartes {
 		this.cartes= new Carte[this.nbCartesMax];
 		this.nbCartes=0;
 	}
-	
+	/**
+	 * méthode qui incremente le nombre de cartes
+	 */
 	public void incrementerNbCartes(){
 		this.nbCartes++;
 	}
-
+	/**
+	 * méthode qui decremente le nombre de cartes
+	 */
 	public void decretementerNbCartes(){
 		this.nbCartes--;
 	}
-	
+	/**
+	 * méthode qui renvoi le nombre de cartes
+	 */
 	public int getNbCartes(){
 		return this.nbCartes;
 	}
-	
+	/**
+	 * méthode qui renvoie le nombre de cartes maximum
+	 * @return int
+	 */
 	public int getNbCartesMax(){
 		return this.getNbCartesMax();
 	}
-	
+	/**
+	 * méthode qui renvoi les cartes de la liste de carte
+	 * @return Cartes[]
+	 */
 	public Carte[] getCartes(){
 		return this.cartes;
 	}

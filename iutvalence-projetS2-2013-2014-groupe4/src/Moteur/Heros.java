@@ -68,6 +68,10 @@ public class Heros extends Personnage {
 		this.nbManaMax++;
 	}
 	
+	/**
+	 * méthode qui affecte un nombre de point de vie au héros
+	 * @param pointDeVie
+	 */
 	public void setPointsDeVie(int pointDeVie){
 		this.pointDeVie=pointDeVie;
 	}

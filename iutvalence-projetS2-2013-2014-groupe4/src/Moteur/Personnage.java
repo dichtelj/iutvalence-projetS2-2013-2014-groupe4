@@ -39,7 +39,10 @@ public abstract class Personnage
 	public void subirDegats(int degatsSubit){
 		this.pointDeVie-=degatsSubit;
 	}
-	
+	/**
+	 * méthode qui augment les points de vie actuel sans dépasser les points de vie maximum
+	 * @param vieSoigne
+	 */
 	public void soigner(int vieSoigne) {
 		this.pointDeVie+=vieSoigne;
 		if (this.pointDeVie > this.pointsDeVieMax)

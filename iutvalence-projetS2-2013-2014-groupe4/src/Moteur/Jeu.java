@@ -9,17 +9,29 @@ import IHM.AffichageFenetre;
  * Definition d'une partie de Battle for Demacia
  */
 public class Jeu implements Controleur {
-
+	/**
+	 * Le nombre de cartes constituant un deck
+	 */
 	public final static int NB_CARTES_DECK = 60;
-
+	/**
+	 * Le nombre de cartes maximum pouvant composer une main
+	 */
 	public static final int NB_MAX_CARTES_MAIN = 10;
-	
+	/**
+	 * Le mana maximum pouvant être atteint
+	 */
 	public static final int NB_MANA_MAX = 15;
-
+	/**
+	 * La liste de toutes les cartes du jeu
+	 */
 	public static final ListeDeCartes LISTE_CARTE_GENERALE = Jeu.creerListeDeCartesGenerale();
-	
+	/**
+	 * Choix de l'affichage du jeu ( console ou IHM )
+	 */
 	private Affichage vue;
-	
+	/**
+	 * Le nombre de cartes maximum pouvant être posé sur son côté du plateau
+	 */
 	public final static int NB_CARTES_MAX_POSEES = 7;
 
 	/**
@@ -64,7 +76,10 @@ public class Jeu implements Controleur {
 		joueur.getHeros().setNbManaCourant(joueur.getHeros().getNbManaMax());		
 	}
 	
-
+	/**
+	 * Methode qui prepare la partie en attribuant un deck et une main à chaque joueur
+	 *@return void
+	 */
 	public void preparerPartie() throws DeckInvalide {
 		((JoueurAleatoire) this.joueurs[1]).attribuerDeckAleatoire();
 		((JoueurAleatoire) this.joueurs[0]).attribuerDeckAleatoire();
@@ -75,7 +90,10 @@ public class Jeu implements Controleur {
 			throw new DeckInvalide();
 		this.vue.afficherPlateau();
 	}
-
+	/**
+	 * methode qui permet de commencer la partie
+	 * @return void 
+	 */
 	public void jouer() {
 		int indiceJoueurCourant = 0;
 		Joueur joueurCourant = this.joueurs[indiceJoueurCourant];
@@ -97,7 +115,16 @@ public class Jeu implements Controleur {
 		}
 		System.out.println("PARTIE FINIE NIGGA");
 	}
-
+	/**
+	 * Méthode qui définit comment joue l'IA à chaque tour
+	 * @param joueurCourant
+	 * 			L'IA courante
+	 * @return void
+	 * @throws PlateauPlein
+	 * @throws ManaInsuffisant
+	 * @throws CibleInvalide
+	 * @throws EstInactif
+	 */
 	public void jouerTourBot(JoueurAleatoire joueurCourant) {
 		while(joueurCourant.peutEncoreJouer())
 			if(joueurCourant.peutPoserUneCarte()){
@@ -127,7 +154,12 @@ public class Jeu implements Controleur {
 			}
 			}
 			
-
+	/**
+	 * Méthode qui permet au joueur humain de jouer le tour
+	 * @return void
+	 * @param joueurCourant
+	 * 		Le joueur humain courant
+	 */
 
 	public void jouerTour(Joueur joueurCourant) {
 		Scanner sc= new Scanner(System.in);
@@ -137,7 +169,15 @@ public class Jeu implements Controleur {
 			
 	}
 	
-
+	/**
+	 * Méthode qui permet au joueur d'effectuer des actions pendant le tour
+	 * @return void
+	 * @param joueurCourant
+	 * @throws PlateauPlein
+	 * @throws ManaInsuffisant
+	 * @throws CibleInvalide
+	 * @throws EstInactif
+	 */
 	public void jouerTourIntermediaire(Joueur joueurCourant) {
 		while(this.veutPoser() || 	this.veutAttaquer());
 		if (this.veutPoser()){
@@ -167,21 +207,30 @@ public class Jeu implements Controleur {
 			}
 	}
 
-
+	/**
+	 * Méthode vérifiant si la partie est finie ou non 
+	 * @return boolean
+	 */
 	public boolean partieFinie() {
 		if ((this.joueurs[0].getHeros().getPointsDeVie() <= 0) || (this.joueurs[1].getHeros().getPointsDeVie() <= 0)){
 			return true;}
 		return false;
 	}
 
-	
+	/**
+	 * Méthode renvoyant si le joueur veut poser
+	 * @return boolean
+	 */
 	public boolean veutPoser(){
 		if (((AffichageFenetre)this.getVue()).getCarteAPoser()==null)
 				return false;
 		return true;
 	}
 	
-	
+	/**
+	 * Méthode renvoyant si le joueur veut attaquer
+	 * @return boolean
+	 */
 	public boolean veutAttaquer(){
 		if (((AffichageFenetre)this.getVue()).getCarteAttaquante()==null)
 			return false;
@@ -517,7 +566,10 @@ public class Jeu implements Controleur {
 		}
 		}
 	
-	
+	/**
+	 * méthode qui mélange le deck d'un joueur, donné en paramètre, de manière aléatoire
+	 * @param joueur
+	 */
 
 	public void melangerDeck(Joueur joueur) {
 		Random generateurDeNombresAleatoires = new Random();
@@ -533,7 +585,12 @@ public class Jeu implements Controleur {
 			}
 		}
 	}
-
+	/**
+	 * Méthode qui attribue une main de départ au joueur en faisant appelle à piocherCarte()
+	 * @return void 
+	 * @param joueur
+	 * 		Le joueur à qui on attribue la main
+	 */
 	public void attribuerMainDepart(Joueur joueur) {
 		joueur.piocherCarte();
 		joueur.piocherCarte();
@@ -542,6 +599,10 @@ public class Jeu implements Controleur {
 
 	/**
 	 * Envoi la carte passer en paramètre dans le cimetière
+	 * @param carte
+	 * 		La carte à envoyer dans le cimetière
+	 * @param joueur
+	 * 		Le joueur à qui appartient la carte
 	 */
 	public void jeterCarte(Carte carte, Joueur joueur) {
 		if (carte.getEffet()!=null)
@@ -549,7 +610,10 @@ public class Jeu implements Controleur {
 			carte.effet.appliquerEffet(joueur,this.joueurs[2-joueur.getNumeroJoueur()]);
 		joueur.getCimetiere().setCimetiere(carte);
 	}
-	
+	/**
+	 * méthode qui converti les actions en ascii pour l'affichage console
+	 * @return String
+	 */
 	public String toString(){
 		String partie="";
 		partie+="point de vie héros :"+this.joueurs[1].getHeros().getPointsDeVie()+"\n";	
@@ -575,11 +639,19 @@ public class Jeu implements Controleur {
 		partie+="mana courant :"+this.joueurs[0].getHeros().getNbManaCourant()+"\n \n \n";
 		return partie;
 	}
-	
+	/**
+	 * méthode renvoi un affichage au jeu
+	 * @return Affichage
+	 */
 	public Affichage getVue(){
 		return this.vue;
 	}
-	
+	/**
+	 * Méthode qui cherche l'index d'une carte dans la main
+	 * @param carte
+	 * @param joueur
+	 * @return int
+	 */
 	public int trouverIndexCarteDansMain(Carte carte, Joueur joueur){
 		int indiceCarteCherchee=0;
 		while(joueur.getMain().cartes[indiceCarteCherchee]!=carte)

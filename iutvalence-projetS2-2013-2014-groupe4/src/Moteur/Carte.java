@@ -145,11 +145,17 @@ public class Carte extends Personnage {
 		this.pointDeVie+=vie;
 		
 	}
-	
+	/**
+	 * méthode qui converti les attributs de la carte en ascii pour l'affichage console
+	 *@return String
+	 */
 	public String toString(){
 		return ""+this.nom+" "+this.pointsDAttaque+"/"+this.pointDeVie+" "+"Cout:"+this.coutEnMana+"  |  ";
 	}
-	
+	/**
+	 * Méthode qui renvoi le nom de la carte
+	 * @return String
+	 */
 	public String getNom(){
 		return this.nom;
 	}
