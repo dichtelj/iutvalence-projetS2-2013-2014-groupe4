@@ -88,7 +88,7 @@ public class Jeu implements Controleur {
 			if(joueurCourant instanceof JoueurAleatoire)
 				this.jouerTourBot((JoueurAleatoire)joueurCourant);
 			this.finTour(joueurCourant);
-			System.out.println("FIN TOUR"+this.toString());
+			System.out.println("FIN TOUR"+this.toString()+"\n");
 			indiceJoueurCourant++;
 			compteurTourEfectif++;
 			if (compteurTourEfectif%2==0)

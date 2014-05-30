@@ -52,10 +52,10 @@ public class JoueurAleatoire extends Joueur {
 	}
 	
 	public boolean peutPoserUneCarte(){
-
-		for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++){
-			if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())
-				return true;}
+		if(this.getNbCartesPosees() < Jeu.NB_CARTES_MAX_POSEES)
+			for (int indiceCarte = 0; indiceCarte < this.getNbCartesMain(); indiceCarte++){
+				if (this.getMain().cartes[indiceCarte].getCoutEnMana() <= this.getHeros().getNbManaCourant())
+					return true;}
 		return false;		
 	}
 	
