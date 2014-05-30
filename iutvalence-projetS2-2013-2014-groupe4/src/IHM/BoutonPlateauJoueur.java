@@ -1,5 +1,7 @@
 package IHM;
 
+import java.awt.Dimension;
+import java.awt.LayoutManager;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -9,6 +11,7 @@ import Moteur.Carte;
 public class BoutonPlateauJoueur extends JButton{
 	
 	private Carte carte;
+	
 	
 	public BoutonPlateauJoueur(ActionListener auditeur)
 	{

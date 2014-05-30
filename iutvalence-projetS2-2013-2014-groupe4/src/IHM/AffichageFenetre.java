@@ -65,7 +65,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	{
 		JFrame fenetre= new JFrame();
 		this.fenetre=fenetre;
-		this.fenetre.setSize(950, 755);
+		this.fenetre.setSize(960, 755);
 		this.fenetre.setTitle("Battle for Demacia");
 		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MenuJeu barreDeMenu= new MenuJeu(this.fenetre);
@@ -84,13 +84,25 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 
 	public void initialiserPartie() {
 		JPanel partie= new JPanel();
-		ImagePanel mainAdverse= new ImagePanel(new ImageIcon("images/quart4.jpg").getImage());
-		mainAdverse.setOpaque(false);
-		ImagePanel cartesPoseesAdverse= new ImagePanel(new ImageIcon("images/quart3.png").getImage());
+		ImagePanel infos= new ImagePanel(new ImageIcon("images/quart4.jpg").getImage());
+		infos.setOpaque(false);
+		
+		JPanel cartesPoseesAdverse= new JPanel();
 		cartesPoseesAdverse.setOpaque(false);
-		ImagePanel mainJoueur= new ImagePanel(new ImageIcon("images/quart1.png").getImage());
-		mainJoueur.setOpaque(true);
-		ImagePanel cartesPoseesJoueur= new ImagePanel(new ImageIcon("images/quart2.png").getImage());
+		cartesPoseesAdverse.setPreferredSize(new Dimension(750,120));
+		
+		JPanel mainJoueur= new JPanel();
+		mainJoueur.setOpaque(false);
+		mainJoueur.setPreferredSize(new Dimension(900,120));
+		
+		JPanel cartesPoseesJoueur= new JPanel();
+		cartesPoseesJoueur.setOpaque(false);
+		cartesPoseesJoueur.setPreferredSize(new Dimension(750,120));
+		
+		ImagePanel panelAdverse= new ImagePanel(new ImageIcon("images/quart3.png").getImage());
+		ImagePanel panelJoueur= new ImagePanel(new ImageIcon("images/quart2.png").getImage());
+		ImagePanel panelMain= new ImagePanel(new ImageIcon("images/quart1.png").getImage());
+		
 		this.boutonsMainJoueur=new BoutonMain[Jeu.NB_MAX_CARTES_MAIN];
 		this.boutonsPlateauAdverse=new BoutonPlateauAdverse[Jeu.NB_CARTES_MAX_POSEES];
 		this.boutonsPlateauJoueur=new BoutonPlateauJoueur[Jeu.NB_CARTES_MAX_POSEES];
@@ -118,15 +130,18 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		}
 		
 		
-		mainAdverse.setLayout(new GridLayout(1,2, 50, 50));
+		infos.setLayout(new GridLayout(1,2, 50, 50));
 		mainJoueur.setLayout(new GridLayout(1,11,20 ,20));
 		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
 		cartesPoseesJoueur.setLayout(new GridLayout(1,7, 20, 20));
+		panelAdverse.add(cartesPoseesAdverse);
+		panelJoueur.add(cartesPoseesJoueur);
+		panelMain.add(mainJoueur);
 		this.fenetre.setLayout(new GridLayout(4,1));
-		this.fenetre.add(mainAdverse);
-		this.fenetre.add(cartesPoseesAdverse);
-		this.fenetre.add(cartesPoseesJoueur);
-		this.fenetre.add(mainJoueur);		
+		this.fenetre.add(infos);
+		this.fenetre.add(panelAdverse);
+		this.fenetre.add(panelJoueur);
+		this.fenetre.add(panelMain);		
 		this.fenetre.setVisible(true);
 
 	}
