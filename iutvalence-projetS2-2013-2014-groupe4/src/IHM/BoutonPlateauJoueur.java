@@ -10,13 +10,17 @@ public class BoutonPlateauJoueur extends JButton{
 	
 	private Carte carte;
 	
-	public BoutonPlateauJoueur(Carte carte, ActionListener auditeur)
+	public BoutonPlateauJoueur(ActionListener auditeur)
 	{
-		this.carte=carte;
+		this.carte=null;
 		this.addActionListener(auditeur);
 	}
 	
 	public Carte getCarte(){
 		return this.carte;
+	}
+	
+	public void setCarte(Carte carte){
+		this.carte=carte;
 	}
 }

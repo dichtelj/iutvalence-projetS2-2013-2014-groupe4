@@ -2,6 +2,7 @@ package IHM;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,6 +18,7 @@ import javax.swing.WindowConstants;
 
 import Moteur.Carte;
 import Moteur.Controleur;
+import Moteur.Jeu;
 import Moteur.Joueur;
 import Moteur.Personnage;
 import Moteur.Position;
@@ -27,11 +29,11 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	private Controleur controleur;
 	
-    private JPanel EcranDAccueil;
-	
-	private JPanel ListeCartesGenerales;
-	
-	private JPanel Partie;
+//    private JPanel EcranDAccueil;
+//	
+//	private JPanel ListeCartesGenerales;
+//	
+//	private JPanel Partie;
 	
 	private MenuJeu menu;
 	
@@ -55,7 +57,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		this.fenetre=fenetre;
 		this.fenetre.setSize(950, 700);
 		this.fenetre.setTitle("Battle for Demacia");
-		fenetre.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		this.fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		MenuJeu barreDeMenu= new MenuJeu(this.fenetre);
 		this.fenetre.setJMenuBar(barreDeMenu);
 		this.initialiserPartie();
@@ -83,33 +85,25 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		JPanel mainJoueur= new JPanel();
 		mainJoueur.setBackground(Color.magenta);
 		JPanel cartesPoseesJoueur= new JPanel();
-		cartesPoseesJoueur.setBackground(Color.yellow);
 		
-		//On sépare l'écran en deux partie coteHautEcra et coteBasEcran
-		JSplitPane splitPaneMilieuDEcran= new JSplitPane(JSplitPane.VERTICAL_SPLIT, coteHautEcran, coteBasEcran);
+		for (int indiceBouton=0; indiceBouton< Jeu.NB_CARTES_MAX_POSEES; indiceBouton++){
+			cartesPoseesAdverse.add(new BoutonPlateauAdverse(this));
+			cartesPoseesJoueur.add(new BoutonPlateauJoueur(this));
+		}
 		
+		for (int indiceBouton=0;indiceBouton < Jeu.NB_MAX_CARTES_MAIN; indiceBouton++)
+			mainJoueur.add(new BoutonMain(this));
 		
-		//On sépare ensuite la partie haute de l'écran en mainAdverse et cartesPoseesAdverse
-		JSplitPane separationHautEcran= new JSplitPane(JSplitPane.VERTICAL_SPLIT, mainAdverse, cartesPoseesAdverse);
-		separationHautEcran.setBorder(null);
-		separationHautEcran.setDividerSize(0);
-		coteHautEcran.add(separationHautEcran);
-		separationHautEcran.setMinimumSize(new Dimension(450,700));
-		System.out.println(""+separationHautEcran.getParent());
-		
-		//De même avec la partie basse
-		JSplitPane separationBasEcran = new JSplitPane(JSplitPane.VERTICAL_SPLIT, cartesPoseesJoueur, mainJoueur);
-		separationBasEcran.setBorder(null);
-		separationBasEcran.setDividerSize(0);
-		coteBasEcran.add(separationBasEcran);
-
-		partie.add(splitPaneMilieuDEcran);
-		splitPaneMilieuDEcran.setResizeWeight(0.5);
-		splitPaneMilieuDEcran.setBorder(null);
-		splitPaneMilieuDEcran.setDividerSize(0);
-		this.fenetre.add(splitPaneMilieuDEcran);
+		mainJoueur.setLayout(new GridLayout(1,10,20 ,20));
+		cartesPoseesAdverse.setLayout(new GridLayout(1,7, 20, 20));
+		cartesPoseesJoueur.setLayout(new GridLayout(1,7, 20, 20));
+		this.fenetre.setLayout(new GridLayout(4,1, 20, 20));
+		this.fenetre.add(mainAdverse);
+		this.fenetre.add(cartesPoseesAdverse);
+		this.fenetre.add(cartesPoseesJoueur);
+		this.fenetre.add(mainJoueur);		
 		this.fenetre.setVisible(true);
-		
+
 	}
 	
 	public void initialiserAcceuil(){

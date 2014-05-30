@@ -10,13 +10,17 @@ public class BoutonPlateauAdverse extends JButton{
 	
 	private Carte carte;
 	
-	public BoutonPlateauAdverse(Carte carte, ActionListener auditeur)
+	public BoutonPlateauAdverse(ActionListener auditeur)
 	{
-		this.carte=carte;
+		this.carte=null;
 		this.addActionListener(auditeur);
 	}
 	
 	public Carte getCarte(){
 		return this.carte;
+	}
+	
+	public void setCarte(Carte carte){
+		this.carte=carte;
 	}
 }
