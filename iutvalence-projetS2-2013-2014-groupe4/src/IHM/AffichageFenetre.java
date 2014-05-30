@@ -42,8 +42,6 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		
 		private BoutonPlateauJoueur[] boutonsPlateauJoueur;
 		
-		private BoutonFinDeTour boutonFinTour ;
-		
 	private MenuJeu menu;
 	
 	private Carte carteAttaquante;
@@ -77,6 +75,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 		this.carteAttaquante=null;
 		this.carteAttaquee=null;
 		this.carteDeck=null;
+		this.tourFini=false;
 	}
 	
 	
@@ -125,6 +124,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 			this.boutonsPlateauJoueur[indiceBouton]=boutonCreer2;
 			cartesPoseesJoueur.add(boutonCreer2);
 		}
+		cartesPoseesJoueur.add(new BoutonFinDeTour(this));
 
 
 		for (int indiceBouton=0;indiceBouton < Jeu.NB_MAX_CARTES_MAIN; indiceBouton++){
@@ -190,9 +190,10 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 			this.carteAttaquante=null;
 			this.carteABuffer=null;
 		}
-		if (boutonAppuye instanceof BoutonFinDuTour)
-		{
+		
+		if (boutonAppuye instanceof BoutonFinDeTour){
 			this.tourFini=true;
+			this.tourFini=false;
 		}
 	}
 
@@ -250,24 +251,19 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	
 	
 	public void afficherPlateau(){
-		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees();indiceCarte++){
-			if (indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees())
-				   this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
-				   this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
+		for (int indiceCarte=0;indiceCarte < Jeu.NB_CARTES_MAX_POSEES;indiceCarte++){
 			try{
 				Thread.sleep(1000);
 			}
 			catch (InterruptedException e1){
 		
 			}
+			if (indiceCarte < this.controleur.getJoueurs()[1].getNbCartesPosees())
 			this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
 			this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
 		}
 		
-		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees();indiceCarte++){
-			if (indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees())
-				   this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
-				   this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
+		for (int indiceCarte=0; indiceCarte < Jeu.NB_CARTES_MAX_POSEES;indiceCarte++){
 			try{
 				Thread.sleep(1000);
 			}
@@ -278,10 +274,7 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 			this.boutonsPlateauJoueur[indiceCarte].afficherBouton();
 		}
 		
-		for (int indiceCarte=0;indiceCarte < this.controleur.getJoueurs()[0].getNbCartesMain();indiceCarte++){
-			if (indiceCarte < this.controleur.getJoueurs()[0].getNbCartesPosees())
-				   this.boutonsPlateauAdverse[indiceCarte].setCarte(this.controleur.getJoueurs()[1].getCartesPosees().getCartes()[indiceCarte]);
-				   this.boutonsPlateauAdverse[indiceCarte].afficherBouton();
+		for (int indiceCarte=0;indiceCarte < Jeu.NB_MAX_CARTES_MAIN;indiceCarte++){
 			try{
 				Thread.sleep(500);
 			}
@@ -300,10 +293,6 @@ public class AffichageFenetre extends Joueur implements Affichage, Runnable, Act
 	}
 
 
-
-
-
-	@Override
 	public boolean getTourFini() {
 		return this.tourFini;
 	}

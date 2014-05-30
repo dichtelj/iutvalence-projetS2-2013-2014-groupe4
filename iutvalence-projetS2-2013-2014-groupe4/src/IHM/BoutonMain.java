@@ -35,5 +35,8 @@ public class BoutonMain extends JButton{
 			this.setEnabled(true);
 			this.setText("<html>"+this.carte.getNom()+"<br>"+this.carte.getAttaque()+"/"+this.carte.getVie()+"<br>"+"Cout:"+this.carte.getCout()+"</html>");
 			}
+		else{
+			this.setEnabled(false);
+		}
 	}
 }
