@@ -114,7 +114,7 @@ public class Jeu implements Controleur {
 			if (compteurTourEfectif%2==0)
 				compteurTour++;
 		}
-		System.out.println("PARTIE FINIE NIGGA");
+		System.out.println("Partie finie : Joueur "+joueurCourant.getNumeroJoueur()+" a gagne");
 	}
 	/**
 	 * Méthode qui définit comment joue l'IA à chaque tour
